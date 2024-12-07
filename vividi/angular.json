@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "vividi-frontend": {
+    "vividi": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/vividi-frontend",
+            "outputPath": "dist/vividi",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -46,8 +46,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
                 }
               ],
               "outputHashing": "all"
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "vividi-frontend:build:production"
+              "buildTarget": "vividi:build:production"
             },
             "development": {
-              "buildTarget": "vividi-frontend:build:development"
+              "buildTarget": "vividi:build:development"
             }
           },
           "defaultConfiguration": "development"
