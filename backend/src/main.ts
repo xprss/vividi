@@ -7,8 +7,10 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Vividi')
-    .setDescription('The Vividi\'s APIs exposed to celebrate a wonderful wedding.')
-    .setVersion(process.env.VIVIDI_VERSION ?? "1.0.0")
+    .setDescription(
+      "The Vividi's APIs exposed to celebrate a wonderful wedding.",
+    )
+    .setVersion(process.env.VIVIDI_VERSION ?? '1.0.0')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);

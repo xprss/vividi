@@ -1,20 +1,10 @@
 import { Module } from '@nestjs/common';
-import { PictureService } from './picture/picture.service';
-import { UserService } from './user/user.service';
-import { UserController } from './user/user.controller';
-import { MongooseModule } from '@nestjs/mongoose';
-import { PictureController } from './picture/picture.controller';
+import { VibeModule } from './vibe/vibe.module';
+import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [
-    MongooseModule.forRoot('mongodb://localhost/27017/vividi')],
-  controllers: [
-    PictureController,
-    UserController
-  ],
-  providers: [
-    PictureService,
-    UserService
-  ],
+  imports: [VibeModule, UserModule],
+  controllers: [],
+  providers: [],
 })
-export class AppModule { }
+export class AppModule {}
