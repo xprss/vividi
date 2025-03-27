@@ -10,14 +10,15 @@ import {
 import { VibeService } from './vibe.service';
 import { CreateVibeDto } from './dto/create-vibe.dto';
 import { UpdateVibeDto } from './dto/update-vibe.dto';
+import { ApiParam } from '@nestjs/swagger';
 
 @Controller('vibe')
 export class VibeController {
   constructor(private readonly vibeService: VibeService) {}
 
   @Post()
-  create(@Body() createVibeDto: CreateVibeDto) {
-    return this.vibeService.create(createVibeDto);
+  async create(@Body() createVibeDto: CreateVibeDto) {
+    return await this.vibeService.create(createVibeDto);
   }
 
   @Get()
@@ -31,6 +32,10 @@ export class VibeController {
   }
 
   @Patch(':id')
+  @ApiParam({
+    name: 'id',
+    description: 'The id of the Vibe',
+  })
   update(@Param('id') id: string, @Body() updateVibeDto: UpdateVibeDto) {
     return this.vibeService.update(+id, updateVibeDto);
   }
