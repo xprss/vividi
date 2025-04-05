@@ -1,0 +1,12 @@
+.navbar {
+  .navbar-core {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+  }
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(41, 41, 41);
+  padding: 1rem 0 1rem 0;
+}
