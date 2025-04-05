@@ -1,6 +1,6 @@
 # Vividi
 
-![Build Status](https://github.com/xprss/vividi/.github/workflows/build.yml/badge.svg)
+[![Build](https://github.com/xprss/vividi/actions/workflows/build.yml/badge.svg)](https://github.com/xprss/vividi/actions/workflows/build.yml)
 
 > Dedicated to **Sibilla and Lorenzo**, next to get married in November 2025. Your love shines through any snippet of this codebase and the most tender glimpse of my life.
 
