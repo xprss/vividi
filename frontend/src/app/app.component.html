@@ -1,13 +1,1 @@
-<main class="main">
-  <div class="content">
-    <div class="user-post-list">
-      @for (post of posts; track $index) {
-        <v2d-user-post  [username]="post.username" 
-                        [timestamp]="post.timestamp" 
-                        [description]="post.description" />
-      }
-    </div>
-  </div>
-</main>
-
-<router-outlet />
+<v2d-home></v2d-home>
