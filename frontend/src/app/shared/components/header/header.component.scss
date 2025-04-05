@@ -1,0 +1,25 @@
+.header {
+  .header-core {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    .header-app {
+      height: min-content;
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      align-items: center;
+      gap: 1rem;
+      img {
+        height: 2rem;
+        width: auto;
+      }
+    }
+  }
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: rgb(41, 41, 41);
+}
