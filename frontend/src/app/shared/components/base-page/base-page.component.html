@@ -1,0 +1,9 @@
+@if (headerService.isEnabled()) {
+    <v2d-header></v2d-header>
+}
+
+<ng-content class="basePageBody" select="[basePageBody]"></ng-content>
+
+@if (navbarService.isEnabled()) {
+    <v2d-navbar></v2d-navbar>    
+}
