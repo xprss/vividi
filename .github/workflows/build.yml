@@ -1,4 +1,4 @@
-name: Build Angular & NestJS
+name: Build
 
 on:
   push:
