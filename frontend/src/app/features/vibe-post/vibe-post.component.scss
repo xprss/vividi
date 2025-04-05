@@ -1,0 +1,44 @@
+:host {
+    width: 100%;
+}
+
+.vibe {
+    width: 100%;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(36, 36, 36);
+    padding: 0.8rem 1.6rem;
+    gap: 0.5rem;
+
+    .vibe-header {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        justify-content: start;
+        align-items: center;
+        height: min-content;
+    }
+
+    .vibe-picture {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+    }
+
+    .vibe-content {
+
+    }
+
+    .vibe-footer {
+        display: flex;
+        justify-content: right;
+        font-size: smaller;
+        color: antiquewhite;
+    }
+}
