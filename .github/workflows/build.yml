@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    name: Build Frontend & Backend
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
