@@ -2,7 +2,9 @@
     <v2d-header></v2d-header>
 }
 
-<ng-content class="basePageBody" select="[basePageBody]"></ng-content>
+<div class="page-container">
+    <ng-content class="basePageBody" select="[basePageBody]"></ng-content>
+</div>
 
 @if (navbarService.isEnabled()) {
     <v2d-navbar></v2d-navbar>    
