@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { BasePageComponent } from '../../shared/components/base-page/base-page.component';
 import { SharedModule } from '../../shared/shared.module';
 import { FeaturesModule } from '../../features/features.module';
 
@@ -8,8 +7,6 @@ import { FeaturesModule } from '../../features/features.module';
   standalone: true,
   imports: [SharedModule, FeaturesModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
-export class HomeComponent {
-
-}
+export class HomeComponent {}

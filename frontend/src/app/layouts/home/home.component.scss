@@ -4,6 +4,15 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    background-color: rgb(123, 123, 123);
     gap: 0.25rem;
+    background-color: var(--p-amber-950);
+}
+
+.homepage-title {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-color: var(--p-amber-950);
+    color: var(--p-amber-50);
+    width: 100%;
 }
