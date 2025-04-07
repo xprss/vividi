@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 
@@ -10,5 +11,13 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
+  constructor(private readonly router: Router) {}
 
+  public navigateToHomePage(): void {
+    this.router.navigate(['/home'])
+  }
+
+  public navigateToNewVibePage(): void {
+    this.router.navigate(['/newVibe'])
+  }
 }
