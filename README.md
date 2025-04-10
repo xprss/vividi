@@ -18,7 +18,7 @@ This distributed approach collects the different perspectives of all the invited
 
 ## Vibes: digital memories
 
-Pictures are collected in a set of what here are called **Vibes**: more than a post, as a single picture is accompanied by a caption describing what the user is feeling in that moment; moreover, a tagging system helps with classifying the Vibes in a metrics decided by the user.
+Pictures are collected in a set of what here are called **Vibes**: more than a post, as a single picture is accompanied by a caption describing what the user is feeling in that moment; moreover, a tagging system helps with classifying the Vibes in a metric decided by the platform manager.
 
 ## Tech stack
 
