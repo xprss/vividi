@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
+import { NavbarService } from '../../../core/navbar.service';
 
 @Component({
   selector: 'v2d-navbar',
@@ -11,17 +12,20 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  constructor(private readonly router: Router) {}
+  constructor(
+    private readonly router: Router,
+    private readonly navbarService: NavbarService
+  ) {}
 
   public navigateToHomePage(): void {
-    this.router.navigate(['/home']);
+    this.navbarService.navigateToHomePage();
   }
 
   public navigateToNewVibePage(): void {
-    this.router.navigate(['/newVibe']);
+    this.navbarService.navigateToNewVibePage();
   }
 
   public navigateToMyPersonalPage(): void {
-    this.router.navigate(['/me']);
+    this.navbarService.navigateToMyPersonalPage();
   }
 }

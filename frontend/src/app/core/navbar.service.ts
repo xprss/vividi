@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class NavbarService {
   private enabled: boolean;
 
-  constructor() {
+  constructor(private readonly router: Router) {
     this.enabled = true;
   }
 
@@ -24,5 +25,17 @@ export class NavbarService {
 
   public setEnabled(next: boolean): void {
     this.enabled = next;
+  }
+
+  public navigateToHomePage(): void {
+    this.router.navigate(['/home']);
+  }
+
+  public navigateToNewVibePage(): void {
+    this.router.navigate(['/newVibe']);
+  }
+
+  public navigateToMyPersonalPage(): void {
+    this.router.navigate(['/me']);
   }
 }
