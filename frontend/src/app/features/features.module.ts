@@ -4,7 +4,20 @@ import { VibePostComponent } from './vibe-post/vibe-post.component';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, VibePostComponent],
-  exports: [VibePostComponent]
+  imports: [
+    CommonModule,
+    VibePostComponent,
+    NewVibeFormComponent,
+    NewVibeImageUploadComponent,
+    NewVibeReviewComponent,
+    NewVibeTagsComponent,
+  ],
+  exports: [
+    VibePostComponent,
+    NewVibeFormComponent,
+    NewVibeImageUploadComponent,
+    NewVibeReviewComponent,
+    NewVibeTagsComponent,
+  ],
 })
 export class FeaturesModule {}
