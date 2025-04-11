@@ -1,53 +1,60 @@
 :host {
-    width: 100%;
+  width: 100%;
 }
 
 .vibe {
-    width: 100%;
-    color: var(--p-amber-50);
-    height: min-content;
+  width: 100%;
+  color: var(--p-amber-50);
+  height: min-content;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--p-amber-900);
+  padding: 0.8rem 1.6rem;
+  gap: 1rem;
+
+  .vibe-header {
     display: flex;
-    flex-direction: column;
-    background-color: var(--p-amber-900);
-    padding: 0.8rem 1.6rem;
-    gap: 1rem;
-
-    .vibe-header {
-        display: flex;
-        flex-direction: row;
-        gap: 0.5rem;
-        justify-content: start;
-        align-items: center;
-        height: min-content;
-        #vibe-user-name {
-            font-size: large;
-            font-weight: 900;
-            color: var(--p-amber-50);
-        }
-    }
-
-    .vibe-picture {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        img {
-            width: 100%;
-            height: 100%;
-            border-radius: 0.5rem;
-            overflow: hidden;
-        }
-    }
-
-    .vibe-content {
-        margin: 0;
-        padding: 0;
-    }
-
-    .vibe-footer {
-        display: flex;
-        justify-content: right;
-        font-size: smaller;
-        color: var(--p-violet-100);
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    height: min-content;
+    #left {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.3rem;
+      justify-content: left;
+      #vibe-user-name {
+        font-size: large;
         font-weight: 900;
+        color: var(--p-amber-50);
+      }
     }
+  }
+
+  .vibe-picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+  }
+
+  .vibe-content {
+    margin: 0;
+    padding: 0;
+  }
+
+  .vibe-footer {
+    display: flex;
+    justify-content: right;
+    font-size: smaller;
+    color: var(--p-violet-100);
+    font-weight: 900;
+  }
 }
