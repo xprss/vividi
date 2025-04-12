@@ -1,4 +1,22 @@
-<p-iftalabel>
-    <input pInputText id="description" [(ngModel)]="description" />
-    <label for="description">Description</label>
-</p-iftalabel>
+<p-floatlabel variant="on">
+  <textarea
+    pTextarea
+    id="on_label"
+    [(ngModel)]="description"
+    rows="5"
+    cols="30"
+    style="resize: none"
+    class="h-full w-full"
+  ></textarea>
+  <label for="on_label">Lascia un messaggio</label>
+</p-floatlabel>
+
+<div class="category-wrapper">
+  <span>Categoria:</span>
+  <div class="category-container">
+    <p-chip label="🗓️ Giorni precedenti" />
+    <p-chip label="⛪️ Cerimonia" />
+    <p-chip label="🍾 Ricevimento" />
+    <p-chip label="🗓️ Giorni successivi" />
+  </div>
+</div>
