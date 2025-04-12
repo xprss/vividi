@@ -1,7 +1,14 @@
 <div class="header">
-    <div class="header-core">
-        <div class="header-app">
-            <h3>✨ VIVIDI ✨</h3>
-        </div>
+  <div class="header-core">
+    <div class="header-app">
+      <h3>✨ VIVIDI ✨</h3>
     </div>
+    <p-button
+      icon="pi pi-info"
+      [severity]="'secondary'"
+      [rounded]="true"
+      [outlined]="true"
+      (onClick)="this.drawerService.toggle()"
+    />
+  </div>
 </div>
