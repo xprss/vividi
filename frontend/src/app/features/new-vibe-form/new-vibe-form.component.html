@@ -2,6 +2,19 @@
   <textarea
     pTextarea
     id="on_label"
+    [(ngModel)]="user"
+    rows="5"
+    cols="30"
+    style="resize: none"
+    class="h-full w-full"
+  ></textarea>
+  <label for="on_label">Lascia un messaggio</label>
+</p-floatlabel>
+
+<p-floatlabel variant="on">
+  <textarea
+    pTextarea
+    id="on_label"
     [(ngModel)]="description"
     rows="5"
     cols="30"
@@ -14,9 +27,17 @@
 <div class="category-wrapper">
   <span>Categoria:</span>
   <div class="category-container">
-    <p-chip label="🗓️ Giorni precedenti" />
-    <p-chip label="⛪️ Cerimonia" />
-    <p-chip label="🍾 Ricevimento" />
-    <p-chip label="🗓️ Giorni successivi" />
+    <p-chip
+      label="🗓️ Giorni precedenti"
+      onclick="()=>setMoment('Giorni precedenti')"
+    />
+    <p-chip label="⛪️ Cerimonia" onclick="()=>setMoment('Cerimonia')" />
+    <p-chip label="🍾 Ricevimento" onclick="()=>setMoment('Ricevimento')" />
+    <p-chip
+      label="🗓️ Giorni successivi"
+      onclick="()=>setMoment('Giorni successivi')"
+    />
   </div>
 </div>
+
+<p-button (onClick)="submit()">Invia</p-button>
