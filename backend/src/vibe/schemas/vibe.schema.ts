@@ -1,15 +1,16 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Moment } from 'libs/common/moment.enum';
 
 @Schema()
 export class Vibe {
   @Prop()
-  private id: string;
+  private user: string;
 
   @Prop()
-  private height: number;
+  private description: string;
 
   @Prop()
-  private width: number;
+  private moment: Moment;
 }
 
 export const VibeSchema = SchemaFactory.createForClass(Vibe);

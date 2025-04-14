@@ -22,8 +22,8 @@ export class VibeController {
   }
 
   @Get()
-  findAll() {
-    return this.vibeService.findAll();
+  async findAll() {
+    return await this.vibeService.findAll();
   }
 
   @Get(':id')

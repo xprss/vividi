@@ -1,12 +1,22 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Moment } from 'libs/common/moment.enum';
 
 export class CreateVibeDto {
-  @ApiProperty({ example: 'V1029', description: 'A unique id for the Vibe' })
-  private readonly id: string;
+  @ApiProperty({
+    example: 'Sibilla Sagristano',
+    description: 'The user creating the vibe',
+  })
+  private readonly user: string;
 
-  @ApiProperty({ example: '1920', description: 'The height of the picture' })
-  private readonly height: number;
+  @ApiProperty({
+    example: 'Hello everybody',
+    description: 'The description for the vibe',
+  })
+  private readonly description: string;
 
-  @ApiProperty({ example: '1080', description: 'The width of the picture' })
-  private readonly width: number;
+  @ApiProperty({
+    example: 'CEREMONY',
+    description: 'The moment classifying the vibe',
+  })
+  private readonly moment: Moment;
 }

@@ -15,8 +15,8 @@ export class VibeService {
     return newVibe;
   }
 
-  findAll() {
-    return `This action returns all vibe`;
+  async findAll() {
+    return await this.vibeModel.find();
   }
 
   findOne(id: number) {
