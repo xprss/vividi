@@ -10,7 +10,9 @@ on:
     branches:
       - master
     paths-ignore:
-      - '**/README.md'
+      - '**/*.md'
+      - '**/*.json'
+      - '**/*.JSON'
 
 jobs:
   build:

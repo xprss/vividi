@@ -1,5 +1,5 @@
 # Vividi
-
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 | Workflow status |
 | --- |
 | [![Build](https://github.com/xprss/vividi/actions/workflows/build.yml/badge.svg)](https://github.com/xprss/vividi/actions/workflows/build.yml) |
