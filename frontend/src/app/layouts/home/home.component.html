@@ -2,20 +2,16 @@
   <div basePageBody>
     <v2d-page-title title="🧭 Esplora"></v2d-page-title>
     <div class="vibe-post-container">
-      <v2d-vibe-post [filename]="'vibes/vibe1.jpg'"></v2d-vibe-post>
-      <v2d-vibe-post [filename]="'vibes/vibe2.jpg'"></v2d-vibe-post>
-      <v2d-vibe-post [filename]="'vibes/vibe1.jpg'"></v2d-vibe-post>
-      <v2d-vibe-post [filename]="'vibes/vibe2.jpg'"></v2d-vibe-post>
-      <v2d-vibe-post [filename]="'vibes/vibe1.jpg'"></v2d-vibe-post>
-      <v2d-vibe-post [filename]="'vibes/vibe2.jpg'"></v2d-vibe-post>
-      <v2d-vibe-post [filename]="'vibes/vibe1.jpg'"></v2d-vibe-post>
-      <v2d-vibe-post [filename]="'vibes/vibe2.jpg'"></v2d-vibe-post>
-      <v2d-vibe-post [filename]="'vibes/vibe1.jpg'"></v2d-vibe-post>
-      <v2d-vibe-post [filename]="'vibes/vibe2.jpg'"></v2d-vibe-post>
-      <v2d-vibe-post [filename]="'vibes/vibe1.jpg'"></v2d-vibe-post>
-      <v2d-vibe-post [filename]="'vibes/vibe2.jpg'"></v2d-vibe-post>
-      <v2d-vibe-post [filename]="'vibes/vibe1.jpg'"></v2d-vibe-post>
-      <v2d-vibe-post [filename]="'vibes/vibe2.jpg'"></v2d-vibe-post>
+      @for (vibe of vibes; track $index) {
+      <v2d-vibe-post
+        [user]="vibe.user"
+        [description]="vibe.description"
+        [moment]="vibe.moment"
+      ></v2d-vibe-post>
+      } @if (vibes.length === 0) {
+      <h2>Nessuno ha ancora postato!</h2>
+      <span>Contribuisci a questa fantastica raccolta di ricordi! 🥹</span>
+      }
     </div>
   </div>
 </v2d-base-page>
