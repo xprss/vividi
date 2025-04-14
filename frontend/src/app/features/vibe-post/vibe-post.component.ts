@@ -10,5 +10,8 @@ import { ChipModule } from 'primeng/chip';
   styleUrl: './vibe-post.component.scss'
 })
 export class VibePostComponent {
-  @Input() public filename: string = "";
+  @Input() public filename: string = "vibes/vibe2.jpg";
+  @Input() public user: string = "";
+  @Input() public description: string = "";
+  @Input() public moment: string = "";
 }
