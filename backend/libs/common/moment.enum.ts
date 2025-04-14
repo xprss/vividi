@@ -1,12 +1,6 @@
-export class Moment {
-    private type: MomentType;
-    private displayName: string;
-    private description: string;
-}
-
-export enum MomentType {
-    PREVIOUS_DAYS,
-    CERIMONY,
-    LUNCH,
-    FOLLOWING_DAYS
+export enum Moment {
+  PREVIOUS_DAYS = 'PREVIOUS_DAYS',
+  CEREMONY = 'CEREMONY',
+  LUNCH = 'LUNCH',
+  FOLLOWING_DAYS = 'FOLLOWING_DAYS',
 }
