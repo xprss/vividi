@@ -3,31 +3,29 @@ import { CreateVibeDto } from './dto/create-vibe.dto';
 import { UpdateVibeDto } from './dto/update-vibe.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { IVibe } from './interface/vibe.interface';
 import { Vibe } from './schemas/vibe.schema';
 
 @Injectable()
 export class VibeService {
-  constructor(@InjectModel(Vibe.name) private vibeModel: Model<IVibe>) {}
+  constructor(@InjectModel(Vibe.name) private vibeModel: Model<Vibe>) {}
 
-  async create(createVibeDto: CreateVibeDto): Promise<IVibe> {
-    const newVibe = await new this.vibeModel(createVibeDto).save();
-    return newVibe;
+  async create(createVibeDto: CreateVibeDto): Promise<Vibe> {
+    return await new this.vibeModel(createVibeDto).save();
   }
 
   async findAll() {
     return await this.vibeModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} vibe`;
+  async findOne(id: string) {
+    return await this.vibeModel.findById(id);
   }
 
-  update(id: number, updateVibeDto: UpdateVibeDto) {
-    return `This action updates a #${id} vibe`;
+  async update(id: string, updateVibeDto: UpdateVibeDto) {
+    return await this.vibeModel.findByIdAndUpdate(id, updateVibeDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} vibe`;
+  async remove(id: string) {
+    return await this.vibeModel.findByIdAndDelete(id);
   }
 }

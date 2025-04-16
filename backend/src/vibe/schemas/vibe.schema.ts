@@ -3,14 +3,30 @@ import { Moment } from 'libs/common/moment.enum';
 
 @Schema()
 export class Vibe {
-  @Prop()
-  private user: string;
+  @Prop({
+    required: true,
+  })
+  userId: string;
 
-  @Prop()
-  private description: string;
+  @Prop({
+    required: true,
+  })
+  description: string;
 
-  @Prop()
-  private moment: Moment;
+  @Prop({
+    required: true,
+  })
+  moment: Moment;
+
+  @Prop({
+    required: true,
+  })
+  creationTimestamp: Date;
+
+  @Prop({
+    required: true,
+  })
+  pictureRef: string;
 }
 
 export const VibeSchema = SchemaFactory.createForClass(Vibe);

@@ -28,7 +28,7 @@ export class VibeController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.vibeService.findOne(+id);
+    return this.vibeService.findOne(id);
   }
 
   @Patch(':id')
@@ -37,11 +37,11 @@ export class VibeController {
     description: 'The id of the Vibe',
   })
   update(@Param('id') id: string, @Body() updateVibeDto: UpdateVibeDto) {
-    return this.vibeService.update(+id, updateVibeDto);
+    return this.vibeService.update(id, updateVibeDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.vibeService.remove(+id);
+    return this.vibeService.remove(id);
   }
 }
