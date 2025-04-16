@@ -1,4 +1,4 @@
-# Vividi
+# ✨ Vividi ✨
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 | Workflow status |
 | --- |
