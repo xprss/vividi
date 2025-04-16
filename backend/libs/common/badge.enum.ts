@@ -25,3 +25,17 @@ export const BadgeLabels: Record<Badge, string> = {
   [Badge.QUIZ_LAST_CLASSIFIED]: 'Ultimo posto al quiz',
   [Badge.CAT_FINDER]: 'Cacciatore di gatti'
 };
+
+export const BadgeEmojis: Record<Badge, string> = {
+  [Badge.BRIDE]: '👰',
+  [Badge.GROOM]: '🤵',
+  [Badge.BESTMAN]: '👔',
+  [Badge.BRIDESMAID]: '💐',
+  [Badge.PARENT]: '🏠',
+  [Badge.DEVELOPER]: '🧑‍💻',
+  [Badge.QUIZ_FIRST_CLASSIFIED]: '🥇',
+  [Badge.QUIZ_SECOND_CLASSIFIED]: '🥈',
+  [Badge.QUIZ_THIRD_CLASSIFIED]: '🥉',
+  [Badge.QUIZ_LAST_CLASSIFIED]: '😵‍💫',
+  [Badge.CAT_FINDER]: '🐈'
+};
