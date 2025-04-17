@@ -11,3 +11,10 @@ export const MomentLabels: Record<Moment, string> = {
   [Moment.LUNCH]: 'Ricevimento',
   [Moment.FOLLOWING_DAYS]: 'Giorni successivi',
 };
+
+export const MomentEmojis: Record<Moment, string> = {
+  [Moment.PREVIOUS_DAYS]: '🗓️',
+  [Moment.CEREMONY]: '💒',
+  [Moment.LUNCH]: '🎉',
+  [Moment.FOLLOWING_DAYS]: '🗓️',
+};
