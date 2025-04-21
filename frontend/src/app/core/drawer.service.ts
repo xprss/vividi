@@ -5,9 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class DrawerService {
   public isVisibile: boolean;
+  public isEnabled: boolean;
 
   constructor() {
     this.isVisibile = false;
+    this.isEnabled = true;
   }
 
   public toggle(isVisible?: boolean): void {
@@ -16,5 +18,13 @@ export class DrawerService {
       return;
     }
     this.isVisibile = !this.isVisibile;
+  }
+
+  public enable(): void {
+    this.isEnabled = true;
+  }
+
+  public disable(): void {
+    this.isEnabled = false;
   }
 }
