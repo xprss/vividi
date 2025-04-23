@@ -7,6 +7,8 @@ import { ButtonModule } from 'primeng/button';
 import { HeaderService } from '../../../core/header.service';
 import { DrawerModule } from 'primeng/drawer';
 import { DrawerService } from '../../../core/drawer.service';
+import { AuthService } from '../../../core/auth.service';
+import { AuthPageComponent } from "../../../layouts/auth-page/auth-page.component";
 
 @Component({
   selector: 'v2d-base-page',
@@ -16,8 +18,9 @@ import { DrawerService } from '../../../core/drawer.service';
     HeaderComponent,
     NavbarComponent,
     ButtonModule,
-    DrawerModule
-  ],
+    DrawerModule,
+    AuthPageComponent
+],
   templateUrl: './base-page.component.html',
   styleUrl: './base-page.component.scss',
 })
@@ -25,6 +28,7 @@ export class BasePageComponent {
   constructor(
     protected readonly headerService: HeaderService,
     protected readonly navbarService: NavbarService,
-    protected readonly drawerService: DrawerService
+    protected readonly drawerService: DrawerService,
+    protected readonly authService: AuthService
   ) {}
 }
