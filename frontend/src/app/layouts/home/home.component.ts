@@ -13,7 +13,7 @@ import { ServerService } from '../../core/server.service';
 export class HomeComponent implements OnInit {
   constructor(private readonly serverService: ServerService) {}
 
-  protected vibes: {user: string, description: string, moment: string}[] = [];
+  protected vibes: { user: string; description: string; moment: string }[] = [];
 
   public ngOnInit(): void {
     this.serverService.getAllVibes().then((data) => {
