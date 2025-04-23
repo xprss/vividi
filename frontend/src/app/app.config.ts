@@ -5,7 +5,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
+import { WeddingPreset } from './themes/Wedding';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({ 
       theme: {
-        preset: Aura
+        preset: WeddingPreset
       }
     })
   ]
