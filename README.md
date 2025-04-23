@@ -1,10 +1,6 @@
-# Vividi
-[![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-| Workflow status |
-| --- |
-| [![Build](https://github.com/xprss/vividi/actions/workflows/build.yml/badge.svg)](https://github.com/xprss/vividi/actions/workflows/build.yml) |
-| [![Build](https://github.com/xprss/vividi/actions/workflows/release.yml/badge.svg)](https://github.com/xprss/vividi/actions/workflows/release.yml) |
+# ✨ Vividi ✨
 
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Build](https://github.com/xprss/vividi/actions/workflows/build.yml/badge.svg)](https://github.com/xprss/vividi/actions/workflows/build.yml) [![Build](https://github.com/xprss/vividi/actions/workflows/release.yml/badge.svg)](https://github.com/xprss/vividi/actions/workflows/release.yml)
 
 > Dedicated to **Sibilla and Lorenzo**, next to get married in November 2025. Your love shines through any snippet of this codebase and the most tender glimpse of my life.
 
@@ -34,3 +30,7 @@ Pictures are collected in a set of what here are called **Vibes**: more than a p
 ### Storage
 
 - NoSQL database: MongoDB
+
+## Further links
+
+- 👩‍💻 [Development kanban board](https://trello.com/b/alYnjg64/vividi-development-board)
