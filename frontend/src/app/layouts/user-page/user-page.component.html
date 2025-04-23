@@ -1,5 +1,8 @@
 <v2d-base-page>
-    <div basePageBody>
-        <v2d-page-title title="👋 Ciao, Sibilla!"></v2d-page-title>
-    </div>
+  <div basePageBody>
+    <v2d-page-title
+      [title]="'👋 Ciao, ' + authService.getUser()?.displayName!! + '!'"
+    ></v2d-page-title>
+    <p-button label="Esci" (onClick)="authService.signOut()"></p-button>
+  </div>
 </v2d-base-page>
