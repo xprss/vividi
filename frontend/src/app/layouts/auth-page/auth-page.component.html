@@ -1,0 +1,62 @@
+<v2d-page-title title="✨ Vividi ✨" [centered]="true"></v2d-page-title>
+<div
+  style="
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  "
+>
+  <h2>😁 Accedi</h2>
+  <p-floatlabel variant="in">
+    <input
+      width="100%"
+      pInputText
+      id="email"
+      [(ngModel)]="email"
+      type="email"
+      autocomplete="off"
+    />
+    <label for="email">Email</label>
+  </p-floatlabel>
+  <p-floatlabel variant="in">
+    <input
+      width="100%"
+      pInputText
+      id="password"
+      [(ngModel)]="password"
+      type="password"
+      autocomplete="off"
+    />
+    <label for="password">Password</label>
+  </p-floatlabel>
+  <a href="#" onclick="alert('capperi')">Ho dimenticato la mia password</a>
+  <p-button
+    label="Entra"
+    icon="pi pi-sign-in"
+    [disabled]="!email || !password"
+    (onClick)="authService.signInWithEmailAndPassword(email, password)"
+  ></p-button>
+
+  <p-divider></p-divider>
+
+  <p-button
+    label="Accedi con Google"
+    icon="pi pi-google"
+    (onClick)="authService.signInWithGoogleAuthProvider()"
+  ></p-button>
+</div>
+
+<div
+  style="
+    position: sticky;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  "
+></div>
