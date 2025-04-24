@@ -2,12 +2,8 @@
   <div basePageBody>
     <v2d-page-title title="🧭 Esplora"></v2d-page-title>
     <div class="vibe-post-container">
-      @for (vibe of vibes; track $index) {
-      <v2d-vibe-post
-        [user]="vibe.user"
-        [description]="vibe.description"
-        [moment]="vibe.moment"
-      ></v2d-vibe-post>
+      @for (vibeData of vibes; track $index) {
+      <v2d-vibe-post [vibeData]="vibeData" ></v2d-vibe-post>
       } @if (vibes.length === 0) {
       <h2>Nessuno ha ancora postato!</h2>
       <span>Contribuisci a questa fantastica raccolta di ricordi! 🥹</span>
