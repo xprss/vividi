@@ -2,21 +2,24 @@
   <div class="vibe-header">
     <div id="left">
       <span id="vibe-user-icon">👰🏻‍♀️</span>
-      <span id="vibe-user-name">{{user}}</span>
+      <span id="vibe-user-name">{{ vibeData.userFullName }}</span>
+      @if (vibeData.userId === authService.getUser()?.uid) {
+        <p-button icon="pi pi-trash" (onClick)="delete(vibeData._id)"></p-button>
+      }
     </div>
     <div id="right">
-      <p-chip [label]="moment"></p-chip>
+      <p-chip [label]="vibeData.moment"></p-chip>
     </div>
   </div>
   <div class="vibe-picture">
-    <img [src]="this.filename" [alt]="this.filename" />
+    <img [src]="vibeData.pictureRef" [alt]="vibeData.pictureRef" />
   </div>
   <div class="vibe-content">
     <span>
-      {{description}}
+      {{ vibeData.description }}
     </span>
   </div>
   <div class="vibe-footer">
-    2 ore fa
+    {{ vibeData.creationTimestamp | date : "fullDate" }}
   </div>
 </div>
