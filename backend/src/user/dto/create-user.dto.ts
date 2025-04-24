@@ -5,7 +5,6 @@ import {
   IsEnum,
   IsNotEmpty,
   IsString,
-  IsStrongPassword,
   MaxLength,
 } from 'class-validator';
 import { Badge } from 'libs/common/badge.enum';
@@ -43,17 +42,6 @@ export class CreateUserDto {
   @IsEmail()
   @IsNotEmpty()
   email: string;
-
-  @ApiProperty({
-    example: 'AVeryStrongPassword123!!!',
-    type: 'string',
-    title: 'user',
-    description: "The user's password",
-  })
-  @IsString()
-  @IsStrongPassword()
-  @IsNotEmpty()
-  password: string;
 
   @ApiProperty({
     example: [Badge.BRIDE],
