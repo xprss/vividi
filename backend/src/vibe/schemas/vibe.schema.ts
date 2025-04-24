@@ -11,6 +11,11 @@ export class Vibe {
   @Prop({
     required: true,
   })
+  userFullName: string;
+
+  @Prop({
+    required: true,
+  })
   description: string;
 
   @Prop({
