@@ -9,6 +9,7 @@ import {
   UserCredential,
   Auth,
 } from '@firebase/auth';
+import { LocalStorageEnum } from '../../../libs/local-storage.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -28,12 +29,16 @@ export class AuthService {
     email: string,
     password: string
   ): Promise<void> {
-    const result: UserCredential = await signInWithEmailAndPassword(
+    const userCredential: UserCredential = await signInWithEmailAndPassword(
       this.auth,
       email,
       password
     );
-    this.currentUser = result.user;
+    this.currentUser = userCredential.user;
+    localStorage.setItem(
+      LocalStorageEnum.USER_CREDENTIAL,
+      JSON.stringify(userCredential)
+    );
   }
 
   /**
@@ -41,14 +46,22 @@ export class AuthService {
    */
   public async signInWithGoogleAuthProvider(): Promise<void> {
     const provider = new GoogleAuthProvider();
-    const result: UserCredential = await signInWithPopup(this.auth, provider);
-    this.currentUser = result.user;
+    const userCredential: UserCredential = await signInWithPopup(
+      this.auth,
+      provider
+    );
+    this.currentUser = userCredential.user;
+    localStorage.setItem(
+      LocalStorageEnum.USER_CREDENTIAL,
+      JSON.stringify(userCredential)
+    );
   }
 
   /**
    * Sign-out method.
    */
   public async signOut(): Promise<void> {
+    localStorage.removeItem(LocalStorageEnum.USER_CREDENTIAL);
     await signOut(this.auth);
     this.currentUser = null;
   }
@@ -76,6 +89,17 @@ export class AuthService {
    * @returns whether the user is logged in or not
    */
   public isLoggedIn(): boolean {
+    const storedUserCredentialJSON: string | null = localStorage.getItem(
+      LocalStorageEnum.USER_CREDENTIAL
+    );
+    if (storedUserCredentialJSON) {
+      const storedUserCredential: UserCredential | null = JSON.parse(
+        storedUserCredentialJSON
+      );
+      if (storedUserCredential) {
+        this.currentUser = storedUserCredential.user;
+      }
+    }
     return !!this.currentUser;
   }
 }
