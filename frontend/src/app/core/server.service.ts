@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ export class ServerService {
   async getAllVibes(): Promise<
     { user: string; description: string; moment: string }[]
   > {
-    const response = await fetch('http://localhost:8000/vibe', {
+    const response = await fetch(environment.apiBaseUrl + '/vibe/', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -24,17 +25,22 @@ export class ServerService {
     return response;
   }
 
-  async postVibe(data: {
-    user: string;
-    description: string;
-    moment: string;
-  }): Promise<void> {
-    const response = await fetch('http://localhost:8000/vibe', {
+  async postVibe(data: any): Promise<void> {
+    const response = await fetch(environment.apiBaseUrl + '/vibe/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
+    });
+  }
+
+  async deleteVibe(vibeId: string): Promise<void> {
+    const response = await fetch(environment.apiBaseUrl + '/vibe/' + vibeId, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
   }
 }

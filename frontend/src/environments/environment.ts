@@ -1,7 +1,7 @@
 // environment.ts (for development)
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:8000/api',
+  apiBaseUrl: 'http://localhost:8000',
   apiKey: 'AIzaSyCk8Epfaw0qVXg9EuW-mmLE6ZY_ZdZQ1R0',
   authDomain: 'vividivibes.firebaseapp.com',
   projectId: 'vividivibes',
