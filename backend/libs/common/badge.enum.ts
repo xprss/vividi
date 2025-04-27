@@ -9,7 +9,7 @@ export enum Badge {
   QUIZ_SECOND_CLASSIFIED = 'QUIZ_SECOND_CLASSIFIED',
   QUIZ_THIRD_CLASSIFIED = 'QUIZ_THIRD_CLASSIFIED',
   QUIZ_LAST_CLASSIFIED = 'QUIZ_LAST_CLASSIFIED',
-  CAT_FINDER = 'CAT_FINDER'
+  CAT_FINDER = 'CAT_FINDER',
 }
 
 export const BadgeLabels: Record<Badge, string> = {
@@ -23,7 +23,7 @@ export const BadgeLabels: Record<Badge, string> = {
   [Badge.QUIZ_SECOND_CLASSIFIED]: 'Secondo posto al quiz',
   [Badge.QUIZ_THIRD_CLASSIFIED]: 'Terzo posto al quiz',
   [Badge.QUIZ_LAST_CLASSIFIED]: 'Ultimo posto al quiz',
-  [Badge.CAT_FINDER]: 'Cacciatore di gatti'
+  [Badge.CAT_FINDER]: 'Cacciatore di gatti',
 };
 
 export const BadgeEmojis: Record<Badge, string> = {
@@ -37,5 +37,5 @@ export const BadgeEmojis: Record<Badge, string> = {
   [Badge.QUIZ_SECOND_CLASSIFIED]: '🥈',
   [Badge.QUIZ_THIRD_CLASSIFIED]: '🥉',
   [Badge.QUIZ_LAST_CLASSIFIED]: '😵‍💫',
-  [Badge.CAT_FINDER]: '🐈'
+  [Badge.CAT_FINDER]: '🐈',
 };
