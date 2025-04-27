@@ -14,6 +14,15 @@ export class CreateVibeDto {
   userId: string;
 
   @ApiProperty({
+    example: 'whateverrrrrrrrr',
+    type: 'string',
+    format: 'binary',
+    title: 'pictureFile',
+    description: 'The pictureFile of the vibe',
+  })
+  pictureFile: string;
+
+  @ApiProperty({
     example: 'Sibilla Sagristano',
     type: 'string',
     title: 'userFullName',
@@ -56,7 +65,7 @@ export class CreateVibeDto {
   creationTimestamp: Date;
 
   @ApiProperty({
-    example: 'vfs://img.jpeg',
+    example: 'img',
     type: Date,
     title: 'pictureRef',
     description: 'The path to the picture associated to the vibe',
