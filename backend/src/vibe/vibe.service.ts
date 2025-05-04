@@ -8,6 +8,7 @@ import { Model } from 'mongoose';
 import { Vibe } from './schemas/vibe.schema';
 import { Readable } from 'stream';
 import { GoogleAPIService } from 'src/google/google-api.service';
+import { Response } from 'express';
 
 @Injectable()
 export class VibeService {
@@ -78,5 +79,24 @@ export class VibeService {
       fileId: vibe.fileId,
     });
     return await this.vibeModel.findByIdAndDelete(id);
+  }
+
+  async getImage(id: string, res: Response) {
+    const vibe: Vibe | null = await this.vibeModel.findById(id).lean();
+    if (!vibe) {
+      return null;
+    }
+    const driveResponse = await this.googleService.googleDriveAPI.files.get(
+      {
+        fileId: vibe.fileId,
+        alt: 'media',
+      },
+      { responseType: 'stream' },
+    );
+
+    res.setHeader('Content-Type', driveResponse.headers['content-type']);
+    res.setHeader('Content-Length', driveResponse.headers['content-length']);
+    driveResponse.data.pipe(res);
+    return;
   }
 }

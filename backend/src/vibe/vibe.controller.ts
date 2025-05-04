@@ -8,6 +8,7 @@ import {
   Delete,
   UseInterceptors,
   UploadedFile,
+  Res,
 } from '@nestjs/common';
 import { VibeService } from './vibe.service';
 import { CreateVibeDto } from './dto/create-vibe.dto';
@@ -15,6 +16,7 @@ import { UpdateVibeDto } from './dto/update-vibe.dto';
 import { ApiBody, ApiConsumes, ApiParam } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Moment } from 'libs/common/moment.enum';
+import { Response } from 'express';
 
 @Controller('vibe')
 export class VibeController {
@@ -67,5 +69,14 @@ export class VibeController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.vibeService.remove(id);
+  }
+
+  @Get('image/:id')
+  @ApiParam({
+    name: 'id',
+    description: 'The id of the Vibe',
+  })
+  getImage(@Param('id') id: string, @Res() res: Response) {
+    return this.vibeService.getImage(id, res);
   }
 }
