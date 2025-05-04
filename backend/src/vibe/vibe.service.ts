@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Injectable } from '@nestjs/common';
 import { CreateVibeDto } from './dto/create-vibe.dto';
 import { UpdateVibeDto } from './dto/update-vibe.dto';
@@ -38,15 +40,29 @@ export class VibeService {
       },
     });
 
-    return await new this.vibeModel(createVibeDto).save();
+    const vibe: Vibe = new Vibe(createVibeDto, response.data.id!);
+    return await new this.vibeModel(vibe).save();
   }
 
   async findAll() {
-    return await this.vibeModel.find();
+    const vibes: Vibe[] = await this.vibeModel.find().lean();
+    return vibes.map((vibe) => {
+      return {
+        ...vibe,
+        imageUrl: `https://drive.google.com/uc?id=${vibe.fileId}`,
+      };
+    });
   }
 
   async findOne(id: string) {
-    return await this.vibeModel.findById(id);
+    const vibe: Vibe | null = await this.vibeModel.findById(id).lean();
+    if (!vibe) {
+      return null;
+    }
+    return {
+      imageUrl: `https://drive.google.com/uc?id=${vibe.fileId}`,
+      ...vibe,
+    };
   }
 
   async update(id: string, updateVibeDto: UpdateVibeDto) {
@@ -54,6 +70,13 @@ export class VibeService {
   }
 
   async remove(id: string) {
+    const vibe: Vibe | null = await this.vibeModel.findById(id);
+    if (!vibe) {
+      return null;
+    }
+    await this.googleService.googleDriveAPI.files.delete({
+      fileId: vibe.fileId,
+    });
     return await this.vibeModel.findByIdAndDelete(id);
   }
 }
