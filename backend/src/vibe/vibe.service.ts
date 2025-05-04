@@ -4,38 +4,37 @@ import { UpdateVibeDto } from './dto/update-vibe.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Vibe } from './schemas/vibe.schema';
-import { google, drive_v3 } from 'googleapis';
+import { Readable } from 'stream';
+import { GoogleAPIService } from 'src/google/google-api.service';
 
 @Injectable()
 export class VibeService {
-  private readonly drive: drive_v3.Drive;
+  constructor(
+    @InjectModel(Vibe.name) private readonly vibeModel: Model<Vibe>,
+    private readonly googleService: GoogleAPIService,
+  ) {}
 
-  constructor(@InjectModel(Vibe.name) private vibeModel: Model<Vibe>) {
-    const oauth2Client = new google.auth.OAuth2(
-      process.env.GOOGLE_CLIENT_ID,
-      process.env.GOOGLE_CLIENT_SECRET,
-      process.env.GOOGLE_REDIRECT_URI,
-    );
+  async create(
+    file: Express.Multer.File,
+    createVibeDto: CreateVibeDto,
+  ): Promise<Vibe> {
+    if (!file || !file?.buffer) {
+      throw new Error('No file provided');
+    }
 
-    oauth2Client.setCredentials({
-      refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
-    });
+    const bufferStream: Readable = new Readable();
+    bufferStream.push(file?.buffer);
+    bufferStream.push(null);
 
-    this.drive = google.drive({
-      version: 'v3',
-      auth: oauth2Client,
-    });
-  }
-
-  async create(createVibeDto: CreateVibeDto): Promise<Vibe> {
-    await this.drive.files.create({
+    const response = await this.googleService.googleDriveAPI.files.create({
       requestBody: {
-        name: 'pictureFile',
+        name: file.originalname,
         mimeType: 'image/jpeg',
+        parents: [this.googleService.googleDriveFolderId],
       },
       media: {
         mimeType: 'image/jpeg',
-        body: createVibeDto.pictureFile,
+        body: bufferStream,
       },
     });
 
