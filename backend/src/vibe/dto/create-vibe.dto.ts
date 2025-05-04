@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDate, IsEnum, IsNotEmpty, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
 import { Moment } from 'libs/common/moment.enum';
 
 export class CreateVibeDto {
@@ -12,15 +12,6 @@ export class CreateVibeDto {
   @IsNotEmpty({ message: 'The userId cannot be empty' })
   @IsString({ message: 'The userId must be a string' })
   userId: string;
-
-  @ApiProperty({
-    example: 'whateverrrrrrrrr',
-    type: 'string',
-    format: 'binary',
-    title: 'pictureFile',
-    description: 'The pictureFile of the vibe',
-  })
-  pictureFile: string;
 
   @ApiProperty({
     example: 'Sibilla Sagristano',
@@ -53,24 +44,4 @@ export class CreateVibeDto {
     message: 'Moment not beloning to the set of allowed ones',
   })
   moment: Moment;
-
-  @ApiProperty({
-    example: new Date(),
-    type: Date,
-    title: 'creationTimestamp',
-    description: 'The creation timestamp associated to the vibe',
-  })
-  @IsDate()
-  @IsNotEmpty()
-  creationTimestamp: Date;
-
-  @ApiProperty({
-    example: 'img',
-    type: Date,
-    title: 'pictureRef',
-    description: 'The path to the picture associated to the vibe',
-  })
-  @IsString({ message: 'The pictureRef must be a string' })
-  @IsNotEmpty()
-  pictureRef: string;
 }
