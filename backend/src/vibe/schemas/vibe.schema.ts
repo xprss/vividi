@@ -1,8 +1,18 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Moment } from 'libs/common/moment.enum';
+import { CreateVibeDto } from '../dto/create-vibe.dto';
 
 @Schema()
 export class Vibe {
+  constructor(createVibeDto: CreateVibeDto, fileId: string) {
+    this.userId = createVibeDto.userId;
+    this.userFullName = createVibeDto.userFullName;
+    this.description = createVibeDto.description;
+    this.moment = createVibeDto.moment;
+    this.creationTimestamp = new Date();
+    this.fileId = fileId;
+  }
+
   @Prop({
     required: true,
   })
@@ -31,7 +41,7 @@ export class Vibe {
   @Prop({
     required: true,
   })
-  pictureRef: string;
+  fileId: string;
 }
 
 export const VibeSchema = SchemaFactory.createForClass(Vibe);
