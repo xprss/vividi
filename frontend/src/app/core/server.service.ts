@@ -26,12 +26,15 @@ export class ServerService {
   }
 
   async postVibe(data: any): Promise<void> {
+    const formData = new FormData();
+    formData.append('file', data.file);
+    formData.append('userId', data.userId);
+    formData.append('userFullName', data.userFullName);
+    formData.append('description', data.description);
+    formData.append('moment', data.moment);
     const response = await fetch(environment.apiBaseUrl + '/vibe/', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
+      body: formData,
     });
   }
 
