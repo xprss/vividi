@@ -1,3 +1,13 @@
+<p-fileupload
+  #fu
+  chooseLabel="Choose"
+  chooseIcon="pi pi-upload"
+  name="demo[]"
+  accept="image/*"
+  maxFileSize="1000000"
+  (onSelect)="onUpload($event)"
+/>
+
 <p-floatlabel variant="on">
   <textarea
     pTextarea

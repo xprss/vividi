@@ -9,6 +9,12 @@ import { ChipModule } from 'primeng/chip';
 import { ServerService } from '../../core/server.service';
 import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../../core/auth.service';
+import {
+  FileSelectEvent,
+  FileUploadEvent,
+  FileUploadModule,
+} from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'v2d-new-vibe-form',
@@ -21,6 +27,8 @@ import { AuthService } from '../../core/auth.service';
     FloatLabelModule,
     ChipModule,
     ButtonModule,
+    FileUploadModule,
+    ToastModule,
   ],
   templateUrl: './new-vibe-form.component.html',
   styleUrl: './new-vibe-form.component.scss',
@@ -34,6 +42,7 @@ export class NewVibeFormComponent {
   protected user: string = '';
   protected description: string = '';
   protected moment: string = 'CEREMONY';
+  protected file: File | null = null;
 
   public submit(): void {
     const body: any = {
@@ -41,10 +50,13 @@ export class NewVibeFormComponent {
       userFullName: this.authService.getUser()?.displayName,
       description: this.description,
       moment: this.moment,
-      creationTimestamp: Date.now(),
-      pictureRef: 'vibes/vibe2.jpg',
+      file: this.file,
     };
 
     this.serverService.postVibe(body);
+  }
+
+  onUpload($event: FileSelectEvent) {
+    this.file = $event.files[0];
   }
 }
