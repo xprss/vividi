@@ -7,22 +7,42 @@ import {
   Param,
   Delete,
   UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { VibeService } from './vibe.service';
 import { CreateVibeDto } from './dto/create-vibe.dto';
 import { UpdateVibeDto } from './dto/update-vibe.dto';
-import { ApiConsumes, ApiParam } from '@nestjs/swagger';
+import { ApiBody, ApiConsumes, ApiParam } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Moment } from 'libs/common/moment.enum';
 
 @Controller('vibe')
 export class VibeController {
   constructor(private readonly vibeService: VibeService) {}
 
   @Post()
-  @UseInterceptors(FileInterceptor('pictureFile'))
   @ApiConsumes('multipart/form-data')
-  async create(@Body() createVibeDto: CreateVibeDto) {
-    return await this.vibeService.create(createVibeDto);
+  @UseInterceptors(FileInterceptor('file'))
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        file: {
+          type: 'string',
+          format: 'binary',
+        },
+        userId: { type: 'string' },
+        userFullName: { type: 'string' },
+        description: { type: 'string' },
+        moment: { type: 'enum', enum: Object.values(Moment) },
+      },
+    },
+  })
+  async create(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() createVibeDto: CreateVibeDto,
+  ) {
+    return await this.vibeService.create(file, createVibeDto);
   }
 
   @Get()
