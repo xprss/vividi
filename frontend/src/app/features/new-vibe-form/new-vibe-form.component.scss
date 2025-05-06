@@ -25,4 +25,9 @@
 .active-chip {
   background-color: var(--p-primary-color);
   color: black;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.regular-chip {
+  transition: background-color 0.5s ease, color 0.5s ease;
 }

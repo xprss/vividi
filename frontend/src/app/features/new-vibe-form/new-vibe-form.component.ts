@@ -15,6 +15,7 @@ import {
   FileUploadModule,
 } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'v2d-new-vibe-form',
@@ -43,6 +44,7 @@ export class NewVibeFormComponent {
   protected description: string = '';
   protected moment: string = '';
   protected file: File | null = null;
+  protected maxFileSize: number = environment.maxFileSize;
 
   public submit(): void {
     const body: any = {
@@ -61,6 +63,10 @@ export class NewVibeFormComponent {
   }
 
   protected onMomentChange(newMoment: string) {
+    if (this.moment === newMoment) {
+      this.moment = '';
+      return;
+    }
     this.moment = newMoment;
   }
 

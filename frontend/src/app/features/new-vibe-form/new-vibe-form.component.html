@@ -5,7 +5,11 @@
   showUploadButton="false"
   showCancelButton="false"
   accept="image/jpeg,image/png,image/gif"
-  maxFileSize="1000000"
+  invalidFileSizeMessageSummary="File troppo grande."
+  invalidFileSizeMessageDetail="Dimensione massima: {{
+    maxFileSize / 1024 / 1024
+  }} MB."
+  [maxFileSize]="maxFileSize"
   (onSelect)="onUpload($event)"
 >
   <ng-template #empty>
@@ -31,22 +35,34 @@
   <div class="category-container">
     <p-chip
       label="🗓️ Giorni precedenti"
-      [ngClass]="{ 'active-chip': moment === 'PREVIOUS_DAYS' }"
+      [ngClass]="{
+        'active-chip': moment === 'PREVIOUS_DAYS',
+        'regular-chip': moment !== 'PREVIOUS_DAYS'
+      }"
       (click)="this.onMomentChange('PREVIOUS_DAYS')"
     />
     <p-chip
       label="⛪️ Cerimonia"
-      [ngClass]="{ 'active-chip': moment === 'CEREMONY' }"
+      [ngClass]="{
+        'active-chip': moment === 'CEREMONY',
+        'regular-chip': moment !== 'CEREMONY'
+      }"
       (click)="this.onMomentChange('CEREMONY')"
     />
     <p-chip
       label="🍾 Ricevimento"
-      [ngClass]="{ 'active-chip': moment === 'LUNCH' }"
+      [ngClass]="{
+        'active-chip': moment === 'LUNCH',
+        'regular-chip': moment !== 'LUNCH'
+      }"
       (click)="this.onMomentChange('LUNCH')"
     />
     <p-chip
       label="🗓️ Giorni successivi"
-      [ngClass]="{ 'active-chip': moment === 'FOLLOWING_DAYS' }"
+      [ngClass]="{
+        'active-chip': moment === 'FOLLOWING_DAYS',
+        'regular-chip': moment !== 'FOLLOWING_DAYS'
+      }"
       (click)="this.onMomentChange('FOLLOWING_DAYS')"
     />
   </div>
