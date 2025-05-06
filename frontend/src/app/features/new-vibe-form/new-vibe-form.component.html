@@ -1,12 +1,17 @@
 <p-fileupload
-  #fu
-  chooseLabel="Choose"
+  chooseLabel="Carica"
   chooseIcon="pi pi-upload"
-  name="demo[]"
-  accept="image/*"
+  cancelLabel="Annulla"
+  showUploadButton="false"
+  showCancelButton="false"
+  accept="image/jpeg,image/png,image/gif"
   maxFileSize="1000000"
   (onSelect)="onUpload($event)"
-/>
+>
+  <ng-template #empty>
+    <div>Clicca su Carica per aggiungere una foto o una gif.</div>
+  </ng-template>
+</p-fileupload>
 
 <p-floatlabel variant="on">
   <textarea
@@ -26,15 +31,25 @@
   <div class="category-container">
     <p-chip
       label="🗓️ Giorni precedenti"
-      onclick="()=>setMoment('PREVIOUS_DAYS')"
+      [ngClass]="{ 'active-chip': moment === 'PREVIOUS_DAYS' }"
+      (click)="this.onMomentChange('PREVIOUS_DAYS')"
     />
-    <p-chip label="⛪️ Cerimonia" onclick="()=>setMoment('CEREMONY')" />
-    <p-chip label="🍾 Ricevimento" onclick="()=>setMoment('LUNCH')" />
+    <p-chip
+      label="⛪️ Cerimonia"
+      [ngClass]="{ 'active-chip': moment === 'CEREMONY' }"
+      (click)="this.onMomentChange('CEREMONY')"
+    />
+    <p-chip
+      label="🍾 Ricevimento"
+      [ngClass]="{ 'active-chip': moment === 'LUNCH' }"
+      (click)="this.onMomentChange('LUNCH')"
+    />
     <p-chip
       label="🗓️ Giorni successivi"
-      onclick="()=>setMoment('FOLLOWING_DAYS')"
+      [ngClass]="{ 'active-chip': moment === 'FOLLOWING_DAYS' }"
+      (click)="this.onMomentChange('FOLLOWING_DAYS')"
     />
   </div>
 </div>
 
-<p-button (onClick)="submit()">Invia</p-button>
+<p-button [disabled]="!isSubmitEnabled()" (onClick)="submit()">Invia</p-button>
