@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  RouterOutlet,
+  RouterLink,
+  RouterLinkActive,
+  Router,
+  NavigationEnd,
+} from '@angular/router';
 import { LayoutsModule } from './layouts/layouts.module';
 
 @Component({
@@ -16,4 +22,14 @@ import { LayoutsModule } from './layouts/layouts.module';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  constructor(private router: Router) {}
+  public ngOnInit(): void {
+    // Scroll to the top of the page on navigation end
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0); // Scroll to the top of the page
+      }
+    });
+  }
+}
