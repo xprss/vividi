@@ -1,7 +1,33 @@
 <div class="navbar">
   <div class="navbar-core">
-    <p-button size="large" label="Esplora" severity="contrast" (onClick)="navigateToHomePage()" icon="pi pi-compass" variant="text"></p-button>
-    <p-button size="large" label="Crea" severity="contrast" (onClick)="navigateToNewVibePage()" icon="pi pi-sparkles" variant="text"></p-button>
-    <p-button size="large" label="Utente" severity="contrast" (onClick)="navigateToMyPersonalPage()" icon="pi pi-user" variant="text"></p-button>
+    <p-button
+      class="navbar-entry"
+      size="large"
+      label="Esplora"
+      severity="contrast"
+      (onClick)="navigateToHomePage()"
+      icon="pi pi-compass"
+      [variant]="
+        ['/home', '/'].includes(navbarService.currentRoute) ? undefined : 'text'
+      "
+    ></p-button>
+    <p-button
+      class="navbar-entry"
+      size="large"
+      label="Crea"
+      severity="contrast"
+      (onClick)="navigateToNewVibePage()"
+      icon="pi pi-sparkles"
+      [variant]="navbarService.currentRoute === '/newVibe' ? undefined : 'text'"
+    ></p-button>
+    <p-button
+      class="navbar-entry"
+      size="large"
+      label="Utente"
+      severity="contrast"
+      (onClick)="navigateToMyPersonalPage()"
+      icon="pi pi-user"
+      [variant]="navbarService.currentRoute === '/me' ? undefined : 'text'"
+    ></p-button>
   </div>
 </div>

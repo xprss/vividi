@@ -6,9 +6,11 @@ import { Router } from '@angular/router';
 })
 export class NavbarService {
   private enabled: boolean;
+  public currentRoute: string = '/';
 
-  constructor(private readonly router: Router) {
+  constructor(public readonly router: Router) {
     this.enabled = true;
+    this.currentRoute = this.router.url;
   }
 
   public isEnabled(): boolean {
@@ -37,5 +39,9 @@ export class NavbarService {
 
   public navigateToMyPersonalPage(): void {
     this.router.navigate(['/me']);
+  }
+
+  public updateCurrentRoute(url: string) {
+    this.currentRoute = url;
   }
 }

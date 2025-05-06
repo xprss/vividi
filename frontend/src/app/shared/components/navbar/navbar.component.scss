@@ -8,4 +8,26 @@
   bottom: 0;
   width: 100%;
   padding: 1rem 0;
+  background-color: var(--p-stone-950);
+}
+
+.navbar-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-align: center;
+  color: white;
+
+  &.active {
+    background-color: var(--p-stone-400);
+    font-weight: bold;
+  }
+
+  .navbar-icon {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 0.5rem;
+  }
 }

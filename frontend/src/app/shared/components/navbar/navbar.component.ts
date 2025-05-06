@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { NavbarService } from '../../../core/navbar.service';
@@ -11,11 +11,23 @@ import { NavbarService } from '../../../core/navbar.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   constructor(
     private readonly router: Router,
-    private readonly navbarService: NavbarService
+    protected readonly navbarService: NavbarService
   ) {}
+
+  public get currentRoute(): string {
+    return this.navbarService.currentRoute;
+  }
+
+  public ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.navbarService.updateCurrentRoute(event.url);
+      }
+    });
+  }
 
   public navigateToHomePage(): void {
     this.navbarService.navigateToHomePage();
