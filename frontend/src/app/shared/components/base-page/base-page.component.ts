@@ -8,7 +8,9 @@ import { HeaderService } from '../../../core/header.service';
 import { DrawerModule } from 'primeng/drawer';
 import { DrawerService } from '../../../core/drawer.service';
 import { AuthService } from '../../../core/auth.service';
-import { AuthPageComponent } from "../../../layouts/auth-page/auth-page.component";
+import { AuthPageComponent } from '../../../layouts/auth-page/auth-page.component';
+import { DialogComponent } from '../dialog/dialog.component';
+import { DialogService } from '../../../core/dialog.service';
 
 @Component({
   selector: 'v2d-base-page',
@@ -19,8 +21,9 @@ import { AuthPageComponent } from "../../../layouts/auth-page/auth-page.componen
     NavbarComponent,
     ButtonModule,
     DrawerModule,
-    AuthPageComponent
-],
+    AuthPageComponent,
+    DialogComponent,
+  ],
   templateUrl: './base-page.component.html',
   styleUrl: './base-page.component.scss',
 })
@@ -31,4 +34,32 @@ export class BasePageComponent {
     protected readonly drawerService: DrawerService,
     protected readonly authService: AuthService
   ) {}
+
+  /* test() {
+    const buttons: DialogButton[] = [
+      {
+        label: 'Crea una nuova Vibe',
+        icon: 'pi pi-check',
+        severity: 'secondary',
+        action: () => {
+          this.navbarService.navigateToNewVibePage();
+          this.dialogService.isDialogOpen = false;
+        },
+      },
+      {
+        label: 'Torna alla sezione Esplora',
+        icon: 'pi pi-times',
+        severity: 'primary',
+        action: () => {
+          this.navbarService.navigateToHomePage();
+          this.dialogService.isDialogOpen = false;
+        },
+      },
+    ];
+    this.dialogService.showDialog(
+      'Caricamento completato! 🥳',
+      'Caricamento completato con successo.',
+      buttons
+    );
+  } */
 }
