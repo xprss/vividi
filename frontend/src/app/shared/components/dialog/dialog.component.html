@@ -4,8 +4,19 @@
   [modal]="true"
   [draggable]="false"
   [resizable]="false"
+  [closable]="dialogService.isClosable"
   (visibleChange)="dialogService.isDialogOpen = $event"
 >
+  @if (dialogService.isLoading) {
+  <div class="loading">
+    <p-progress-spinner
+      strokeWidth="8"
+      fill="transparent"
+      animationDuration="1s"
+      [style]="{ width: '50px', height: '50px' }"
+    ></p-progress-spinner>
+  </div>
+  } @else {
   <span class="p-text-secondary block mb-8">{{ dialogService.body }}</span>
   <ng-template #footer>
     @for(button of dialogService.buttons; track button) {
@@ -16,4 +27,5 @@
     />
     }
   </ng-template>
+  }
 </p-dialog>
