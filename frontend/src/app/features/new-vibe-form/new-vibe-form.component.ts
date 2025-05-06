@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -16,6 +16,10 @@ import {
 } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { environment } from '../../../environments/environment';
+import { DialogService } from '../../core/dialog.service';
+import { NavbarService } from '../../core/navbar.service';
+import { CtasService } from '../../core/ctas.service';
+import { CtasComponent } from '../../shared/components/ctas/ctas.component';
 
 @Component({
   selector: 'v2d-new-vibe-form',
@@ -30,15 +34,59 @@ import { environment } from '../../../environments/environment';
     ButtonModule,
     FileUploadModule,
     ToastModule,
+    CtasComponent,
   ],
   templateUrl: './new-vibe-form.component.html',
   styleUrl: './new-vibe-form.component.scss',
 })
-export class NewVibeFormComponent {
+export class NewVibeFormComponent implements OnInit {
   constructor(
     private readonly serverService: ServerService,
-    protected readonly authService: AuthService
+    protected readonly authService: AuthService,
+    protected readonly dialogService: DialogService,
+    protected readonly navbarService: NavbarService,
+    protected readonly ctasService: CtasService
   ) {}
+
+  public ngOnInit(): void {
+    this.ctasService.showCtas([
+      {
+        label: 'Cancella tutto',
+        icon: 'pi pi-home',
+        severity: 'secondary',
+        disabled: false,
+        action: () => {
+          this.reset();
+        },
+      },
+      {
+        label: 'Condividi la tua Vibe!',
+        icon: 'pi pi-home',
+        severity: 'primary',
+        disabled: false,
+        action: () => {
+          if (!this.isSubmitEnabled()) {
+            this.dialogService.showDialog(
+              '⚠️ Attenzione!',
+              'Compila tutti i campi prima di inviare la tua Vibe!',
+              [
+                {
+                  label: 'Chiudi',
+                  icon: 'pi pi-times',
+                  severity: 'primary',
+                  action: () => {
+                    this.dialogService.hideDialog();
+                  },
+                },
+              ]
+            );
+          } else {
+            this.postVibe();
+          }
+        },
+      },
+    ]);
+  }
 
   protected user: string = '';
   protected description: string = '';
@@ -46,7 +94,7 @@ export class NewVibeFormComponent {
   protected file: File | null = null;
   protected maxFileSize: number = environment.maxFileSize;
 
-  public submit(): void {
+  public postVibe(): void {
     const body: any = {
       userId: this.authService.getUser()?.uid,
       userFullName: this.authService.getUser()?.displayName,
@@ -55,7 +103,68 @@ export class NewVibeFormComponent {
       file: this.file,
     };
 
-    this.serverService.postVibe(body);
+    this.dialogService.showLoadingDialog();
+
+    this.serverService
+      .postVibe(body)
+      .then((response) => {
+        this.description = '';
+        this.moment = '';
+        this.file = null;
+        this.dialogService.showDialog(
+          '🥳 Caricamento completato!',
+          'La tua Vibe è stata caricata con successo! Ora puoi visualizzarla nella sezione Esplora!',
+          [
+            {
+              label: 'Crea una nuova Vibe',
+              icon: 'pi pi-times',
+              severity: 'secondary',
+              action: () => {
+                this.dialogService.hideDialog();
+                this.navbarService.navigateToNewVibePage();
+              },
+            },
+            {
+              label: 'Vai alla sezione Esplora',
+              icon: 'pi pi-times',
+              severity: 'primary',
+              action: () => {
+                this.dialogService.hideDialog();
+                this.navbarService.navigateToHomePage();
+              },
+            },
+          ]
+        );
+      })
+      .catch((error) => {
+        console.error(error);
+        this.dialogService.showDialog(
+          '🫣 Errore durante il caricamento',
+          'Qualcosa è andato storto durante il caricamento della Vibe. Riprova più tardi.',
+          [
+            {
+              label: 'Torna alla sezione Esplora',
+              icon: 'pi pi-times',
+              severity: 'primary',
+              action: () => {
+                this.dialogService.hideDialog();
+                this.navbarService.navigateToHomePage();
+              },
+            },
+          ]
+        );
+      })
+      .finally(() => {
+        this.description = '';
+        this.moment = '';
+        this.file = null;
+      });
+  }
+
+  protected reset() {
+    this.description = '';
+    this.moment = '';
+    this.file = null;
   }
 
   protected onUpload($event: FileSelectEvent) {
