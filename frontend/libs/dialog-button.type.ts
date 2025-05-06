@@ -5,4 +5,14 @@ export type DialogButton = {
   action: () => void;
 };
 
-export type DialogButtonSeverity = 'success' | 'info' | 'warn' | 'danger' | 'help' | 'primary' | 'secondary' | 'contrast' | null | undefined;
+export type DialogButtonSeverity =
+  | 'success'
+  | 'info'
+  | 'warn'
+  | 'danger'
+  | 'help'
+  | 'primary'
+  | 'secondary'
+  | 'contrast'
+  | null
+  | undefined;
