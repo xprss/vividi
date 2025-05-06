@@ -3,6 +3,6 @@
     <v2d-page-title
       [title]="'👋 Ciao, ' + authService.getUser()?.displayName!! + '!'"
     ></v2d-page-title>
-    <p-button label="Esci" (onClick)="authService.signOut()"></p-button>
+    <v2d-ctas></v2d-ctas>
   </div>
 </v2d-base-page>
