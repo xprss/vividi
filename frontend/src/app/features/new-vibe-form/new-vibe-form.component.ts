@@ -41,7 +41,7 @@ export class NewVibeFormComponent {
 
   protected user: string = '';
   protected description: string = '';
-  protected moment: string = 'CEREMONY';
+  protected moment: string = '';
   protected file: File | null = null;
 
   public submit(): void {
@@ -56,7 +56,19 @@ export class NewVibeFormComponent {
     this.serverService.postVibe(body);
   }
 
-  onUpload($event: FileSelectEvent) {
+  protected onUpload($event: FileSelectEvent) {
     this.file = $event.files[0];
+  }
+
+  protected onMomentChange(newMoment: string) {
+    this.moment = newMoment;
+  }
+
+  protected isSubmitEnabled() {
+    return (
+      this.description.length > 0 &&
+      this.moment.length > 0 &&
+      this.file !== null
+    );
   }
 }
