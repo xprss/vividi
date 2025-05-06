@@ -1,0 +1,7 @@
+<div class="cta-container">
+    @for (cta of ctasService.ctas; track cta) {
+    <p-button [disabled]="cta.disabled" [severity]="cta.severity" (onClick)="cta.action()" [fluid]="true">
+      {{ cta.label }}
+    </p-button>
+    }
+</div>
