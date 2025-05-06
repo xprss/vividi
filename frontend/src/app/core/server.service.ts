@@ -25,7 +25,7 @@ export class ServerService {
     return response;
   }
 
-  async postVibe(data: any): Promise<void> {
+  async postVibe(data: any): Promise<any> {
     const formData = new FormData();
     formData.append('file', data.file);
     formData.append('userId', data.userId);
@@ -36,6 +36,7 @@ export class ServerService {
       method: 'POST',
       body: formData,
     });
+    return response.json();
   }
 
   async deleteVibe(vibeId: string): Promise<void> {
