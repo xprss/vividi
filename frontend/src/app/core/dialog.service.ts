@@ -23,6 +23,14 @@ export class DialogService {
     this.isDialogOpen = true;
   }
 
+  public showSmallDialog(header: string, buttons: DialogButton[]) {
+    this.isClosable = true;
+    this.isLoading = false;
+    this.header = header;
+    this.buttons = buttons;
+    this.isDialogOpen = true;
+  }
+
   public hideDialog() {
     this.header = '';
     this.body = '';
@@ -30,7 +38,6 @@ export class DialogService {
     this.isClosable = true;
     this.isDialogOpen = false;
   }
-
 
   public showLoadingDialog() {
     this.header = 'Caricamento in corso...';
