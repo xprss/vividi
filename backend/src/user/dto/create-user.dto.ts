@@ -1,13 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsArray,
-  IsEmail,
-  IsEnum,
-  IsNotEmpty,
-  IsString,
-  MaxLength,
-} from 'class-validator';
-import { Badge } from 'libs/common/badge.enum';
+import { IsEmail, IsNotEmpty, IsString, MaxLength } from 'class-validator';
 
 export class CreateUserDto {
   @ApiProperty({
@@ -42,14 +34,4 @@ export class CreateUserDto {
   @IsEmail()
   @IsNotEmpty()
   email: string;
-
-  @ApiProperty({
-    example: [Badge.BRIDE],
-    type: 'string',
-    title: 'user',
-    description: 'The user creating the vibe',
-  })
-  @IsArray()
-  @IsEnum(Badge, { each: true })
-  badges: Badge[];
 }
