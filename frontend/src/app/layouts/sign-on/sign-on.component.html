@@ -1,0 +1,99 @@
+<v2d-base-page>
+  <div basePageBody>
+    <v2d-page-title
+      title="✍️ Registrati su Vividi"
+      [centered]="true"
+    ></v2d-page-title>
+
+    <div
+      style="
+        width: 100%;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      "
+    >
+      <div style="display: flex; flex-direction: row; gap: 1rem;">
+
+          <p-floatlabel variant="in">
+            <input
+              width="100%"
+              pInputText
+              id="firstName"
+              [fluid]="true"
+              [(ngModel)]="firstName"
+              type="firstName"
+              autocomplete="off"
+            />
+            <label for="firstName">Nome</label>
+          </p-floatlabel>
+
+          <p-floatlabel variant="in">
+            <input
+              width="100%"
+              pInputText
+              id="lastName"
+              [fluid]="true"
+              [(ngModel)]="lastName"
+              type="lastName"
+              autocomplete="off"
+            />
+            <label for="lastName">Cognome</label>
+          </p-floatlabel>
+
+      </div>
+
+      <p-floatlabel variant="in">
+
+        <input
+          width="100%"
+          pInputText
+          id="email"
+          [fluid]="true"
+          [(ngModel)]="email"
+          type="email"
+          autocomplete="off"
+        />
+        <label for="email">Email</label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="in">
+        <input
+          width="100%"
+          pInputText
+          id="password"
+          [fluid]="true"
+          [(ngModel)]="password"
+          type="password"
+          autocomplete="off"
+        />
+        <label for="password">Password</label>
+      </p-floatlabel>
+
+      <p-button
+        label="Registrati"
+        icon="pi pi-sign-in"
+        [fluid]="true"
+        [disabled]="!email || !password"
+        (onClick)="
+          authService.signOnWithEmailAndPassword(
+            firstName,
+            lastName,
+            email,
+            password
+          )
+        "
+      ></p-button>
+
+      <p-button
+        label="Torna indietro"
+        icon="pi pi-arrow-left"
+        severity="secondary"
+        [fluid]="true"
+        (onClick)="navbarService.navigateToSignInPage()"
+      ></p-button>
+
+    </div>
+  </div>
+</v2d-base-page>
