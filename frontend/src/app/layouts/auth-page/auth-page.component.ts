@@ -7,6 +7,8 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DividerModule } from 'primeng/divider';
+import { BasePageComponent } from '../../shared/components/base-page/base-page.component';
+import { NavbarService } from '../../core/navbar.service';
 
 @Component({
   selector: 'v2d-auth-page',
@@ -17,7 +19,8 @@ import { DividerModule } from 'primeng/divider';
     FloatLabelModule,
     FormsModule,
     CommonModule,
-    DividerModule
+    DividerModule,
+    BasePageComponent,
   ],
   templateUrl: './auth-page.component.html',
   styleUrl: './auth-page.component.scss',
@@ -25,5 +28,8 @@ import { DividerModule } from 'primeng/divider';
 export class AuthPageComponent {
   protected email: string = '';
   protected password: string = '';
-  constructor(protected readonly authService: AuthService) {}
+  constructor(
+    protected readonly authService: AuthService,
+    protected readonly navbarService: NavbarService
+  ) {}
 }
