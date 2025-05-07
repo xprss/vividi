@@ -1,13 +1,9 @@
-@if (headerService.isEnabled() && authService.isLoggedIn()) {
+@if (headerService.isEnabled() && (authService.$loggedIn | async)) {
 <v2d-header></v2d-header>
 }
 
 <div class="page-container">
-  @if (authService.isLoggedIn()) {
   <ng-content class="basePageBody" select="[basePageBody]"></ng-content>
-  } @else {
-  <v2d-auth-page></v2d-auth-page>
-  }
 </div>
 
 <p-drawer [(visible)]="drawerService.isVisibile" header="Centro di supporto">
@@ -19,6 +15,6 @@
 
 <v2d-dialog></v2d-dialog>
 
-@if (navbarService.isEnabled() && authService.isLoggedIn()) {
+@if (navbarService.isEnabled() && (authService.$loggedIn | async)) {
 <v2d-navbar></v2d-navbar>
 }

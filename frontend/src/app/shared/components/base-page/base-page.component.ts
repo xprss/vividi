@@ -8,7 +8,6 @@ import { HeaderService } from '../../../core/header.service';
 import { DrawerModule } from 'primeng/drawer';
 import { DrawerService } from '../../../core/drawer.service';
 import { AuthService } from '../../../core/auth.service';
-import { AuthPageComponent } from '../../../layouts/auth-page/auth-page.component';
 import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
@@ -20,7 +19,6 @@ import { DialogComponent } from '../dialog/dialog.component';
     NavbarComponent,
     ButtonModule,
     DrawerModule,
-    AuthPageComponent,
     DialogComponent,
   ],
   templateUrl: './base-page.component.html',
