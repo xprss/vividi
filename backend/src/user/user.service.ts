@@ -17,8 +17,14 @@ export class UserService {
     return await this.userModel.find();
   }
 
-  async findOne(id: string) {
-    return await this.userModel.findById(id);
+  async findOne(email: string) {
+    const users = (await this.userModel.find()).filter((user) => {
+      return user.email === email;
+    });
+    if (users.length > 0) {
+      return users[0];
+    }
+    return null;
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
