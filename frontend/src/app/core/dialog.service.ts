@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { DialogButton } from '../../../libs/dialog-button.type';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DialogService {
-  constructor() { }
+  constructor() {}
 
   public isDialogOpen: boolean = false;
   public isClosable: boolean = true;
@@ -19,14 +19,6 @@ export class DialogService {
     this.isLoading = false;
     this.header = header;
     this.body = body;
-    this.buttons = buttons;
-    this.isDialogOpen = true;
-  }
-
-  public showSmallDialog(header: string, buttons: DialogButton[]) {
-    this.isClosable = true;
-    this.isLoading = false;
-    this.header = header;
     this.buttons = buttons;
     this.isDialogOpen = true;
   }
