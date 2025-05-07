@@ -4,21 +4,39 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
   User,
   signOut,
   UserCredential,
   Auth,
+  createUserWithEmailAndPassword,
 } from '@firebase/auth';
 import { LocalStorageEnum } from '../../../libs/local-storage.enum';
+import { NavbarService } from './navbar.service';
+import { ServerService } from './server.service';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { DialogService } from './dialog.service';
+import { VividiUser } from '../../../libs/vividi-user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private currentUser: User | null = null;
+  private currentUser: VividiUser | null = null;
+  public loggedIn: boolean = false;
+  public $loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
   private auth: Auth = getAuth();
 
-  constructor() {}
+  constructor(
+    private readonly navbarService: NavbarService,
+    private readonly serverService: ServerService,
+    private readonly dialogService: DialogService
+  ) {
+    this.loggedIn = this.isLoggedIn();
+    this.$loggedIn.next(this.loggedIn);
+  }
 
   /**
    * This method provides the email/password sign-in mechanism towards Google Firebase Authentication.
@@ -29,16 +47,88 @@ export class AuthService {
     email: string,
     password: string
   ): Promise<void> {
-    const userCredential: UserCredential = await signInWithEmailAndPassword(
-      this.auth,
-      email,
-      password
-    );
-    this.currentUser = userCredential.user;
-    localStorage.setItem(
-      LocalStorageEnum.USER_CREDENTIAL,
-      JSON.stringify(userCredential)
-    );
+    this.serverService
+      .getAccount(email)
+      .then(async (response: Response) => {
+        if (response.ok) {
+          const data = await response.json();
+          const userCredential: UserCredential =
+            await signInWithEmailAndPassword(this.auth, email, password);
+          this.currentUser = {
+            ...userCredential.user,
+            firstName: data.firstName,
+            lastName: data.lastName,
+          };
+          localStorage.setItem(
+            LocalStorageEnum.USER_CREDENTIAL,
+            JSON.stringify(this.currentUser)
+          );
+          this.navbarService.navigateToHomePage();
+
+          this.loggedIn = true;
+          this.$loggedIn.next(this.loggedIn);
+        }
+      })
+      .catch((error: string) => {
+        this.dialogService.showDialog(
+          '🫣 Utente non trovato',
+          'Controlla di aver inserito correttamente email e password.',
+          [
+            {
+              label: 'Chiudi',
+              severity: 'primary',
+              action: () => {
+                this.dialogService.hideDialog();
+              },
+            },
+          ]
+        );
+        this.loggedIn = false;
+        this.$loggedIn.next(this.loggedIn);
+        throw error;
+      });
+  }
+
+  /**
+   * This method provides the sign-on mechanism towards Google Firebase Authentication.
+   * Moreover, the user is created in the backend.
+   * @param firstName the user's first name
+   * @param lastName the user's last name
+   * @param email the user's email
+   * @param password the user's password
+   */
+  public async signOnWithEmailAndPassword(
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string
+  ): Promise<void> {
+    const userData: any = this.serverService
+      .createAccount(firstName, lastName, email)
+      .then(async (response: Response) => {
+        if (response.ok) {
+          const userCredential: UserCredential =
+            await createUserWithEmailAndPassword(this.auth, email, password);
+          this.currentUser = {
+            ...userCredential.user,
+            firstName: firstName,
+            lastName: lastName,
+          };
+          localStorage.setItem(
+            LocalStorageEnum.USER_CREDENTIAL,
+            JSON.stringify(this.currentUser)
+          );
+          this.navbarService.navigateToHomePage();
+          this.loggedIn = true;
+          this.$loggedIn.next(this.loggedIn);
+        }
+      })
+      .catch((error: string) => {
+        console.error('Error creating account:', error);
+        this.loggedIn = false;
+        this.$loggedIn.next(this.loggedIn);
+        throw error;
+      });
   }
 
   /**
@@ -50,11 +140,19 @@ export class AuthService {
       this.auth,
       provider
     );
-    this.currentUser = userCredential.user;
+    this.currentUser = {
+      ...userCredential.user,
+      firstName: userCredential.user.displayName!,
+      lastName: '',
+    };
     localStorage.setItem(
       LocalStorageEnum.USER_CREDENTIAL,
-      JSON.stringify(userCredential)
+      JSON.stringify(this.currentUser)
     );
+    this.navbarService.navigateToHomePage();
+
+    this.loggedIn = true;
+    this.$loggedIn.next(this.loggedIn);
   }
 
   /**
@@ -64,6 +162,19 @@ export class AuthService {
     localStorage.removeItem(LocalStorageEnum.USER_CREDENTIAL);
     await signOut(this.auth);
     this.currentUser = null;
+    this.loggedIn = false;
+    this.$loggedIn.next(this.loggedIn);
+    this.navbarService.navigateToSignInPage();
+  }
+
+  /**
+   * This method provides the password reset mechanism towards Google Firebase Authentication.
+   * @param email The user email
+   */
+  public async resetPassword(email?: string): Promise<void> {
+    if (email) {
+      await sendPasswordResetEmail(this.auth, email);
+    }
   }
 
   /**
@@ -80,7 +191,7 @@ export class AuthService {
    * This method retrieves the user.
    * @returns the user
    */
-  public getUser(): User | null {
+  public getUser(): VividiUser | null {
     return this.currentUser;
   }
 
@@ -88,16 +199,16 @@ export class AuthService {
    * This method retrieves whether the user is logged in or not.
    * @returns whether the user is logged in or not
    */
-  public isLoggedIn(): boolean {
+  private isLoggedIn(): boolean {
     const storedUserCredentialJSON: string | null = localStorage.getItem(
       LocalStorageEnum.USER_CREDENTIAL
     );
     if (storedUserCredentialJSON) {
-      const storedUserCredential: UserCredential | null = JSON.parse(
+      const storedUserCredential: VividiUser | null = JSON.parse(
         storedUserCredentialJSON
       );
       if (storedUserCredential) {
-        this.currentUser = storedUserCredential.user;
+        this.currentUser = storedUserCredential;
       }
     }
     return !!this.currentUser;
