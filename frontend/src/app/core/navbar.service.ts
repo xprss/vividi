@@ -41,6 +41,18 @@ export class NavbarService {
     this.router.navigate(['/me']);
   }
 
+  public navigateToSignInPage() {
+    this.router.navigate(['/signin']);
+  }
+
+  public navigateToSignOnPage() {
+    this.router.navigate(['/signon']);
+  }
+
+  public navigateToResetPasswordPage() {
+    this.router.navigate(['/forgot-password']);
+  }
+
   public updateCurrentRoute(url: string) {
     this.currentRoute = url;
   }
