@@ -3,7 +3,7 @@ import { max } from "rxjs";
 // environment.ts (for development)
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://192.168.163.148:8000',
+  apiBaseUrl: 'http://localhost:8000',
   apiKey: 'AIzaSyCk8Epfaw0qVXg9EuW-mmLE6ZY_ZdZQ1R0',
   authDomain: 'vividivibes.firebaseapp.com',
   projectId: 'vividivibes',
