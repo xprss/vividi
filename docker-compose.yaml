@@ -1,6 +1,6 @@
 services:
   mongodb:
-    image: mongo:7.0
+    image: mongo:4.4.18
     container_name: vividi-mongodb
     volumes:
       - ./data:/data
@@ -29,6 +29,7 @@ services:
     container_name: vividi-backend
     volumes:
       - ./backend:/backend
+      - /backend/node_modules
     environment:
       NODE_ENV: development
       CHOKIDAR_USEPOLLING: "true"
@@ -47,6 +48,7 @@ services:
     container_name: vividi-frontend
     volumes:
       - ./frontend:/frontend
+      - /frontend/node_modules
     environment:
       NODE_ENV: development
       CHOKIDAR_USEPOLLING: "true"
