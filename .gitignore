@@ -5,3 +5,4 @@ frontend/node_modules
 frontend/dist
 node_modules
 backend/config/vividivibes-credentials.json
+generate.sh
