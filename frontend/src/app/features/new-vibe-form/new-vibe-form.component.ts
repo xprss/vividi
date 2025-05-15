@@ -9,11 +9,7 @@ import { ChipModule } from 'primeng/chip';
 import { ServerService } from '../../core/server.service';
 import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../../core/auth.service';
-import {
-  FileSelectEvent,
-  FileUploadEvent,
-  FileUploadModule,
-} from 'primeng/fileupload';
+import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { environment } from '../../../environments/environment';
 import { DialogService } from '../../core/dialog.service';
@@ -107,40 +103,67 @@ export class NewVibeFormComponent implements OnInit {
       file: this.file,
     };
 
-    this.dialogService.showLoadingDialog();
+    this.dialogService.showLoadingDialog('Caricamento in corso...');
 
-    this.serverService
-      .postVibe(body)
-      .then((response) => {
-        this.description = '';
-        this.moment = '';
-        this.file = null;
-        this.dialogService.showDialog(
-          '🥳 Caricamento completato!',
-          'La tua Vibe è stata caricata con successo! Ora puoi visualizzarla nella sezione Esplora!',
-          [
-            {
-              label: 'Crea una nuova Vibe',
-              icon: 'pi pi-times',
-              severity: 'secondary',
-              action: () => {
-                this.dialogService.hideDialog();
-                this.navbarService.navigateToNewVibePage();
-              },
-            },
-            {
-              label: 'Vai alla sezione Esplora',
-              icon: 'pi pi-times',
-              severity: 'primary',
-              action: () => {
-                this.dialogService.hideDialog();
-                this.navbarService.navigateToHomePage();
-              },
-            },
-          ]
-        );
-      })
-      .catch((error) => {
+    this.serverService.postVibePicture(body).subscribe({
+      next: (response) => {
+        console.log('Vibe created successfully:', response);
+        const vibeData = {
+          name: body.name,
+          description: body.description,
+          fileId: response,
+        };
+        this.serverService.postVibeMetadata(body, response).subscribe({
+          next: (response) => {
+            this.description = '';
+            this.moment = '';
+            this.file = null;
+            this.dialogService.showDialog(
+              '🥳 Caricamento completato!',
+              'La tua Vibe è stata caricata con successo! Ora puoi visualizzarla nella sezione Esplora!',
+              [
+                {
+                  label: 'Crea una nuova Vibe',
+                  icon: 'pi pi-times',
+                  severity: 'secondary',
+                  action: () => {
+                    this.dialogService.hideDialog();
+                    this.navbarService.navigateToNewVibePage();
+                  },
+                },
+                {
+                  label: 'Vai alla sezione Esplora',
+                  icon: 'pi pi-times',
+                  severity: 'primary',
+                  action: () => {
+                    this.dialogService.hideDialog();
+                    this.navbarService.navigateToHomePage();
+                  },
+                },
+              ]
+            );
+          },
+          error: (error) => {
+            console.error(error);
+            this.dialogService.showDialog(
+              '🫣 Errore durante il caricamento',
+              'Qualcosa è andato storto durante il caricamento della Vibe. Riprova più tardi.',
+              [
+                {
+                  label: 'Torna alla sezione Esplora',
+                  icon: 'pi pi-times',
+                  severity: 'primary',
+                  action: () => {
+                    this.dialogService.hideDialog();
+                    this.navbarService.navigateToHomePage();
+                  },
+                },
+              ]
+            );
+          },
+        });
+      },
+      error: (error) => {
         console.error(error);
         this.dialogService.showDialog(
           '🫣 Errore durante il caricamento',
@@ -157,12 +180,8 @@ export class NewVibeFormComponent implements OnInit {
             },
           ]
         );
-      })
-      .finally(() => {
-        this.description = '';
-        this.moment = '';
-        this.file = null;
-      });
+      },
+    });
   }
 
   protected reset() {
