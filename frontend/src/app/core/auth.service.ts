@@ -11,12 +11,12 @@ import {
   Auth,
   createUserWithEmailAndPassword,
 } from '@firebase/auth';
-import { LocalStorageEnum } from '../../../libs/local-storage.enum';
+import { LocalStorageEnum } from '../../lib/local-storage.enum';
 import { NavbarService } from './navbar.service';
 import { ServerService } from './server.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DialogService } from './dialog.service';
-import { VividiUser } from '../../../libs/vividi-user.interface';
+import { VividiUser } from '../../lib/vividi-user.interface';
 
 @Injectable({
   providedIn: 'root',

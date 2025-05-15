@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DialogButton } from '../../../libs/dialog-button.type';
+import { DialogButton } from '../../lib/dialog-button.type';
 
 @Injectable({
   providedIn: 'root',
@@ -31,8 +31,8 @@ export class DialogService {
     this.isDialogOpen = false;
   }
 
-  public showLoadingDialog() {
-    this.header = 'Caricamento in corso...';
+  public showLoadingDialog(header: string) {
+    this.header = header;
     this.isLoading = true;
     this.isDialogOpen = true;
     this.isClosable = false;

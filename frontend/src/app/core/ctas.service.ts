@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CTAButton } from '../../../libs/cta-button.type';
+import { CTAButton } from '../../lib/cta-button.type';
 
 @Injectable({
   providedIn: 'root'
