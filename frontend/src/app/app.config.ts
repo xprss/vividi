@@ -6,16 +6,24 @@ import { routes } from './app.routes';
 
 import { providePrimeNG } from 'primeng/config';
 import { WeddingPreset } from './themes/Wedding';
+import { provideHttpClient } from '@angular/common/http';
+import { Configuration } from '@shared';
+import { apiConfigurationFactory } from 'src/lib/apiConfigurationFactory';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }), 
+    provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),
-    providePrimeNG({ 
+    provideHttpClient(),
+    {
+      provide: Configuration,
+      useFactory: apiConfigurationFactory,
+    },
+    providePrimeNG({
       theme: {
-        preset: WeddingPreset
-      }
-    })
-  ]
+        preset: WeddingPreset,
+      },
+    }),
+  ],
 };
