@@ -7,8 +7,8 @@
     "types": [],
     "baseUrl": "./",
     "paths": {
-      "@shared": ["../shared/index.ts"],
-      "@shared/*": ["../shared/*"]
+      "@shared": ["./src/shared/index.ts"],
+      "@shared/*": ["./src/shared/*"]
     }
   },
   "files": ["src/main.ts"],

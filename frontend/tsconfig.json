@@ -24,8 +24,8 @@
     "baseUrl": "./",
     "downlevelIteration": true,
     "paths": {
-      "@shared": ["../shared/index.ts"],
-      "@shared/*": ["../shared/*"]
+      "@shared": ["./src/shared/index.ts"],
+      "@shared/*": ["./src/shared/*"]
     }
   },
   "angularCompilerOptions": {
