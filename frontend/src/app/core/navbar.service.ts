@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,11 @@ export class NavbarService {
 
   constructor(public readonly router: Router) {
     this.enabled = true;
-    this.currentRoute = this.router.url;
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.updateCurrentRoute(event.url);
+      }
+    });
   }
 
   public isEnabled(): boolean {
