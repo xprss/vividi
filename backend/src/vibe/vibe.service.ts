@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { CreateVibeDto } from './dto/create-vibe.dto';
 import { UpdateVibeDto } from './dto/update-vibe.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -12,17 +12,20 @@ import { Response } from 'express';
 
 @Injectable()
 export class VibeService {
+  private readonly logger = new Logger(VibeService.name);
   constructor(
     @InjectModel(Vibe.name) private readonly vibeModel: Model<Vibe>,
     private readonly googleService: GoogleAPIService,
   ) {}
 
-  async create(
-    file: Express.Multer.File,
-    createVibeDto: CreateVibeDto,
-  ): Promise<Vibe> {
+  async create(createVibeDto: CreateVibeDto): Promise<Vibe> {
+    const vibe: Vibe = new Vibe(createVibeDto);
+    return await new this.vibeModel(vibe).save();
+  }
+
+  async createPicture(file: Express.Multer.File): Promise<string> {
     if (!file || !file?.buffer) {
-      throw new Error('No file provided');
+      throw new HttpException('File cannot be empty', HttpStatus.BAD_REQUEST);
     }
 
     const bufferStream: Readable = new Readable();
@@ -32,21 +35,21 @@ export class VibeService {
     const response = await this.googleService.googleDriveAPI.files.create({
       requestBody: {
         name: file.originalname,
-        mimeType: 'image/jpeg',
         parents: [this.googleService.googleDriveFolderId],
       },
       media: {
-        mimeType: 'image/jpeg',
         body: bufferStream,
       },
     });
 
-    const vibe: Vibe = new Vibe(createVibeDto, response.data.id!);
-    return await new this.vibeModel(vibe).save();
+    return response.data.id!;
   }
 
   async findAll() {
     const vibes: Vibe[] = await this.vibeModel.find().lean();
+    if (!vibes) {
+      throw new HttpException('No vibes found', HttpStatus.NOT_FOUND);
+    }
     return vibes.map((vibe) => {
       return {
         ...vibe,

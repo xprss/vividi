@@ -4,13 +4,13 @@ import { CreateVibeDto } from '../dto/create-vibe.dto';
 
 @Schema()
 export class Vibe {
-  constructor(createVibeDto: CreateVibeDto, fileId: string) {
+  constructor(createVibeDto: CreateVibeDto) {
     this.userId = createVibeDto.userId;
     this.userFullName = createVibeDto.userFullName;
     this.description = createVibeDto.description;
     this.moment = createVibeDto.moment;
     this.creationTimestamp = new Date();
-    this.fileId = fileId;
+    this.fileId = createVibeDto.fileId;
   }
 
   @Prop({

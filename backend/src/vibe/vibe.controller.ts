@@ -15,7 +15,6 @@ import { CreateVibeDto } from './dto/create-vibe.dto';
 import { UpdateVibeDto } from './dto/update-vibe.dto';
 import { ApiBody, ApiConsumes, ApiParam } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { Moment } from 'libs/common/moment.enum';
 import { Response } from 'express';
 
 @Controller('vibe')
@@ -23,8 +22,13 @@ export class VibeController {
   constructor(private readonly vibeService: VibeService) {}
 
   @Post()
-  @ApiConsumes('multipart/form-data')
+  async create(@Body() createVibeDto: CreateVibeDto) {
+    return await this.vibeService.create(createVibeDto);
+  }
+
+  @Post('picture')
   @UseInterceptors(FileInterceptor('file'))
+  @ApiConsumes('multidata/form-data')
   @ApiBody({
     schema: {
       type: 'object',
@@ -33,18 +37,13 @@ export class VibeController {
           type: 'string',
           format: 'binary',
         },
-        userId: { type: 'string' },
-        userFullName: { type: 'string' },
-        description: { type: 'string' },
-        moment: { type: 'enum', enum: Object.values(Moment) },
       },
     },
   })
-  async create(
+  async createPicture(
     @UploadedFile() file: Express.Multer.File,
-    @Body() createVibeDto: CreateVibeDto,
-  ) {
-    return await this.vibeService.create(file, createVibeDto);
+  ): Promise<string> {
+    return await this.vibeService.createPicture(file);
   }
 
   @Get()

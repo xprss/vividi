@@ -44,4 +44,14 @@ export class CreateVibeDto {
     message: 'Moment not beloning to the set of allowed ones',
   })
   moment: Moment;
+
+  @ApiProperty({
+    example: 'fileRef',
+    type: 'string',
+    title: 'fileRef',
+    description: 'The reference to the file in the storage',
+  })
+  @IsNotEmpty()
+  @IsString()
+  fileId: string;
 }
