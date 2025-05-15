@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   RouterOutlet,
-  RouterLink,
-  RouterLinkActive,
   Router,
   NavigationEnd,
 } from '@angular/router';
@@ -15,9 +13,7 @@ import { LayoutsModule } from './layouts/layouts.module';
   imports: [
     LayoutsModule,
     CommonModule,
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
+    RouterOutlet
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
