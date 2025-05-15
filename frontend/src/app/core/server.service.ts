@@ -1,42 +1,42 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { VibeService } from '@shared';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ServerService {
-  constructor() {}
+  constructor(
+    private readonly vibeService: VibeService,
+    private http: HttpClient
+  ) {}
 
-  public async getAllVibes(): Promise<
-    { user: string; description: string; moment: string }[]
-  > {
-    const response = await fetch(environment.apiBaseUrl + '/vibe/', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then(async (response: Response) => {
-      if (response.ok) {
-        const vibe = await response.json();
-        return vibe;
-      }
-    });
-
-    return response;
+  public getAllVibes(): Observable<any> {
+    return this.vibeService.vibeControllerFindAll().pipe();
   }
 
-  public async postVibe(data: any): Promise<any> {
+  public postVibePicture(data: any): Observable<string> {
     const formData = new FormData();
     formData.append('file', data.file);
-    formData.append('userId', data.userId);
-    formData.append('userFullName', data.userFullName);
-    formData.append('description', data.description);
-    formData.append('moment', data.moment);
-    const response = await fetch(environment.apiBaseUrl + '/vibe/', {
-      method: 'POST',
-      body: formData,
-    });
-    return response.json();
+    return this.http
+      .post(environment.apiBaseUrl + '/vibe/picture', formData, {
+        responseType: 'text',
+      })
+      .pipe();
+  }
+
+  public postVibeMetadata(data: any, fileId: string): Observable<any> {
+    return this.vibeService
+      .vibeControllerCreate({
+        userId: data.userId,
+        userFullName: data.userFullName,
+        description: data.description,
+        fileId: fileId,
+        moment: data.moment,
+      })
+      .pipe();
   }
 
   public async createAccount(
@@ -66,17 +66,12 @@ export class ServerService {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({email: email})
+      body: JSON.stringify({ email: email }),
     });
     return response;
   }
 
-  public async deleteVibe(vibeId: string): Promise<void> {
-    const response = await fetch(environment.apiBaseUrl + '/vibe/' + vibeId, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+  public deleteVibe(vibeId: string): Observable<any> {
+    return this.vibeService.vibeControllerRemove(vibeId).pipe();
   }
 }
