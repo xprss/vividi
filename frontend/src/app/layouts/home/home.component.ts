@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { FeaturesModule } from '../../features/features.module';
 import { ServerService } from '../../core/server.service';
+import { EventsService } from 'src/app/shared/events.service';
 
 @Component({
   selector: 'v2d-home',
@@ -11,11 +12,20 @@ import { ServerService } from '../../core/server.service';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  constructor(private readonly serverService: ServerService) {}
+  constructor(
+    private readonly serverService: ServerService,
+    private readonly eventsService: EventsService
+  ) {}
 
   protected vibes: any[] = [];
 
   public ngOnInit(): void {
+    this.eventsService.refreshEsploraEvent.subscribe(() => {
+      this.fetchVibes();
+    })
+  }
+
+  private fetchVibes(): void {
     this.serverService.getAllVibes().subscribe((response) => {
       this.vibes = response;
     });
