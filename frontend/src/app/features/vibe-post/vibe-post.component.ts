@@ -1,21 +1,24 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { ChipModule } from 'primeng/chip';
 import { AuthService } from '../../core/auth.service';
 import { ServerService } from '../../core/server.service';
 import { DialogService } from 'src/app/core/dialog.service';
+import { MoreComponent } from 'src/app/shared/components/more/more.component';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'v2d-vibe-post',
   standalone: true,
-  imports: [AvatarModule, ChipModule, DatePipe, ButtonModule],
+  imports: [AvatarModule, ChipModule, DatePipe, ButtonModule, MoreComponent],
   templateUrl: './vibe-post.component.html',
   styleUrl: './vibe-post.component.scss',
 })
-export class VibePostComponent {
+export class VibePostComponent implements OnInit {
   @Input() public vibeData: any = {};
+  @Input() public menuEntries: MenuItem[] | undefined;
 
   constructor(
     protected readonly authService: AuthService,
@@ -23,10 +26,22 @@ export class VibePostComponent {
     protected readonly dialogService: DialogService
   ) {}
 
-  public delete(vibeId: any) {
+  public ngOnInit(): void {
+    this.menuEntries = [];
+    this.menuEntries.push({
+      icon: 'pi pi-trash',
+      disabled: false,
+      label: 'Elimina',
+      command: () => {
+        this.delete();
+      },
+    });
+  }
+
+  public delete() {
     this.dialogService.showLoadingDialog('Eliminazione in corso...');
 
-    this.serverService.deleteVibe(vibeId).subscribe({
+    this.serverService.deleteVibe(this.vibeData._id).subscribe({
       next: (response) => {
         console.log('Vibe deleted successfully:', response);
         this.dialogService.showDialog(
