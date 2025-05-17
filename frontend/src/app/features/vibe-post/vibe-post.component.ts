@@ -8,6 +8,7 @@ import { ServerService } from '../../core/server.service';
 import { DialogService } from 'src/app/core/dialog.service';
 import { MoreComponent } from 'src/app/shared/components/more/more.component';
 import { MenuItem } from 'primeng/api';
+import { EventsService } from 'src/app/shared/events.service';
 
 @Component({
   selector: 'v2d-vibe-post',
@@ -23,7 +24,8 @@ export class VibePostComponent implements OnInit {
   constructor(
     protected readonly authService: AuthService,
     protected readonly serverService: ServerService,
-    protected readonly dialogService: DialogService
+    protected readonly dialogService: DialogService,
+    protected readonly eventsService: EventsService
   ) {}
 
   public ngOnInit(): void {
@@ -54,6 +56,7 @@ export class VibePostComponent implements OnInit {
               severity: 'primary',
               action: () => {
                 this.dialogService.hideDialog();
+                this.eventsService.refreshEsplora();
               },
             },
           ]
