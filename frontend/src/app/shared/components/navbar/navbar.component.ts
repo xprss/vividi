@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { NavbarService } from '../../../core/navbar.service';
+import { EventsService } from '../../events.service';
 
 @Component({
   selector: 'v2d-navbar',
@@ -14,7 +15,8 @@ import { NavbarService } from '../../../core/navbar.service';
 export class NavbarComponent {
   constructor(
     private readonly router: Router,
-    protected readonly navbarService: NavbarService
+    protected readonly navbarService: NavbarService,
+    protected readonly eventsService: EventsService
   ) {}
 
   public get currentRoute(): string {
@@ -23,6 +25,7 @@ export class NavbarComponent {
 
   public navigateToHomePage(): void {
     this.navbarService.navigateToHomePage();
+    this.eventsService.refreshEsplora();
   }
 
   public navigateToNewVibePage(): void {
