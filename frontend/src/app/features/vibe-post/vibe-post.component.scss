@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   padding: 0.8rem 0;
-  gap: 1rem;
+  gap: 0.5rem;
 
   .vibe-header {
     display: flex;
@@ -33,6 +33,7 @@
   }
 
   .vibe-picture {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,6 +42,12 @@
       height: 100%;
       border-radius: 0.5rem;
       overflow: hidden;
+    }
+    .overlap {
+      z-index: 1000;
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
     }
   }
 
@@ -54,6 +61,5 @@
     justify-content: right;
     font-size: smaller;
     color: var(--p-violet-100);
-    font-weight: 900;
   }
 }
