@@ -1,0 +1,4 @@
+<div class="card flex justify-center">
+    <p-menu #menu [model]="menuEntries" [popup]="true" />
+    <p-button severity="secondary" (click)="menu.toggle($event)" icon="pi pi-ellipsis-v"/>
+</div>
