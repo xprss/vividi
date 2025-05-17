@@ -46,7 +46,10 @@ export class VibeService {
   }
 
   async findAll() {
-    const vibes: Vibe[] = await this.vibeModel.find().lean();
+    const vibes: Vibe[] = await this.vibeModel
+      .find()
+      .lean()
+      .sort({ creationTimestamp: -1 });
     if (!vibes) {
       throw new HttpException('No vibes found', HttpStatus.NOT_FOUND);
     }
