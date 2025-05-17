@@ -3,15 +3,15 @@
     <div id="left">
       <span id="vibe-user-icon">👰🏻‍♀️</span>
       <span id="vibe-user-name">{{ vibeData.userFullName }}</span>
-      @if (vibeData.userId === authService.getUser()?.uid) {
-        <p-button icon="pi pi-trash" (onClick)="delete(vibeData._id)"></p-button>
-      }
     </div>
     <div id="right">
-      <p-chip [label]="vibeData.moment"></p-chip>
+      @if (vibeData.userId === authService.getUser()?.uid) {
+        <v2d-more [menuEntries]="this.menuEntries"></v2d-more>
+      }
     </div>
   </div>
   <div class="vibe-picture">
+    <p-chip class="overlap" [label]="vibeData.moment"></p-chip>
     <img [src]="'http://localhost:8000/vibe/image/' + vibeData._id" [alt]="vibeData.fileId" />
   </div>
   <div class="vibe-content">
@@ -20,6 +20,6 @@
     </span>
   </div>
   <div class="vibe-footer">
-    {{ vibeData.creationTimestamp | date : "fullDate" }}
+    {{ vibeData.creationTimestamp | date : "dd MMMM yyyy - HH:mm" : undefined : "it-IT" }}
   </div>
 </div>
