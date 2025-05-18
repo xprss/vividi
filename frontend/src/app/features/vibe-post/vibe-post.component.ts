@@ -9,17 +9,27 @@ import { DialogService } from 'src/app/core/dialog.service';
 import { MoreComponent } from 'src/app/shared/components/more/more.component';
 import { MenuItem } from 'primeng/api';
 import { EventsService } from 'src/app/core/events.service';
+import { VisibilityTriggerComponent } from 'src/app/shared/components/visibility-trigger/visibility-trigger.component';
 
 @Component({
   selector: 'v2d-vibe-post',
   standalone: true,
-  imports: [AvatarModule, ChipModule, DatePipe, ButtonModule, MoreComponent],
+  imports: [
+    AvatarModule,
+    ChipModule,
+    DatePipe,
+    ButtonModule,
+    MoreComponent,
+    VisibilityTriggerComponent,
+  ],
   templateUrl: './vibe-post.component.html',
   styleUrl: './vibe-post.component.scss',
 })
 export class VibePostComponent implements OnInit {
   @Input() public vibeData: any = {};
   @Input() public menuEntries: MenuItem[] | undefined;
+  public isDescriptionFullyVisible: boolean = false;
+  protected isLoading: boolean = true;
 
   constructor(
     protected readonly authService: AuthService,
@@ -39,6 +49,10 @@ export class VibePostComponent implements OnInit {
       },
     });
   }
+
+  public readonly toggleDescriptionVisibility = () => {
+    this.isDescriptionFullyVisible = !this.isDescriptionFullyVisible;
+  };
 
   public delete() {
     this.dialogService.showLoadingDialog('Eliminazione in corso...');
