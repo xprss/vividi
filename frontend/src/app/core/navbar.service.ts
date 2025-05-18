@@ -57,6 +57,10 @@ export class NavbarService {
     this.router.navigate(['/forgot-password']);
   }
 
+  public navigateToVibe(_id: any) {
+    this.router.navigate(['/vibe', _id]);
+  }
+
   public updateCurrentRoute(url: string) {
     this.currentRoute = url;
   }
