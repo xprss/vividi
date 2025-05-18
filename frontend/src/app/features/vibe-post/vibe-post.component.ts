@@ -14,7 +14,6 @@ import { VisibilityTriggerComponent } from 'src/app/shared/components/visibility
 import { Clipboard } from '@angular/cdk/clipboard';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { NavbarService } from 'src/app/core/navbar.service';
-import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'v2d-vibe-post',
@@ -44,8 +43,7 @@ export class VibePostComponent implements OnInit {
     protected readonly dialogService: DialogService,
     protected readonly eventsService: EventsService,
     protected readonly navbarService: NavbarService,
-    private readonly clipboard: Clipboard,
-    private readonly messageService: MessageService
+    private readonly clipboard: Clipboard
   ) {}
 
   public ngOnInit(): void {
@@ -80,7 +78,6 @@ export class VibePostComponent implements OnInit {
 
   public copyToClipboard() {
     this.clipboard.copy(this.generateUrl(this.vibeData._id));
-    this.messageService.add({ severity: 'contrast', summary: 'Link copiato!', detail: 'Il link alla vibe è stato copiato nei tuoi appunti!' });
   }
 
   public readonly toggleDescriptionVisibility = () => {
