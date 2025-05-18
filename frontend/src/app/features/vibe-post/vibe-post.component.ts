@@ -11,6 +11,10 @@ import { MoreComponent } from 'src/app/shared/components/more/more.component';
 import { MenuItem } from 'primeng/api';
 import { EventsService } from 'src/app/core/events.service';
 import { VisibilityTriggerComponent } from 'src/app/shared/components/visibility-trigger/visibility-trigger.component';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { NavbarService } from 'src/app/core/navbar.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'v2d-vibe-post',
@@ -23,6 +27,7 @@ import { VisibilityTriggerComponent } from 'src/app/shared/components/visibility
     MoreComponent,
     VisibilityTriggerComponent,
     Skeleton,
+    ClipboardModule,
   ],
   templateUrl: './vibe-post.component.html',
   styleUrl: './vibe-post.component.scss',
@@ -37,12 +42,31 @@ export class VibePostComponent implements OnInit {
     protected readonly authService: AuthService,
     protected readonly serverService: ServerService,
     protected readonly dialogService: DialogService,
-    protected readonly eventsService: EventsService
+    protected readonly eventsService: EventsService,
+    protected readonly navbarService: NavbarService,
+    private readonly clipboard: Clipboard,
+    private readonly messageService: MessageService
   ) {}
 
   public ngOnInit(): void {
     this.menuEntries = [];
-    if (this.vibeData.userId === this.authService.getUser()?.uid) {
+    this.menuEntries.push({
+      icon: 'pi pi-eye',
+      disabled: false,
+      label: 'Apri dettaglio',
+      command: () => {
+        this.navbarService.navigateToVibe(this.vibeData._id);
+      },
+    });
+    this.menuEntries.push({
+      icon: 'pi pi-share-alt',
+      disabled: false,
+      label: 'Condividi',
+      command: () => {
+        this.copyToClipboard();
+      },
+    });
+    if (this.vibeData?.userId === this.authService.getUser()?.uid) {
       this.menuEntries.push({
         icon: 'pi pi-trash',
         disabled: false,
@@ -52,6 +76,11 @@ export class VibePostComponent implements OnInit {
         },
       });
     }
+  }
+
+  public copyToClipboard() {
+    this.clipboard.copy(this.generateUrl(this.vibeData._id));
+    this.messageService.add({ severity: 'contrast', summary: 'Link copiato!', detail: 'Il link alla vibe è stato copiato nei tuoi appunti!' });
   }
 
   public readonly toggleDescriptionVisibility = () => {
@@ -64,7 +93,6 @@ export class VibePostComponent implements OnInit {
 
   public delete() {
     this.dialogService.showLoadingDialog('Eliminazione in corso...');
-
     this.serverService.deleteVibe(this.vibeData._id).subscribe({
       next: (response) => {
         console.log('Vibe deleted successfully:', response);
@@ -85,5 +113,9 @@ export class VibePostComponent implements OnInit {
         );
       },
     });
+  }
+
+  public generateUrl(_id: any): string {
+    return 'localhost:4200/vibe/' + _id;
   }
 }

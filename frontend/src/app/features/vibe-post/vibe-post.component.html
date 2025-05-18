@@ -2,13 +2,11 @@
   <div class="vibe-header">
     <div id="left">
       <span id="vibe-user-icon">👰🏻‍♀️</span>
-      <span id="vibe-user-name">{{ vibeData.userFullName }}</span>
+      <span id="vibe-user-name">{{ vibeData?.userFullName }}</span>
     </div>
     @if (!this.isLoading) {
     <div id="right">
-      @if (vibeData.userId === authService.getUser()?.uid) {
       <v2d-more [menuEntries]="this.menuEntries"></v2d-more>
-      }
     </div>
     } @else {
     <v2d-more></v2d-more>
@@ -16,23 +14,26 @@
   </div>
   <div class="vibe-body">
     <div class="vibe-picture">
-      @if(!this.isLoading){
-      <p-chip class="overlap" [label]="vibeData.moment"></p-chip>}
+      @if(!this.isLoading) {
+      <p-chip class="overlap" [label]="vibeData.moment"></p-chip>
+      } @if (vibeData?._id) {
       <img
         (load)="this.onImageLoad()"
-        [src]="'http://localhost:8000/vibe/image/' + vibeData._id"
-        [alt]="vibeData.fileId"
+        [src]="'http://localhost:8000/vibe/image/' + vibeData?._id"
+        [alt]="vibeData?.fileId"
       />
+      }
     </div>
     @if (!this.isLoading) {
     <div class="vibe-content">
       <span>
         @if (this.isDescriptionFullyVisible || this.vibeData.description.length
-        < 150) { {{ this.vibeData.description }} } @else {
+        < 150) {
+        {{ this.vibeData.description }} } @else {
         {{ this.vibeData.description.slice(0, 150) + "..." }} }
       </span>
 
-      @if (this.vibeData.description.length > 150) {
+      @if (this.vibeData?.description.length > 150) {
       <v2d-visibility-trigger
         [onClick]="this.toggleDescriptionVisibility"
       ></v2d-visibility-trigger>
@@ -56,7 +57,7 @@
   <div class="vibe-footer">
     @if (!this.isLoading) {
     {{
-      vibeData.creationTimestamp
+      vibeData?.creationTimestamp
         | date : "dd MMMM yyyy - HH:mm" : undefined : "it-IT"
     }}
     } @else {
