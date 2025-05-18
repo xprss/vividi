@@ -16,11 +16,8 @@
   </div>
   <div class="vibe-body">
     <div class="vibe-picture">
-      @if(!this.isLoading){<p-chip
-        class="overlap"
-        [label]="vibeData.moment"
-      ></p-chip
-      >}
+      @if(!this.isLoading){
+      <p-chip class="overlap" [label]="vibeData.moment"></p-chip>}
       <img
         (load)="this.onImageLoad()"
         [src]="'http://localhost:8000/vibe/image/' + vibeData._id"
