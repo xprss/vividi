@@ -8,7 +8,7 @@ import { ServerService } from '../../core/server.service';
 import { DialogService } from 'src/app/core/dialog.service';
 import { MoreComponent } from 'src/app/shared/components/more/more.component';
 import { MenuItem } from 'primeng/api';
-import { EventsService } from 'src/app/shared/events.service';
+import { EventsService } from 'src/app/core/events.service';
 
 @Component({
   selector: 'v2d-vibe-post',

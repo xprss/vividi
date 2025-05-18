@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { FeaturesModule } from '../../features/features.module';
 import { ServerService } from '../../core/server.service';
-import { EventsService } from 'src/app/shared/events.service';
+import { EventsService } from 'src/app/core/events.service';
 
 @Component({
   selector: 'v2d-home',

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { NavbarService } from '../../../core/navbar.service';
-import { EventsService } from '../../events.service';
+import { EventsService } from '../../../core/events.service';
 
 @Component({
   selector: 'v2d-navbar',
