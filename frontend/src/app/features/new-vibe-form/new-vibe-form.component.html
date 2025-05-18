@@ -33,38 +33,16 @@
 <div class="category-wrapper">
   <span>Categoria:</span>
   <div class="category-container">
-    <p-chip
-      label="🗓️ Giorni precedenti"
+    @for (moment of getMoments(); track moment) {
+      <p-chip
+      [label]="getLabel(moment)"
       [ngClass]="{
-        'active-chip': moment === 'PREVIOUS_DAYS',
-        'regular-chip': moment !== 'PREVIOUS_DAYS'
+        'active-chip': selectedMoment === moment,
+        'regular-chip': selectedMoment !== moment
       }"
-      (click)="this.onMomentChange('PREVIOUS_DAYS')"
+      (click)="this.onMomentChange(moment)"
     />
-    <p-chip
-      label="⛪️ Cerimonia"
-      [ngClass]="{
-        'active-chip': moment === 'CEREMONY',
-        'regular-chip': moment !== 'CEREMONY'
-      }"
-      (click)="this.onMomentChange('CEREMONY')"
-    />
-    <p-chip
-      label="🍾 Ricevimento"
-      [ngClass]="{
-        'active-chip': moment === 'LUNCH',
-        'regular-chip': moment !== 'LUNCH'
-      }"
-      (click)="this.onMomentChange('LUNCH')"
-    />
-    <p-chip
-      label="🗓️ Giorni successivi"
-      [ngClass]="{
-        'active-chip': moment === 'FOLLOWING_DAYS',
-        'regular-chip': moment !== 'FOLLOWING_DAYS'
-      }"
-      (click)="this.onMomentChange('FOLLOWING_DAYS')"
-    />
+    }
   </div>
 </div>
 

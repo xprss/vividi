@@ -16,6 +16,8 @@ import { DialogService } from '../../core/dialog.service';
 import { NavbarService } from '../../core/navbar.service';
 import { CtasService } from '../../core/ctas.service';
 import { CtasComponent } from '../../shared/components/ctas/ctas.component';
+import Moment from 'src/lib/moment.enum';
+import { resolveMomentLabel } from 'src/lib/util';
 
 @Component({
   selector: 'v2d-new-vibe-form',
@@ -36,6 +38,12 @@ import { CtasComponent } from '../../shared/components/ctas/ctas.component';
   styleUrl: './new-vibe-form.component.scss',
 })
 export class NewVibeFormComponent implements OnInit {
+  protected user: string = '';
+  protected description: string = '';
+  protected selectedMoment: string = '';
+  protected file: File | null = null;
+  protected maxFileSize: number = environment.maxFileSize;
+
   constructor(
     private readonly serverService: ServerService,
     protected readonly authService: AuthService,
@@ -84,12 +92,6 @@ export class NewVibeFormComponent implements OnInit {
     ]);
   }
 
-  protected user: string = '';
-  protected description: string = '';
-  protected moment: string = '';
-  protected file: File | null = null;
-  protected maxFileSize: number = environment.maxFileSize;
-
   public postVibe(): void {
     const body: any = {
       userId: this.authService.getUser()?.uid,
@@ -99,7 +101,7 @@ export class NewVibeFormComponent implements OnInit {
         this.authService.getUser()?.lastName
       ).trim(),
       description: this.description,
-      moment: this.moment,
+      moment: this.selectedMoment,
       file: this.file,
     };
 
@@ -116,7 +118,7 @@ export class NewVibeFormComponent implements OnInit {
         this.serverService.postVibeMetadata(body, response).subscribe({
           next: (response) => {
             this.description = '';
-            this.moment = '';
+            this.selectedMoment = '';
             this.file = null;
             this.dialogService.showDialog(
               '🥳 Caricamento completato!',
@@ -186,7 +188,7 @@ export class NewVibeFormComponent implements OnInit {
 
   protected reset() {
     this.description = '';
-    this.moment = '';
+    this.selectedMoment = '';
     this.file = null;
   }
 
@@ -195,18 +197,32 @@ export class NewVibeFormComponent implements OnInit {
   }
 
   protected onMomentChange(newMoment: string) {
-    if (this.moment === newMoment) {
-      this.moment = '';
+    if (this.selectedMoment === newMoment) {
+      this.selectedMoment = '';
       return;
     }
-    this.moment = newMoment;
+    this.selectedMoment = newMoment;
   }
 
   protected isSubmitEnabled() {
     return (
       this.description.length > 0 &&
-      this.moment.length > 0 &&
+      this.selectedMoment.length > 0 &&
       this.file !== null
     );
+  }
+
+  protected getMoments(): Moment.Moment[] {
+    return Moment.Moments;
+  }
+
+  protected getLabel(moment: Moment.Moment): string | undefined {
+    return resolveMomentLabel(moment);
+  }
+
+  protected getMomentLabel(moment: Moment.Moment): string | undefined {
+    console.log(moment);
+    
+    return Moment.MomentLabels[moment];
   }
 }

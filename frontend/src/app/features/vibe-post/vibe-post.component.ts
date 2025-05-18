@@ -14,6 +14,7 @@ import { VisibilityTriggerComponent } from 'src/app/shared/components/visibility
 import { Clipboard } from '@angular/cdk/clipboard';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { NavbarService } from 'src/app/core/navbar.service';
+import { resolveMomentLabel } from 'src/lib/util';
 
 @Component({
   selector: 'v2d-vibe-post',
@@ -114,5 +115,9 @@ export class VibePostComponent implements OnInit {
 
   public generateUrl(_id: any): string {
     return 'localhost:4200/vibe/' + _id;
+  }
+
+  public getLabel(momentLabel: string): string | undefined {
+    return resolveMomentLabel(momentLabel);
   }
 }
