@@ -6,20 +6,32 @@
     </div>
     <div id="right">
       @if (vibeData.userId === authService.getUser()?.uid) {
-        <v2d-more [menuEntries]="this.menuEntries"></v2d-more>
+      <v2d-more [menuEntries]="this.menuEntries"></v2d-more>
       }
     </div>
   </div>
-  <div class="vibe-picture">
-    <p-chip class="overlap" [label]="vibeData.moment"></p-chip>
-    <img [src]="'http://localhost:8000/vibe/image/' + vibeData._id" [alt]="vibeData.fileId" />
-  </div>
-  <div class="vibe-content">
-    <span>
-      {{ vibeData.description }}
-    </span>
+  <div class="vibe-body">
+    <div class="vibe-picture">
+      <p-chip class="overlap" [label]="vibeData.moment"></p-chip>
+      <img
+        [src]="'http://localhost:8000/vibe/image/' + vibeData._id"
+        [alt]="vibeData.fileId"
+      />
+    </div>
+    <div class="vibe-content">
+      <span>
+        @if (this.isDescriptionFullyVisible) { {{ this.vibeData.description }} }
+        @else { {{ this.vibeData.description.slice(0, 150) + "..." }} }
+      </span>
+
+      <v2d-visibility-trigger [onClick]="this.toggleDescriptionVisibility">
+      </v2d-visibility-trigger>
+    </div>
   </div>
   <div class="vibe-footer">
-    {{ vibeData.creationTimestamp | date : "dd MMMM yyyy - HH:mm" : undefined : "it-IT" }}
+    {{
+      vibeData.creationTimestamp
+        | date : "dd MMMM yyyy - HH:mm" : undefined : "it-IT"
+    }}
   </div>
 </div>
