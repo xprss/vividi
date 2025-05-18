@@ -17,6 +17,10 @@ export class ServerService {
     return this.vibeService.vibeControllerFindAll().pipe();
   }
 
+  public getVibe(vibeId: string): Observable<any> {
+    return this.vibeService.vibeControllerFindOne(vibeId).pipe();
+  }
+
   public postVibePicture(data: any): Observable<string> {
     const formData = new FormData();
     formData.append('file', data.file);
