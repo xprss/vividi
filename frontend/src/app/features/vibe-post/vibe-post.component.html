@@ -23,16 +23,6 @@
         [src]="'http://localhost:8000/vibe/image/' + vibeData._id"
         [alt]="vibeData.fileId"
       />
-      @if (this.isLoading) {
-      <div style="width: 100%; height: 100%; margin-bottom: 1rem">
-        <p-skeleton
-          width="100%"
-          height="15rem"
-          styleClass="mb-2"
-          borderRadius="1rem"
-        />
-      </div>
-      }
     </div>
     @if (!this.isLoading) {
     <div class="vibe-content">
@@ -50,6 +40,12 @@
     </div>
     } @else {
     <div style="display: flex; flex-direction: column; gap: 0.5rem">
+      <p-skeleton
+        width="100%"
+        height="15rem"
+        styleClass="mb-2"
+        borderRadius="1rem"
+      />
       <p-skeleton width="100%" styleClass="mb-2" />
       <p-skeleton width="100%" styleClass="mb-2" />
       <p-skeleton width="30%" styleClass="mb-2" />
