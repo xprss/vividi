@@ -1,4 +1,14 @@
+@if (this.menuEntries && this.menuEntries.length > 0) {
 <div class="card flex justify-center">
-    <p-menu #menu [model]="menuEntries" [popup]="true" />
-    <p-button severity="secondary" (click)="menu.toggle($event)" icon="pi pi-ellipsis-v"/>
+  <p-menu #menu [model]="menuEntries" [popup]="true" />
+  <p-button
+    severity="secondary"
+    (click)="menu.toggle($event)"
+    icon="pi pi-ellipsis-v"
+  />
 </div>
+} @else {
+<div class="card flex justify-center">
+  <p-button disabled="true" severity="secondary" icon="pi pi-ellipsis-v" />
+</div>
+}
