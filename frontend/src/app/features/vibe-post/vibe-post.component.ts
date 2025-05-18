@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { ChipModule } from 'primeng/chip';
 import { AuthService } from '../../core/auth.service';
 import { ServerService } from '../../core/server.service';
+import { Skeleton } from 'primeng/skeleton';
 import { DialogService } from 'src/app/core/dialog.service';
 import { MoreComponent } from 'src/app/shared/components/more/more.component';
 import { MenuItem } from 'primeng/api';
@@ -21,6 +22,7 @@ import { VisibilityTriggerComponent } from 'src/app/shared/components/visibility
     ButtonModule,
     MoreComponent,
     VisibilityTriggerComponent,
+    Skeleton,
   ],
   templateUrl: './vibe-post.component.html',
   styleUrl: './vibe-post.component.scss',
@@ -40,18 +42,24 @@ export class VibePostComponent implements OnInit {
 
   public ngOnInit(): void {
     this.menuEntries = [];
-    this.menuEntries.push({
-      icon: 'pi pi-trash',
-      disabled: false,
-      label: 'Elimina',
-      command: () => {
-        this.delete();
-      },
-    });
+    if (this.vibeData.userId === this.authService.getUser()?.uid) {
+      this.menuEntries.push({
+        icon: 'pi pi-trash',
+        disabled: false,
+        label: 'Elimina',
+        command: () => {
+          this.delete();
+        },
+      });
+    }
   }
 
   public readonly toggleDescriptionVisibility = () => {
     this.isDescriptionFullyVisible = !this.isDescriptionFullyVisible;
+  };
+
+  public readonly onImageLoad = () => {
+    this.isLoading = false;
   };
 
   public delete() {
