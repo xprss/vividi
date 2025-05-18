@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { PageTitleComponent } from '../../shared/components/page-title/page-title.component';
 import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../../core/auth.service';
 import { InputTextModule } from 'primeng/inputtext';
@@ -9,11 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { DividerModule } from 'primeng/divider';
 import { BasePageComponent } from '../../shared/components/base-page/base-page.component';
 import { NavbarService } from '../../core/navbar.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
   selector: 'v2d-auth-page',
   imports: [
-    PageTitleComponent,
+    SharedModule,
     ButtonModule,
     InputTextModule,
     FloatLabelModule,

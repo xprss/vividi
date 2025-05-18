@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { PageTitleComponent } from '../../shared/components/page-title/page-title.component';
 import { BasePageComponent } from '../../shared/components/base-page/base-page.component';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -9,11 +8,12 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { NavbarService } from '../../core/navbar.service';
 import { AuthService } from '../../core/auth.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
   selector: 'v2d-sign-on',
   imports: [
-    PageTitleComponent,
+    SharedModule,
     ButtonModule,
     InputTextModule,
     FloatLabelModule,

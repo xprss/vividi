@@ -6,15 +6,15 @@ import { DividerModule } from 'primeng/divider';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { BasePageComponent } from '../../shared/components/base-page/base-page.component';
-import { PageTitleComponent } from '../../shared/components/page-title/page-title.component';
 import { AuthService } from '../../core/auth.service';
 import { NavbarService } from '../../core/navbar.service';
 import { DialogService } from '../../core/dialog.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
   selector: 'v2d-forgot-password',
   imports: [
-    PageTitleComponent,
+    SharedModule,
     ButtonModule,
     InputTextModule,
     FloatLabelModule,
