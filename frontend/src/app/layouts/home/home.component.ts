@@ -3,6 +3,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { FeaturesModule } from '../../features/features.module';
 import { ServerService } from '../../core/server.service';
 import { EventsService } from 'src/app/core/events.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'v2d-home',
@@ -12,6 +13,7 @@ import { EventsService } from 'src/app/core/events.service';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  private refreshEsploraEventSubscription: Subscription | undefined = undefined;
   constructor(
     private readonly serverService: ServerService,
     private readonly eventsService: EventsService
@@ -20,9 +22,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   protected vibes: any[] = [];
 
   public ngOnInit(): void {
-    this.eventsService.refreshEsploraEvent.subscribe(() => {
-      this.fetchVibes();
-    });
+    this.refreshEsploraEventSubscription =
+      this.eventsService.refreshEsploraEvent.subscribe(() => {
+        this.fetchVibes();
+      });
   }
 
   private fetchVibes(): void {
@@ -32,6 +35,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.eventsService.refreshEsploraEvent.unsubscribe();
+    this.refreshEsploraEventSubscription?.unsubscribe();
   }
 }
