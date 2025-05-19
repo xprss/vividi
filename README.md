@@ -20,7 +20,7 @@ Pictures are collected in a set of what here are called **Vibes**: more than a p
 
 ### Frontend
 
-- Framework: Angular 18
+- Framework: Angular 19
 - Design System: PrimeNG
 
 ### Backend
