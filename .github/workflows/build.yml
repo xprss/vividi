@@ -13,6 +13,8 @@ on:
       - '**/*.md'
       - '**/*.json'
       - '**/*.JSON'
+      - '**/*.yml'
+  workflow_dispatch:
 
 jobs:
   build:
