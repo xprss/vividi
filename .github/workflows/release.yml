@@ -81,7 +81,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ inputs.version }}
-          release_name: vividi:${{ inputs.version }}
+          release_name: vividi-${{ inputs.version }}
           body: "Vividi: automatic release"
           draft: false
           prerelease: false
