@@ -74,7 +74,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v2d::${{ inputs.version }}
+          tag_name: ${{ inputs.version }}
           release_name: vividi-frontend:${{ inputs.version }}
           body: "Automated release for vividi-frontend"
           draft: false
@@ -91,7 +91,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v2d::${{ inputs.version }}
+          tag_name: ${{ inputs.version }}
           release_name: vividi-backend:${{ inputs.version }}
           body: "Automated release for vividi-backend"
           draft: false
