@@ -5,6 +5,10 @@ on:
     tags:
       - "v*" # Runs when a tag like "v1.0.0" is pushed
   workflow_dispatch:
+    inputs:
+      version:
+        description: Release version
+        required: true
 
 permissions:
   contents: write
