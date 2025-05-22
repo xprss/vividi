@@ -69,19 +69,30 @@ jobs:
           name: frontend-build
           path: frontend-build
 
+      - name: Release frontend
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v2d::${{ inputs.version }}
+          release_name: vividi-frontend:${{ inputs.version }}
+          body: "Automated release for vividi-frontend"
+          draft: false
+          prerelease: false
+          
       - name: Download Backend Artifact
         uses: actions/download-artifact@v4
         with:
           name: backend-build
           path: backend-build
-
-      - name: Create GitHub Release
+          
+      - name: Release backend
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}
-          release_name: Release ${{ github.ref_name }}
-          body: "Automated release for ${{ github.ref_name }}"
+          tag_name: v2d::${{ inputs.version }}
+          release_name: vividi-backend:${{ inputs.version }}
+          body: "Automated release for vividi-backend"
           draft: false
           prerelease: false
