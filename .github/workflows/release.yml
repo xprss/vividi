@@ -5,6 +5,9 @@ on:
     tags:
       - "v*" # Runs when a tag like "v1.0.0" is pushed
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build Angular & NestJS
