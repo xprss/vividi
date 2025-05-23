@@ -34,7 +34,7 @@ import { resolveMomentLabel } from 'src/lib/util';
 })
 export class VibePostComponent implements OnInit {
   @Input() public vibeData: any = {};
-  @Input() public menuEntries: MenuItem[] | undefined;
+  public menuEntries: MenuItem[] | undefined;
   public isDescriptionFullyVisible: boolean = false;
   protected isLoading: boolean = true;
 
