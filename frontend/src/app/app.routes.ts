@@ -9,9 +9,10 @@ import { AuthPageComponent } from './layouts/auth-page/auth-page.component';
 import { NoAuthGuard } from './guards/no-auth.guard';
 import { ForgotPasswordComponent } from './layouts/forgot-password/forgot-password.component';
 import { SingleVibePageComponent } from './layouts/single-vibe-page/single-vibe-page.component';
+import { WipComponent } from './layouts/wip/wip.component';
 
 export const routes: Routes = [
-  {
+  /* {
     path: 'home',
     component: HomeComponent,
     canActivate: [AuthGuard],
@@ -50,10 +51,10 @@ export const routes: Routes = [
     path: '', 
     redirectTo: '/home', 
     pathMatch: 'full' 
-  },
+  }, */
   {
     path: '**',
-    component: UnavailableComponent,
-    canActivate: [AuthGuard],
+    component: WipComponent,
+    canActivate: [],
   },
 ];

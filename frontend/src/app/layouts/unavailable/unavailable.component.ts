@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { BasePageComponent } from '../../shared/components/base-page/base-page.component';
 import { Button } from 'primeng/button';
 import { Router } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
