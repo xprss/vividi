@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Button } from 'primeng/button';
 import { SharedModule } from 'src/app/shared/shared.module';
 
@@ -9,17 +9,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
   templateUrl: './wip.component.html',
   styleUrl: './wip.component.scss'
 })
-export class WipComponent {
-
-  public ngAfterViewInit(): void {
-    window.addEventListener('DOMContentLoaded', async () => {
-      const video: HTMLVideoElement | null = document.getElementById('wipVideo') as HTMLVideoElement;
-      if (!video) {
-        return;
-      }
-      video.focus();
-      await video.play();
-    });
+export class WipComponent implements AfterViewInit {
+  public async ngAfterViewInit(): Promise<void> {
+    const video: HTMLVideoElement | null = document.getElementById('wipVideo') as HTMLVideoElement;
+    if (!video) {
+      return;
+    }
+    video.focus();
+    await video.play();
   }
 
   protected openGithub(): void {
