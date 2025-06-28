@@ -10,13 +10,20 @@ import { SharedModule } from 'src/app/shared/shared.module';
   styleUrl: './wip.component.scss'
 })
 export class WipComponent implements AfterViewInit {
-  public async ngAfterViewInit(): Promise<void> {
+  public ngAfterViewInit(): void {
     const video: HTMLVideoElement | null = document.getElementById('wipVideo') as HTMLVideoElement;
     if (!video) {
       return;
     }
-    video.focus();
-    await video.play();
+    video.play().catch((error) => {
+      const resume = () => {
+        video.play();
+        document.removeEventListener('click', resume);
+      };
+      document.addEventListener('click', resume, { once: true });
+      document.addEventListener('scroll', resume, { once: true });
+      document.addEventListener('touchStart', resume, { once: true });
+    });
   }
 
   protected openGithub(): void {
