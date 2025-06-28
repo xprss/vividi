@@ -17,6 +17,7 @@ export class WipComponent implements OnInit {
       if (!video) {
         return;
       }
+      video.focus();
       await video.play();
     });
   }
