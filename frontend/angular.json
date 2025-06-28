@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "primebox": {
+    "vividi": {
       "i18n": {
         "sourceLocale": "it-IT"
       },
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/primebox",
+            "outputPath": "dist/vividi",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "primebox:build:production"
+              "buildTarget": "vividi:build:production"
             },
             "development": {
-              "buildTarget": "primebox:build:development"
+              "buildTarget": "vividi:build:development"
             }
           },
           "defaultConfiguration": "development"
