@@ -66,19 +66,40 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Download Frontend Artifact
-        uses: actions/download-artifact@v4
+      - name: Zip Frontend Build
+        run: |
+          cd frontend-build
+          zip -r ../frontend-build.zip .
+          cd ..
+
+      - name: Zip Backend Build
+        run: |
+          cd backend-build
+          zip -r ../backend-build.zip .
+          cd ..
+
+      - name: Upload Frontend Artifact to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: frontend-build
-          path: frontend-build
-          
-      - name: Download Backend Artifact
-        uses: actions/download-artifact@v4
+          upload_url: ${{ steps.release.outputs.upload_url }}
+          asset_path: ./frontend-build.zip
+          asset_name: frontend-build.zip
+          asset_content_type: application/zip
+
+      - name: Upload Backend Artifact to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: backend-build
-          path: backend-build
+          upload_url: ${{ steps.release.outputs.upload_url }}
+          asset_path: ./backend-build.zip
+          asset_name: backend-build.zip
+          asset_content_type: application/zip
 
       - name: Release Vividi
+        id: release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -88,3 +109,4 @@ jobs:
           body: ${{ inputs.description }}
           draft: false
           prerelease: false
+
