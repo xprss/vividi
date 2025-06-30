@@ -60,11 +60,11 @@ export class WipComponent implements AfterViewInit {
       .getHeartbeat()
       .then((response) => {
         this.dialogService.showDialog(
-          'Heartbeat',
-          `Server is up and running! Response: ${response.status}`,
+          'Maaaaaaamma mia che emozione!!',
+          `Il server è connesso, ora possiamo divertirci! ${response.status}`,
           [
             {
-              label: 'Close',
+              label: 'Chiudi',
               icon: 'pi pi-times',
               severity: 'secondary',
               action: () => this.dialogService.hideDialog(),
@@ -74,11 +74,11 @@ export class WipComponent implements AfterViewInit {
       })
       .catch((error) => {
         this.dialogService.showDialog(
-          'Error',
-          `Failed to reach server: ${error.message}`,
+          'Perdindirindina',
+          `Sembra proprio che ci sia ancora qualcosa da fare: ${error.message}`,
           [
             {
-              label: 'Close',
+              label: 'Chiudi',
               icon: 'pi pi-times',
               severity: 'secondary',
               action: () => this.dialogService.hideDialog(),
