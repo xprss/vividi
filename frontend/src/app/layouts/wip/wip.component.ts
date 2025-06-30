@@ -1,6 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { Button } from 'primeng/button';
 import { DialogService } from 'src/app/core/dialog.service';
+import { ServerService } from 'src/app/core/server.service';
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
@@ -12,7 +13,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
   styleUrl: './wip.component.scss',
 })
 export class WipComponent implements AfterViewInit {
-  constructor(private readonly dialogService: DialogService) {}
+  constructor(
+    private readonly dialogService: DialogService,
+    protected readonly serverService: ServerService
+  ) {}
 
   public ngAfterViewInit(): void {
     const video: HTMLVideoElement | null = document.getElementById(
@@ -49,5 +53,38 @@ export class WipComponent implements AfterViewInit {
         },
       ]
     );
+  }
+
+  protected heartbeat(): void {
+    this.serverService
+      .getHeartbeat()
+      .then((response) => {
+        this.dialogService.showDialog(
+          'Heartbeat',
+          `Server is up and running! Response: ${response.status}`,
+          [
+            {
+              label: 'Close',
+              icon: 'pi pi-times',
+              severity: 'secondary',
+              action: () => this.dialogService.hideDialog(),
+            },
+          ]
+        );
+      })
+      .catch((error) => {
+        this.dialogService.showDialog(
+          'Error',
+          `Failed to reach server: ${error.message}`,
+          [
+            {
+              label: 'Close',
+              icon: 'pi pi-times',
+              severity: 'secondary',
+              action: () => this.dialogService.hideDialog(),
+            },
+          ]
+        );
+      });
   }
 }

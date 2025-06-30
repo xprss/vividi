@@ -32,6 +32,13 @@
     [fluid]="true"
   ></p-button>
   <p-button
+    label="Test heartbeat!"
+    [severity]="'primary'"
+    icon="pi pi-heart"
+    (onClick)="heartbeat()"
+    [fluid]="true"
+  ></p-button>
+  <p-button
     label="Segui gli sviluppi"
     [severity]="'secondary'"
     icon="pi pi-github"

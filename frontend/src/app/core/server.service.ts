@@ -78,4 +78,14 @@ export class ServerService {
   public deleteVibe(vibeId: string): Observable<any> {
     return this.vibeService.vibeControllerRemove(vibeId).pipe();
   }
+
+  public async getHeartbeat(): Promise<any> {
+    const response = await fetch(environment.apiBaseUrl + '/heartbeat', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    return response;
+  }
 }
