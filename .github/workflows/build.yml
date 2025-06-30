@@ -31,7 +31,6 @@ jobs:
         with:
           theme: "dark"
           comment_on_pr: false
-          github_token: ${{ secrets.GH_ACTIONS_BOT_PAT }}
           metric_frequency: 5s
           job_summary: true
           proc_trace_sys_enable: true
