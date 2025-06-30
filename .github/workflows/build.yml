@@ -26,6 +26,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Start Telemetry Service
+        uses: catchpoint/workflow-telemetry-action@v2
+        with:
+          theme: "dark"
+          comment_on_pr: false
+          github_token: ${{ secrets.GH_ACTIONS_BOT_PAT }}
+          metric_frequency: 5s
+          job_summary: true
+          proc_trace_sys_enable: true
+
       # Setup Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
