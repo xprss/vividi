@@ -34,6 +34,8 @@
 
 .footer {
   display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
   justify-content: center;
   position: sticky;
   width: 100%;
