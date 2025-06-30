@@ -41,7 +41,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: frontend-build
-          path: frontend/dist/
+          path: |
+              frontend/dist/
+              frontend/package.json
+              frontend/package-lock.json
 
       # Backend (NestJS)
       - name: Install dependencies (Backend)
@@ -55,7 +58,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: backend-build
-          path: backend/dist/
+          path: |
+              backend/dist/
+              backend/package.json
+              backend/package-lock.json
 
   release:
     name: Create GitHub Release
@@ -70,19 +76,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: frontend-build
-          path: |
-              frontend-build
-              frontend/package.json
-              frontend/package-lock.json
+          path: frontend-build
 
       - name: Download Backend Artifact
         uses: actions/download-artifact@v4
         with:
           name: backend-build
-          path: |
-              backend-build
-              backend/package.json
-              backend/package-lock.json
+          path: backend-build
 
       - name: Zip Frontend Build
         run: |
