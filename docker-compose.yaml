@@ -37,7 +37,6 @@ services:
       PORT: 8000
       VERSION: "0.0.1"
       MONGO_URI: 'mongodb://root:example@mongodb:27017/vividi?authSource=admin'
-    command: ["npm", "run", "start:dev"]
     ports:
       - "8000:8000"
     depends_on:
@@ -56,7 +55,6 @@ services:
       CHOKIDAR_USEPOLLING: "true"
       PORT: 4200
       VERSION: "0.0.1"
-    command: ["npm", "run", "start", "--verbose"]
     ports:
       - "4200:4200"
     depends_on:
