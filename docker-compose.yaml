@@ -26,7 +26,8 @@ services:
   server:
     build:
       context: ./backend
-    container_name: vividi-backend
+    container_name: v2d-backend
+    image: xprss/vividi-backend:latest
     volumes:
       - ./backend:/backend
       - /backend/node_modules
@@ -45,7 +46,8 @@ services:
   client:
     build:
       context: ./frontend
-    container_name: vividi-frontend
+    container_name: v2d-frontend
+    image: xprss/vividi-frontend:latest
     volumes:
       - ./frontend:/frontend
       - /frontend/node_modules
