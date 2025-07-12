@@ -1,62 +1,42 @@
+version: "3.8"
+
 services:
   mongodb:
     image: mongo:4.4.18
     container_name: vividi-mongodb
+    restart: unless-stopped
     volumes:
-      - ./data:/data
+      - ./data:/data/db
     ports:
       - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
 
-  #mongo-express:
-  #  image: mongo-express:1.0.0-alpha.4
-  #  container_name: vividi-mongo-express
-  #  restart: always
-  #  ports:
-  #    - "8081:8081"
-  #  environment:
-  #    ME_CONFIG_MONGODB_ADMINUSERNAME: root
-  #    ME_CONFIG_MONGODB_ADMINPASSWORD: example
-  #    ME_CONFIG_MONGODB_URL: "mongodb://root:example@mongodb:27017/"
-  #  depends_on:
-  #    - mongodb
-
   server:
-    build:
-      context: ./backend
+    image: xprss/v2d-backend:latest
     container_name: v2d-backend
-    image: xprss/vividi-backend:latest
-    volumes:
-      - ./backend:/backend
-      - /backend/node_modules
+    restart: unless-stopped
     environment:
-      NODE_ENV: development
-      CHOKIDAR_USEPOLLING: "true"
+      NODE_ENV: production
       PORT: 8000
       VERSION: "0.0.1"
-      MONGO_URI: 'mongodb://root:example@mongodb:27017/vividi?authSource=admin'
+      MONGO_URI: mongodb://root:example@mongodb:27017/vividi?authSource=admin
     ports:
       - "8000:8000"
     depends_on:
       - mongodb
+    networks:
+      - vividinet
 
   client:
-    build:
-      context: ./frontend
+    image: xprss/v2d-frontend:latest
     container_name: v2d-frontend
-    image: xprss/vividi-frontend:latest
-    volumes:
-      - ./frontend:/frontend
-      - /frontend/node_modules
-    environment:
-      NODE_ENV: development
-      CHOKIDAR_USEPOLLING: "true"
-      PORT: 4200
-      VERSION: "0.0.1"
+    restart: unless-stopped
     ports:
-      - "4200:4200"
+      - "3000:80" # assuming NGINX serves Angular at port 80 inside container
     depends_on:
       - server
+    networks:
+      - vividinet
 
