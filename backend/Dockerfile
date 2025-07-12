@@ -23,4 +23,4 @@ ENV NODE_ENV=production
 ENV PORT=8000
 EXPOSE 8000
 
-CMD ["node", "dist/main"]
+CMD ["node", "dist/main.js"]
