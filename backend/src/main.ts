@@ -23,6 +23,13 @@ async function bootstrap() {
     }),
   );
 
+SwaggerModule.setup('api', app, document, {
+  explorer: true,
+  swaggerOptions: {
+    basePath: '/api',
+  }
+});
+
   const config = new DocumentBuilder()
     .setTitle('Vividi')
     .setDescription(
