@@ -13,7 +13,7 @@ FROM node:22-alpine AS production
 WORKDIR /backend
 
 COPY package*.json ./
-RUN npm install --only=production
+RUN npm install
 
 # Copy built files from builder
 COPY --from=builder /backend/dist ./dist
