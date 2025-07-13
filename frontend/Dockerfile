@@ -3,7 +3,7 @@ WORKDIR /frontend
 ENV PATH=/frontend/node_modules/.bin:$PATH
 COPY . .
 RUN npm install
-RUN npm run build --prod --base-href /
+RUN npm run build --prod
 
 
 FROM nginx:alpine
