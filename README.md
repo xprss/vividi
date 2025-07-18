@@ -1,6 +1,6 @@
 # ✨ Vividi ✨
 
-[![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Build](https://github.com/xprss/vividi/actions/workflows/build.yml/badge.svg)](https://github.com/xprss/vividi/actions/workflows/build.yml) [![Build](https://github.com/xprss/vividi/actions/workflows/release.yml/badge.svg)](https://github.com/xprss/vividi/actions/workflows/release.yml)
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Build](https://github.com/xprss/vividi/actions/workflows/ci-build.yml/badge.svg)](https://github.com/xprss/vividi/actions/workflows/ci-build.yml) [![Build](https://github.com/xprss/vividi/actions/workflows/cd-release.yml/badge.svg)](https://github.com/xprss/vividi/actions/workflows/cd-release.yml)
 
 > Dedicated to **Sibilla and Lorenzo**, next to get married in November 2025. Your love shines through any snippet of this codebase and the most tender glimpse of my life.
 
