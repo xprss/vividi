@@ -26,6 +26,7 @@ services:
   server:
     build:
       context: ./backend
+      dockerfile: Dockerfile.dev
     container_name: vividi-backend
     volumes:
       - ./backend:/backend
@@ -43,9 +44,11 @@ services:
   client:
     build:
       context: ./frontend
+      dockerfile: Dockerfile.dev
     container_name: vividi-frontend
     volumes:
       - ./frontend:/frontend
+      - /frontend/node_modules
     environment:
       NODE_ENV: development
       CHOKIDAR_USEPOLLING: "true"
