@@ -21,7 +21,9 @@ jobs:
           ref: stable
 
       - name: Create credentials JSON file
-        run: echo "${{ secrets.VIVIDI_CREDENTIALS_JSON }}" > backend/config/vividivibes-credentials.json
+        run: |
+          echo "${{ secrets.VIVIDI_CREDENTIALS_JSON }}" > backend/config/vividivibes-credentials.json
+        
 
       - name: Set up actions bot identity
         run: |
