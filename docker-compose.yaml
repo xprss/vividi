@@ -16,13 +16,12 @@ services:
       - vividinet
 
   server:
-    image: xprss/v2d-backend:latest
+    image: xprss/v2d-backend:${VERSION:-latest}
     container_name: v2d-backend
     restart: unless-stopped
     environment:
       NODE_ENV: production
       PORT: 8000
-      VERSION: "0.0.1"
       MONGO_URI: mongodb://root:example@mongodb:27017/vividi?authSource=admin
     ports:
       - "8000:8000"
@@ -32,7 +31,7 @@ services:
       - vividinet
 
   client:
-    image: xprss/v2d-frontend:latest
+    image: xprss/v2d-frontend:${VERSION:-latest}
     container_name: v2d-frontend
     restart: unless-stopped
     ports:
