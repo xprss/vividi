@@ -13,6 +13,7 @@ async function bootstrap() {
 
   const allowedOrigins = [
     'http://localhost:4200',
+    'http://client:4200',
     'https://ottonovembre.it',
     'https://www.ottonovembre.it',
     'https://beta.ottonovembre.it',
