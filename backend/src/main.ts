@@ -11,8 +11,16 @@ async function bootstrap() {
     }),
   });
 
+  const allowedOrigins = [
+    'http://localhost:4200',
+    'https://ottonovembre.it',
+    'https://www.ottonovembre.it',
+    'https://beta.ottonovembre.it',
+    'https://www.beta.ottonovembre.it',
+  ];
+
   app.enableCors({
-    origin: 'http://localhost:4200',
+    origin: allowedOrigins,
     credentials: false,
   });
 
