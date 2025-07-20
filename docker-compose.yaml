@@ -35,7 +35,7 @@ services:
     container_name: v2d-frontend
     restart: unless-stopped
     ports:
-      - "3000:80" # assuming NGINX serves Angular at port 80 inside container
+      - "4200:80" # assuming NGINX serves Angular at port 80 inside container
     depends_on:
       - server
     networks:
