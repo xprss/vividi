@@ -54,7 +54,7 @@ jobs:
         with:
           context: frontend
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/v2d-frontend:${{ env.VERSION }}}
+          tags: ${{ secrets.DOCKER_USERNAME }}/v2d-frontend:${{ env.VERSION }}
 
       # Backend (NestJS)
       - name: Build and push v2d-backend Docker image
