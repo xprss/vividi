@@ -1,11 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { ConsoleLogger, ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: ['error', 'warn', 'log'],
+    logger: new ConsoleLogger({
+      prefix: 'Vividi',
+      logLevels: ['error', 'warn', 'log', 'debug', 'verbose'],
+    }),
   });
 
   app.enableCors({
