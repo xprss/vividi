@@ -4,6 +4,7 @@ WORKDIR /backend
 
 COPY package*.json ./
 COPY tsconfig*.json ./
+COPY backend/config/vividivibes-credentials.json ./config/vividivibes-credentials.json
 COPY . .
 RUN npm install
 RUN npm run build
@@ -17,6 +18,8 @@ RUN npm install
 
 # Copy built files from builder
 COPY --from=builder /backend/dist ./dist
+
+COPY --from=builder /backend/config/vividivibes-credentials.json ./config/vividivibes-credentials.json
 
 # Set environment variables (optional)
 ENV NODE_ENV=production
