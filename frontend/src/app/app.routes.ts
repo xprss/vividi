@@ -12,7 +12,7 @@ import { SingleVibePageComponent } from './layouts/single-vibe-page/single-vibe-
 import { WipComponent } from './layouts/wip/wip.component';
 
 export const routes: Routes = [
-  /* {
+  {
     path: 'home',
     component: HomeComponent,
     canActivate: [AuthGuard],
@@ -51,10 +51,5 @@ export const routes: Routes = [
     path: '', 
     redirectTo: '/home', 
     pathMatch: 'full' 
-  }, */
-  {
-    path: '**',
-    component: WipComponent,
-    canActivate: [],
-  },
+  }
 ];
