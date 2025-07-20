@@ -56,7 +56,7 @@ export class NewVibeFormComponent implements OnInit {
     this.ctasService.showCtas([
       {
         label: 'Cancella tutto',
-        icon: 'pi pi-home',
+        icon: 'pi pi-eraser',
         severity: 'secondary',
         disabled: false,
         action: () => {
@@ -65,7 +65,7 @@ export class NewVibeFormComponent implements OnInit {
       },
       {
         label: 'Condividi la tua Vibe!',
-        icon: 'pi pi-home',
+        icon: 'pi pi-upload',
         severity: 'primary',
         disabled: false,
         action: () => {
