@@ -20,6 +20,9 @@ jobs:
           fetch-depth: 0
           ref: stable
 
+      - name: Create credentials JSON file
+        run: echo "${{ secrets.VIVIDI_CREDENTIALS_JSON }}" > backend/config/vividivibes-credentials.json
+
       - name: Set up actions bot identity
         run: |
           git config user.name "github-actions[bot]"
