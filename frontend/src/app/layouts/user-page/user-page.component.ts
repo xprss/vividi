@@ -21,8 +21,8 @@ export class UserPageComponent implements OnInit {
   public ngOnInit(): void {
     this.ctasService.showCtas([
       {
-        label: 'Esci da Vividi',
-        icon: 'pi pi-home',
+        label: 'Esci',
+        icon: 'pi pi-sign-out',
         severity: 'danger',
         disabled: false,
         action: () => this.authService.signOut(),
