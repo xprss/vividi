@@ -25,6 +25,8 @@ services:
       NODE_ENV: production
       PORT: 8000
       MONGO_URI: mongodb://root:example@mongodb:27017/vividi?authSource=admin
+    volumes:
+      - /root/secrets/vividivibes-credentials.json:/backend/vividivibes-credentials.json
     ports:
       - "8000:8000"
     depends_on:

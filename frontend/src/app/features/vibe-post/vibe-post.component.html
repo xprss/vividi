@@ -19,7 +19,7 @@
       } @if (vibeData?._id) {
       <img
         (load)="this.onImageLoad()"
-        [src]="'http://localhost:8000/vibe/image/' + vibeData?._id"
+        [src]="`${this.environment.apiBaseUrl}/vibe/image/` + vibeData?._id"
         [alt]="vibeData?.fileId"
       />
       }
