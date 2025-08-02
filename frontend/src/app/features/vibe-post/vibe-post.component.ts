@@ -15,6 +15,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { NavbarService } from 'src/app/core/navbar.service';
 import { resolveMomentLabel } from 'src/lib/util';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'v2d-vibe-post',
@@ -37,6 +38,7 @@ export class VibePostComponent implements OnInit {
   public menuEntries: MenuItem[] | undefined;
   public isDescriptionFullyVisible: boolean = false;
   protected isLoading: boolean = true;
+  protected readonly environment = environment;
 
   constructor(
     protected readonly authService: AuthService,
