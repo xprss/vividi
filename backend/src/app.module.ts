@@ -14,7 +14,7 @@ import { ConfigModule } from '@nestjs/config';
     ),
     HeartbeatModule,
     ConfigModule.forRoot({
-      envFilePath: '.env',
+      envFilePath: 'backend/.env',
       isGlobal: true,
     }),
   ],
