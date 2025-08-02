@@ -19,6 +19,8 @@ services:
     image: xprss/v2d-backend:${VERSION:-latest}
     container_name: v2d-backend
     restart: unless-stopped
+    env_file:
+      - ./backend/.env
     environment:
       NODE_ENV: production
       PORT: 8000

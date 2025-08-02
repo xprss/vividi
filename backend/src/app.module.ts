@@ -3,6 +3,7 @@ import { VibeModule } from './vibe/vibe.module';
 import { UserModule } from './user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { HeartbeatModule } from './heartbeat/heartbeat.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -12,6 +13,10 @@ import { HeartbeatModule } from './heartbeat/heartbeat.module';
       'mongodb://root:example@mongodb:27017/vividi?authSource=admin',
     ),
     HeartbeatModule,
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
   ],
   controllers: [],
   providers: [],
