@@ -6,3 +6,4 @@ frontend/dist
 node_modules
 backend/config/vividivibes-credentials.json
 data
+backend/.env
