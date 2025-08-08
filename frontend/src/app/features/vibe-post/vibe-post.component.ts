@@ -116,7 +116,7 @@ export class VibePostComponent implements OnInit {
   }
 
   public generateUrl(_id: any): string {
-    return 'localhost:4200/vibe/' + _id;
+    return environment + '/vibe/' + _id;
   }
 
   public getLabel(momentLabel: string): string | undefined {
