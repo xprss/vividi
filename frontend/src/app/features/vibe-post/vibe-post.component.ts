@@ -39,6 +39,7 @@ export class VibePostComponent implements OnInit {
   public isDescriptionFullyVisible: boolean = false;
   protected isLoading: boolean = true;
   protected readonly environment = environment;
+  private showFullMomentLabel: boolean = false;
 
   constructor(
     protected readonly authService: AuthService,
@@ -91,6 +92,13 @@ export class VibePostComponent implements OnInit {
     this.isLoading = false;
   };
 
+  public readonly toggleShowFullMomentLabel = () => {
+    this.showFullMomentLabel = true;
+    setTimeout(() => {
+      this.showFullMomentLabel = false;
+    }, 3000);
+  }
+
   public delete() {
     this.dialogService.showLoadingDialog('Eliminazione in corso...');
     this.serverService.deleteVibe(this.vibeData._id).subscribe({
@@ -120,6 +128,6 @@ export class VibePostComponent implements OnInit {
   }
 
   public getLabel(momentLabel: string): string | undefined {
-    return resolveMomentLabel(momentLabel);
+    return resolveMomentLabel(momentLabel, this.showFullMomentLabel);
   }
 }

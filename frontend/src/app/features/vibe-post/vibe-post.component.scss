@@ -68,3 +68,10 @@
     color: var(--p-zinc-100);
   }
 }
+
+.moment-chip {
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  background: color-mix(in srgb, var(--p-primary-800) 20%, transparent);
+  font-weight: bold;
+}
