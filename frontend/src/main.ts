@@ -4,6 +4,8 @@ import { AppComponent } from './app/app.component';
 import { FirebaseApp, initializeApp } from '@firebase/app';
 import { environment } from './environments/environment';
 
+document?.querySelector("html")?.classList.toggle('my-app-dark');
+
 const firebaseApp: FirebaseApp = initializeApp({
   apiKey: environment.apiKey,
   authDomain: environment.authDomain,
