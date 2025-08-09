@@ -4,6 +4,8 @@ README.md
 api.base.service.ts
 api.module.ts
 api/api.ts
+api/heartbeat.service.ts
+api/heartbeat.serviceInterface.ts
 api/user.service.ts
 api/user.serviceInterface.ts
 api/vibe.service.ts
@@ -14,6 +16,7 @@ git_push.sh
 index.ts
 model/createUserDto.ts
 model/createVibeDto.ts
+model/likeVibeDto.ts
 model/models.ts
 model/updateUserDto.ts
 model/updateVibeDto.ts
