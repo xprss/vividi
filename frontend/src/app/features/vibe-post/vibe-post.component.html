@@ -15,10 +15,22 @@
   <div class="vibe-body">
     <div class="vibe-picture">
       @if(!this.isLoading) {
-      <p-chip class="overlap moment-chip" [label]="getLabel(vibeData.moment)" (click)="toggleShowFullMomentLabel()"></p-chip>
-      <div class="overlap celebrate-container" style="display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 0.1rem;">
-        <span class="celebrate-button celebrate-counter">{{this.getNumberOfLikes()}}</span>
-        <p-chip class="celebrate-button" [icon]="getLikeButtonLabel()" (click)="setLikedState()"></p-chip>
+      <p-chip
+        class="overlap moment-chip"
+        [label]="getLabel(vibeData.moment)"
+        (click)="toggleShowFullMomentLabel()"
+      ></p-chip>
+      <div
+        class="overlap celebrate-container"
+      >
+        <p-chip class="celebrate-button" (click)="setLikedState()">
+          <i [class]="getLikeButtonLabel()"></i>
+          @if (this.getNumberOfLikes() > 0) {
+          <span class="celebrate-label">{{
+            this.getNumberOfLikes().toString()
+          }}</span>
+          }
+        </p-chip>
       </div>
       } @if (vibeData?._id) {
       <img

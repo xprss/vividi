@@ -164,7 +164,7 @@ export class VibePostComponent implements OnInit {
   }
 
   public getNumberOfLikes(): number {
-    return (
+    const numberOfLikes: number = (
       (this.vibeData?.likes?.filter(
         (like: { isLiked: boolean }) => like.isLiked
       ).length || 0) +
@@ -176,5 +176,6 @@ export class VibePostComponent implements OnInit {
         ? -1
         : 0)
     );
+    return numberOfLikes; 
   }
 }
