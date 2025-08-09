@@ -9,6 +9,7 @@ import {
   UseInterceptors,
   UploadedFile,
   Res,
+  Logger,
 } from '@nestjs/common';
 import { VibeService } from './vibe.service';
 import { CreateVibeDto } from './dto/create-vibe.dto';
@@ -16,9 +17,11 @@ import { UpdateVibeDto } from './dto/update-vibe.dto';
 import { ApiBody, ApiConsumes, ApiParam } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
+import { LikeVibeDto } from './dto/like-vibe.dto';
 
 @Controller('vibe')
 export class VibeController {
+  private readonly logger = new Logger(VibeController.name);
   constructor(private readonly vibeService: VibeService) {}
 
   @Post()
@@ -77,5 +80,18 @@ export class VibeController {
   })
   getImage(@Param('id') id: string, @Res() res: Response) {
     return this.vibeService.getImage(id, res);
+  }
+
+  @Post('like')
+  @ApiConsumes('application/json')
+  @ApiBody({
+    type: LikeVibeDto,
+    description: 'Set like for a vibe',
+  })
+  setLike(@Body() body: LikeVibeDto, @Res() res: Response) {
+    this.logger.log(
+      `Setting like for userId: ${body.userId}, vibeId: ${body.vibeId}, isLiked: ${body.isLiked}`,
+    );
+    return this.vibeService.setLike(body, res);
   }
 }

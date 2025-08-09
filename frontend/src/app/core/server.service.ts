@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { VibeService } from '@shared';
+import { LikeVibeDto, VibeService } from '@shared';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -84,8 +84,21 @@ export class ServerService {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
     });
     return response;
+  }
+
+  public setLike(
+    vibeId: string,
+    userId: string,
+    isLiked: boolean
+  ): Observable<any> {
+    const body: LikeVibeDto = {
+      vibeId: vibeId,
+      userId: userId,
+      isLiked: isLiked,
+    };
+    return this.vibeService.vibeControllerSetLike(body).pipe();
   }
 }

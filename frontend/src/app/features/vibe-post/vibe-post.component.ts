@@ -39,6 +39,7 @@ export class VibePostComponent implements OnInit {
   public isDescriptionFullyVisible: boolean = false;
   protected isLoading: boolean = true;
   protected readonly environment = environment;
+  protected isLiked = false;
   private showFullMomentLabel: boolean = false;
 
   constructor(
@@ -78,6 +79,13 @@ export class VibePostComponent implements OnInit {
         },
       });
     }
+
+    for (const like of this.vibeData?.likes || []) {
+      if (like.userId === this.authService.getUser()?.uid) {
+        this.isLiked = like.isLiked;
+        break;
+      }
+    }
   }
 
   public copyToClipboard() {
@@ -100,7 +108,7 @@ export class VibePostComponent implements OnInit {
     setTimeout(() => {
       this.showFullMomentLabel = false;
     }, 3000);
-  }
+  };
 
   public delete() {
     this.dialogService.showLoadingDialog('Eliminazione in corso...');
@@ -132,5 +140,24 @@ export class VibePostComponent implements OnInit {
 
   public getLabel(momentLabel: string): string | undefined {
     return resolveMomentLabel(momentLabel, this.showFullMomentLabel);
+  }
+
+  public setLikedState(): void {
+    this.isLiked = !this.isLiked;
+    this.serverService
+      .setLike(
+        this.vibeData._id,
+        this.authService.getUser()?.uid || '',
+        this.isLiked
+      )
+      .subscribe({
+        error: (error) => {
+          console.error('Error updating like state:', error);
+        },
+      });
+  }
+
+  public getLikeButtonLabel(): string {
+    return this.isLiked ? 'pi pi-heart-fill' : 'pi pi-heart';
   }
 }

@@ -16,6 +16,7 @@
     <div class="vibe-picture">
       @if(!this.isLoading) {
       <p-chip class="overlap moment-chip" [label]="getLabel(vibeData.moment)" (click)="toggleShowFullMomentLabel()"></p-chip>
+      <p-chip class="overlap celebrate-button" [icon]="getLikeButtonLabel()" (click)="setLikedState()"></p-chip>
       } @if (vibeData?._id) {
       <img
         (load)="this.onImageLoad()"

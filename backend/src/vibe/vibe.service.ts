@@ -9,6 +9,8 @@ import { Vibe } from './schemas/vibe.schema';
 import { Readable } from 'stream';
 import { GoogleAPIService } from 'src/google/google-api.service';
 import { Response } from 'express';
+import { LikeVibeDto } from './dto/like-vibe.dto';
+import { Like } from '../../libs/common/like.dto';
 
 @Injectable()
 export class VibeService {
@@ -104,5 +106,50 @@ export class VibeService {
     res.setHeader('Content-Length', driveResponse.headers['content-length']);
     driveResponse.data.pipe(res);
     return;
+  }
+
+  async setLike(body: LikeVibeDto, res: Response): Promise<void> {
+    const { userId, vibeId, isLiked } = body;
+
+    if (!userId || !vibeId) {
+      this.logger.error('User ID or Vibe ID is missing in the request body');
+      throw new HttpException(
+        'User ID and Vibe ID are required',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    const vibe: Vibe | null = await this.vibeModel.findById(vibeId);
+    if (!vibe) {
+      this.logger.error(`Vibe with ID ${vibeId} not found`);
+      throw new HttpException('Vibe not found', HttpStatus.NOT_FOUND);
+    }
+
+    if (!vibe.likes) {
+      this.logger.log(`Initializing likes array for vibe with ID ${vibeId}`);
+      vibe.likes = [];
+    }
+
+    const existingLikeIndex = vibe.likes.findIndex(
+      (like) => like.userId === userId,
+    );
+
+    if (existingLikeIndex > -1) {
+      // User has already liked the vibe, update the like status
+      vibe.likes[existingLikeIndex].isLiked = isLiked;
+      vibe.likes[existingLikeIndex].timestamp = new Date();
+    } else {
+      // User has not liked the vibe yet, add a new like
+      const newLike = new Like(userId, isLiked);
+      vibe.likes.push(newLike);
+    }
+
+    await this.vibeModel.updateOne({ _id: vibeId }, { likes: vibe.likes });
+    this.logger.log(
+      `Like status for user ${userId} on vibe ${vibeId} updated to ${isLiked}`,
+    );
+    res
+      .status(HttpStatus.OK)
+      .send({ message: 'Like status updated successfully' });
   }
 }

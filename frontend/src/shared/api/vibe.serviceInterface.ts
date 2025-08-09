@@ -12,6 +12,7 @@ import { HttpHeaders }                                       from '@angular/comm
 import { Observable }                                        from 'rxjs';
 
 import { CreateVibeDto } from '../model/models';
+import { LikeVibeDto } from '../model/models';
 import { UpdateVibeDto } from '../model/models';
 import { VibeControllerCreatePictureRequest } from '../model/models';
 
@@ -64,6 +65,13 @@ export interface VibeServiceInterface {
      * @param id 
      */
     vibeControllerRemove(id: string, extraHttpRequestParams?: any): Observable<{}>;
+
+    /**
+     * 
+     * 
+     * @param likeVibeDto Set like for a vibe
+     */
+    vibeControllerSetLike(likeVibeDto: LikeVibeDto, extraHttpRequestParams?: any): Observable<{}>;
 
     /**
      * 
