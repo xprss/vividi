@@ -40,6 +40,7 @@ export class VibePostComponent implements OnInit {
   protected isLoading: boolean = true;
   protected readonly environment = environment;
   protected isLiked = false;
+  protected isLikedByCurrentUser: boolean = false;
   private showFullMomentLabel: boolean = false;
 
   constructor(
@@ -83,6 +84,7 @@ export class VibePostComponent implements OnInit {
     for (const like of this.vibeData?.likes || []) {
       if (like.userId === this.authService.getUser()?.uid) {
         this.isLiked = like.isLiked;
+        this.isLikedByCurrentUser = like.isLiked;
         break;
       }
     }
@@ -159,5 +161,20 @@ export class VibePostComponent implements OnInit {
 
   public getLikeButtonLabel(): string {
     return this.isLiked ? 'pi pi-heart-fill' : 'pi pi-heart';
+  }
+
+  public getNumberOfLikes(): number {
+    return (
+      (this.vibeData?.likes?.filter(
+        (like: { isLiked: boolean }) => like.isLiked
+      ).length || 0) +
+      (this.isLiked
+        ? this.isLikedByCurrentUser
+          ? 0
+          : 1
+        : this.isLikedByCurrentUser
+        ? -1
+        : 0)
+    );
   }
 }
