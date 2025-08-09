@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
 import { Moment } from 'libs/common/moment.enum';
+import { Like } from '../../../libs/common/like.dto';
 
 export class CreateVibeDto {
   @ApiProperty({
@@ -54,4 +55,11 @@ export class CreateVibeDto {
   @IsNotEmpty()
   @IsString()
   fileId: string;
+
+  @ApiProperty({
+    type: 'array',
+    title: 'likes',
+    description: 'The list of likes for the vibe',
+  })
+  likes?: Like[];
 }

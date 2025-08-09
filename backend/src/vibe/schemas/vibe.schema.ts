@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Moment } from 'libs/common/moment.enum';
 import { CreateVibeDto } from '../dto/create-vibe.dto';
+import { Like } from '../../../libs/common/like.dto';
 
 @Schema()
 export class Vibe {
@@ -42,6 +43,11 @@ export class Vibe {
     required: true,
   })
   fileId: string;
+
+  @Prop({
+    default: [],
+  })
+  likes: Like[];
 }
 
 export const VibeSchema = SchemaFactory.createForClass(Vibe);
