@@ -93,6 +93,9 @@ export class VibePostComponent implements OnInit {
   };
 
   public readonly toggleShowFullMomentLabel = () => {
+    if (this.showFullMomentLabel) {
+        return;
+    }
     this.showFullMomentLabel = true;
     setTimeout(() => {
       this.showFullMomentLabel = false;
