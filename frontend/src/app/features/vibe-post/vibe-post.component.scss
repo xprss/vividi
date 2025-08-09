@@ -49,14 +49,16 @@
         position: absolute;
       }
 
-      .celebrate-counter {
-        padding: 0.25rem 0.5rem;
-        border-radius: 5rem;
-      }
-
       .celebrate-container {
         bottom: 0.5rem;
         right: 0.5rem;
+        box-shadow: 0 0 2rem color-mix(in srgb, var(--p-primary-900) 50%, transparent);
+      }
+
+      .celebrate-label {
+        padding: 0;
+        margin: 0;
+        font-size: small;
       }
 
       .moment-chip {
