@@ -41,7 +41,7 @@ with open('guests.csv', newline='') as csvfile:
             {"$setOnInsert": {
                 "first_name": first_name,
                 "last_name": last_name,
-                "role": role,
+                "roles": [role] if role != "" else [],
                 "google_registered_at": None
             }},
             upsert=True
