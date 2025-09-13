@@ -65,7 +65,7 @@ export class ServerService {
   }
 
   public async getAccount(email: string): Promise<any> {
-    const response = await fetch(environment.apiBaseUrl + '/user/login', {
+    const response = await fetch(environment.apiBaseUrl + '/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

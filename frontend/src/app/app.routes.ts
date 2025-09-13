@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './layouts/home/home.component';
-import { UnavailableComponent } from './layouts/unavailable/unavailable.component';
 import { NewVibeComponent } from './layouts/new-vibe/new-vibe.component';
 import { UserPageComponent } from './layouts/user-page/user-page.component';
 import { SignOnComponent } from './layouts/sign-on/sign-on.component';
@@ -10,6 +9,7 @@ import { NoAuthGuard } from './guards/no-auth.guard';
 import { ForgotPasswordComponent } from './layouts/forgot-password/forgot-password.component';
 import { SingleVibePageComponent } from './layouts/single-vibe-page/single-vibe-page.component';
 import { WipComponent } from './layouts/wip/wip.component';
+import { LoginComponent } from './layouts/login/login.component';
 
 export const routes: Routes = [
   {
@@ -45,6 +45,11 @@ export const routes: Routes = [
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,
+    canActivate: [NoAuthGuard],
+  },
+  {
+    path: 'login/:email/password/:password',
+    component: LoginComponent,
     canActivate: [NoAuthGuard],
   },
   { 
