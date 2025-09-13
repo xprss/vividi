@@ -4,6 +4,7 @@ import { UserModule } from './user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { HeartbeatModule } from './heartbeat/heartbeat.module';
 import { ConfigModule } from '@nestjs/config';
+import { LoginModule } from './login/login.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ConfigModule } from '@nestjs/config';
       envFilePath: 'backend/.env',
       isGlobal: true,
     }),
+    LoginModule,
   ],
   controllers: [],
   providers: [],
