@@ -47,7 +47,7 @@ export class AuthService {
     email: string,
     password: string
   ): Promise<void> {
-    this.serverService
+    return this.serverService
       .getAccount(email)
       .then(async (response: Response) => {
         if (response.ok) {
