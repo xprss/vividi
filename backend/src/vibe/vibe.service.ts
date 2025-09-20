@@ -11,6 +11,7 @@ import { GoogleAPIService } from 'src/google/google-api.service';
 import { Response } from 'express';
 import { LikeVibeDto } from './dto/like-vibe.dto';
 import { Like } from '../../libs/common/like.dto';
+import * as afterVibeSentences from '../../assets/after-vibe-sentences.json';
 
 @Injectable()
 export class VibeService {
@@ -20,9 +21,12 @@ export class VibeService {
     private readonly googleService: GoogleAPIService,
   ) {}
 
-  async create(createVibeDto: CreateVibeDto): Promise<Vibe> {
+  async create(createVibeDto: CreateVibeDto): Promise<string> {
     const vibe: Vibe = new Vibe(createVibeDto);
-    return await new this.vibeModel(vibe).save();
+    await new this.vibeModel(vibe).save();
+    const items: string[] = afterVibeSentences as any;
+    const randomIndex = Math.floor(Math.random() * items.length);
+    return items[randomIndex];
   }
 
   async createPicture(file: Express.Multer.File): Promise<string> {

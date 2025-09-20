@@ -57,9 +57,11 @@ export class CreateVibeDto {
   fileId: string;
 
   @ApiProperty({
-    type: 'array',
+    type: Like,
+    isArray: true,
     title: 'likes',
     description: 'The list of likes for the vibe',
+    required: false,
   })
   likes?: Like[];
 }

@@ -142,7 +142,8 @@ export class NewVibeFormComponent implements OnInit {
                     this.navbarService.navigateToHomePage();
                   },
                 },
-              ]
+              ],
+              response.message
             );
           },
           error: (error) => {
