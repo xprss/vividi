@@ -11,14 +11,21 @@ export class DialogService {
   public isClosable: boolean = true;
   public header: string = '';
   public body: string = '';
+  public headBodyText: string | undefined = undefined;
   public buttons: DialogButton[] = [];
   public isLoading: boolean = false;
 
-  public showDialog(header: string, body: string, buttons: DialogButton[]) {
+  public showDialog(
+    header: string,
+    body: string,
+    buttons: DialogButton[],
+    headBodyText?: string | undefined
+  ) {
     this.isClosable = true;
     this.isLoading = false;
     this.header = header;
     this.body = body;
+    this.headBodyText = headBodyText ?? undefined;
     this.buttons = buttons;
     this.isDialogOpen = true;
   }

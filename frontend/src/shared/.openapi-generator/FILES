@@ -6,6 +6,8 @@ api.module.ts
 api/api.ts
 api/heartbeat.service.ts
 api/heartbeat.serviceInterface.ts
+api/login.service.ts
+api/login.serviceInterface.ts
 api/user.service.ts
 api/user.serviceInterface.ts
 api/vibe.service.ts
@@ -18,6 +20,7 @@ model/createUserDto.ts
 model/createVibeDto.ts
 model/likeVibeDto.ts
 model/models.ts
+model/newVibeResponseDto.ts
 model/updateUserDto.ts
 model/updateVibeDto.ts
 model/vibeControllerCreatePictureRequest.ts

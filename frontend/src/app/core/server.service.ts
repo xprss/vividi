@@ -31,7 +31,10 @@ export class ServerService {
       .pipe();
   }
 
-  public postVibeMetadata(data: any, fileId: string): Observable<any> {
+  public postVibeMetadata(
+    data: any,
+    fileId: string
+  ): Observable<{ message: string }> {
     return this.vibeService
       .vibeControllerCreate({
         userId: data.userId,

@@ -14,10 +14,16 @@ import {
 import { VibeService } from './vibe.service';
 import { CreateVibeDto } from './dto/create-vibe.dto';
 import { UpdateVibeDto } from './dto/update-vibe.dto';
-import { ApiBody, ApiConsumes, ApiParam } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiConsumes,
+  ApiCreatedResponse,
+  ApiParam,
+} from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { LikeVibeDto } from './dto/like-vibe.dto';
+import { NewVibeResponseDto } from './dto/new-vibe-response-dto';
 
 @Controller('vibe')
 export class VibeController {
@@ -25,8 +31,13 @@ export class VibeController {
   constructor(private readonly vibeService: VibeService) {}
 
   @Post()
-  async create(@Body() createVibeDto: CreateVibeDto) {
-    return await this.vibeService.create(createVibeDto);
+  @ApiCreatedResponse({ type: NewVibeResponseDto })
+  async create(
+    @Body() createVibeDto: CreateVibeDto,
+  ): Promise<NewVibeResponseDto> {
+    const message = await this.vibeService.create(createVibeDto);
+    this.logger.log(`Vibe created with message: ${message}`);
+    return { message };
   }
 
   @Post('picture')

@@ -30,6 +30,10 @@ export interface CreateVibeDto {
      * The reference to the file in the storage
      */
     fileId: string;
+    /**
+     * The list of likes for the vibe
+     */
+    likes?: Array<object>;
 }
 export namespace CreateVibeDto {
     export const MomentEnum = {
