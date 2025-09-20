@@ -1,0 +1,20 @@
+<v2d-base-page>
+    <div basePageBody>
+      <v2d-page-title
+        [title]="
+          authService.getUser()?.firstName!! +
+          ', il tuo punteggio finale è di'
+        "
+      ></v2d-page-title>
+      <div class="score">
+          <h1 class="my-score">
+            18
+          </h1>
+          <h1 class="max-score">
+            /20
+          </h1>
+      </div>
+      <v2d-ctas></v2d-ctas>
+    </div>
+  </v2d-base-page>
+  

@@ -1,0 +1,465 @@
+{
+    "title": "Quiz matrimonio",
+    "questions": [
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q1A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q1A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q1A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q1A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q1A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q2A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q2A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q2A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q2A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q2A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q3A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q3A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q3A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q3A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q3A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q4A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q4A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q4A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q4A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q4A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q5A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q5A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q5A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q5A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q5A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q6A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q6A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q6A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q6A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q6A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q7A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q7A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q7A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q7A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q7A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q8A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q8A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q8A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q8A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q8A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q9A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q9A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q9A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q9A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q9A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q10A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q10A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q10A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q10A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q10A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q11A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q11A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q11A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q11A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q11A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q12A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q12A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q12A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q12A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q12A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q13A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q13A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q13A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q13A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q13A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q14A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q14A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q14A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q14A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q14A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q15A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q15A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q15A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q15A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q15A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q16A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q16A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q16A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q16A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q16A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q17A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q17A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q17A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q17A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q17A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q18A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q18A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q18A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q18A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q18A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q19A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q19A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q19A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q19A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q19A1"
+        },
+        {
+            "question": ".......?",
+            "options": [
+                {
+                    "code": "Q20A1",
+                    "displayText": "",
+                    "explanation": ""
+                },
+                {
+                    "code": "Q20A2",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q20A3",
+                    "displayText": ""
+                },
+                {
+                    "code": "Q20A4",
+                    "displayText": ""
+                }
+            ],
+            "answer": "Q20A1"
+        }
+    ]
+}

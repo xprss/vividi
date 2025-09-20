@@ -10,6 +10,10 @@ import { ForgotPasswordComponent } from './layouts/forgot-password/forgot-passwo
 import { SingleVibePageComponent } from './layouts/single-vibe-page/single-vibe-page.component';
 import { WipComponent } from './layouts/wip/wip.component';
 import { LoginComponent } from './layouts/login/login.component';
+import { QuizWelcomeComponent } from './layouts/quiz-welcome/quiz-welcome.component';
+import { QuizProgressComponent } from './layouts/quiz-progress/quiz-progress.component';
+import { QuizEndComponent } from './layouts/quiz-end/quiz-end.component';
+import { QuizScoreComponent } from './layouts/quiz-score/quiz-score.component';
 
 export const routes: Routes = [
   {
@@ -52,9 +56,29 @@ export const routes: Routes = [
     component: LoginComponent,
     canActivate: [NoAuthGuard],
   },
-  { 
-    path: '', 
-    redirectTo: '/home', 
-    pathMatch: 'full' 
-  }
+  {
+    path: 'quiz-welcome',
+    component: QuizWelcomeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'quiz-progress',
+    component: QuizProgressComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'quiz-end',
+    component: QuizEndComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'quiz-score',
+    component: QuizScoreComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
+  },
 ];

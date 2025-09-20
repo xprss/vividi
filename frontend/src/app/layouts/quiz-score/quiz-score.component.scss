@@ -1,0 +1,20 @@
+.score {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    .my-score {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 8rem;
+        color: var(--p-primary-color);
+    }
+    
+    .max-score {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+    }
+}
