@@ -1,7 +1,37 @@
 .loading {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.fade-in {
+  opacity: 0; /* inizialmente invisibile */
+  animation: fadeIn 2s forwards; /* animazione di 2 secondi */
+}
+
+/* definizione animazione */
+@keyframes fadeIn {
+  to {
+    opacity: 1; /* diventa completamente visibile */
+  }
+}
+
+.head-body-text {
+  text-align: left;
+  color: rgb(25, 25, 25);
+}
+
+.message {
+  padding: 0.5rem 1rem;
+  margin: 1rem 0 1rem 0;
+  background: linear-gradient(
+    130deg,
+    var(--p-primary-100) 0%,
+    var(--p-primary-300) 50%,
+    var(--p-primary-500) 100%,
+  );
+  border-radius: 2rem;
+  box-shadow: 0 0 1rem var(--p-primary-500);
 }

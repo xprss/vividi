@@ -16,7 +16,13 @@
       [style]="{ width: '50px', height: '50px' }"
     ></p-progress-spinner>
   </div>
-  } @else {
+  } @else { @if (dialogService.headBodyText) {  
+  <div class="message">
+    <h2 class="head-body-text fade-in">
+      {{ dialogService.headBodyText }}
+    </h2>
+  </div>
+  }
   <span class="p-text-secondary block mb-8">{{ dialogService.body }}</span>
   <ng-template #footer>
     @for(button of dialogService.buttons; track button) {
