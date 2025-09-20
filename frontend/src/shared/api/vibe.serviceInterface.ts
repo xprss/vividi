@@ -13,6 +13,7 @@ import { Observable }                                        from 'rxjs';
 
 import { CreateVibeDto } from '../model/models';
 import { LikeVibeDto } from '../model/models';
+import { NewVibeResponseDto } from '../model/models';
 import { UpdateVibeDto } from '../model/models';
 import { VibeControllerCreatePictureRequest } from '../model/models';
 
@@ -30,7 +31,7 @@ export interface VibeServiceInterface {
      * 
      * @param createVibeDto 
      */
-    vibeControllerCreate(createVibeDto: CreateVibeDto, extraHttpRequestParams?: any): Observable<{}>;
+    vibeControllerCreate(createVibeDto: CreateVibeDto, extraHttpRequestParams?: any): Observable<NewVibeResponseDto>;
 
     /**
      * 

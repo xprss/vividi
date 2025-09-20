@@ -21,6 +21,8 @@ import { CreateVibeDto } from '../model/createVibeDto';
 // @ts-ignore
 import { LikeVibeDto } from '../model/likeVibeDto';
 // @ts-ignore
+import { NewVibeResponseDto } from '../model/newVibeResponseDto';
+// @ts-ignore
 import { UpdateVibeDto } from '../model/updateVibeDto';
 // @ts-ignore
 import { VibeControllerCreatePictureRequest } from '../model/vibeControllerCreatePictureRequest';
@@ -49,10 +51,10 @@ export class VibeService extends BaseService implements VibeServiceInterface {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public vibeControllerCreate(createVibeDto: CreateVibeDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any>;
-    public vibeControllerCreate(createVibeDto: CreateVibeDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
-    public vibeControllerCreate(createVibeDto: CreateVibeDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<any>>;
-    public vibeControllerCreate(createVibeDto: CreateVibeDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public vibeControllerCreate(createVibeDto: CreateVibeDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<NewVibeResponseDto>;
+    public vibeControllerCreate(createVibeDto: CreateVibeDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<NewVibeResponseDto>>;
+    public vibeControllerCreate(createVibeDto: CreateVibeDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<NewVibeResponseDto>>;
+    public vibeControllerCreate(createVibeDto: CreateVibeDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (createVibeDto === null || createVibeDto === undefined) {
             throw new Error('Required parameter createVibeDto was null or undefined when calling vibeControllerCreate.');
         }
@@ -60,6 +62,7 @@ export class VibeService extends BaseService implements VibeServiceInterface {
         let localVarHeaders = this.defaultHeaders;
 
         const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
+            'application/json'
         ]);
         if (localVarHttpHeaderAcceptSelected !== undefined) {
             localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
@@ -92,7 +95,7 @@ export class VibeService extends BaseService implements VibeServiceInterface {
 
         let localVarPath = `/vibe`;
         const { basePath, withCredentials } = this.configuration;
-        return this.httpClient.request<any>('post', `${basePath}${localVarPath}`,
+        return this.httpClient.request<NewVibeResponseDto>('post', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: createVibeDto,
