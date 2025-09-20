@@ -63,12 +63,12 @@
       .moment-chip {
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
-        background: color-mix(in srgb, var(--p-primary-500) 20%, transparent);
+        background: color-mix(in srgb, var(--p-primary-900) 75%, transparent);
         font-weight: bold;
-        color: var(--p-primary-800);
+        color: var(--p-primary-100);
         top: 0.5rem;
         right: 0.5rem;
-        box-shadow: 0 0 2rem color-mix(in srgb, var(--p-primary-900) 50%, transparent);
+        box-shadow: 0 0 2rem color-mix(in srgb, var(--p-primary-900) 80%, transparent);
       }
 
       .celebrate-button {
