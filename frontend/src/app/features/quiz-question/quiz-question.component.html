@@ -1,10 +1,8 @@
-<div>
+<div class="question-wrapper">
   <h2 class="question" [innerHTML]="questionText"></h2>
   <div class="answers">
     @for (answer of options; track $index) {
-        <button
-            class="answer"
-        >{{answer}}</button>
+    <p-button severity="help">{{ answer }}</p-button>
     }
   </div>
 </div>

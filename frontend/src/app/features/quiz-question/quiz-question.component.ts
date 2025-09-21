@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { Button } from 'primeng/button';
 
 @Component({
   selector: 'v2d-quiz-question',
-  imports: [],
+  imports: [Button],
   templateUrl: './quiz-question.component.html',
   styleUrl: './quiz-question.component.scss',
 })
