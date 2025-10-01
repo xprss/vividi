@@ -1,0 +1,19 @@
+<div class="question-stack-container">
+  <div class="question-wrapper">
+    <v2d-questions-counter-spinner
+      class="question-counter"
+      [currentQuestionIndex]="15"
+      [totalAmountOfQuestions]="25"
+    >
+    </v2d-questions-counter-spinner>
+    <h3 class="question" [innerHTML]="questionText"></h3>
+  </div>
+  <div style="display: flex; justify-content: left; gap: 1rem; flex-direction: column;">
+    @for (answer of answers; track $index) {
+    <v2d-questions-answer
+      [displayText]="answer"
+      [active]="$index === 2"
+    ></v2d-questions-answer>
+    }
+  </div>
+</div>
