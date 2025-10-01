@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CtasService } from '../../../core/ctas.service';
 import { ButtonModule } from 'primeng/button';
 
@@ -10,4 +10,5 @@ import { ButtonModule } from 'primeng/button';
 })
 export class CtasComponent {
   constructor(protected readonly ctasService: CtasService) {}
+  @Input() direction: 'row' | 'column' = 'column';
 }

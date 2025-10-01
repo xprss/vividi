@@ -1,6 +1,14 @@
-<div class="cta-container">
-    @for (cta of ctasService.ctas; track cta) {
-    <p-button [disabled]="cta.disabled" [icon]="cta.icon" [severity]="cta.severity" (onClick)="cta.action()" [fluid]="true" [label]="cta.label">
-    </p-button>
-    }
+<div [class]="`cta-container-${direction}`">
+  @for (cta of ctasService.ctas; track cta) {
+  <p-button
+    [disabled]="cta.disabled"
+    [icon]="cta.icon"
+    [severity]="cta.severity"
+    (onClick)="cta.action()"
+    [fluid]="true"
+    [label]="cta.label"
+    [iconPos]="cta.iconPos ?? 'left'"
+  >
+  </p-button>
+  }
 </div>

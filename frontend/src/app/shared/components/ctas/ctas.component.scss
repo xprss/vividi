@@ -1,5 +1,14 @@
-.cta-container {
+.cta-container-column {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
+}
+
+.cta-container-row {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
     gap: 0.5rem;
 }

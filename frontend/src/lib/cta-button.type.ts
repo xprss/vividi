@@ -3,6 +3,7 @@ export type CTAButton = {
   icon?: string;
   severity: CTAButtonSeverity;
   disabled?: boolean;
+  iconPos?: 'left' | 'right' | 'top' | 'bottom';
   action: () => void;
 };
 export type CTAButtonSeverity =
