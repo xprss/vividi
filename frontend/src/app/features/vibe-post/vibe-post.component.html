@@ -17,19 +17,20 @@
       @if(!this.isLoading) {
       <p-chip
         class="overlap moment-chip"
+        [style.--moment-tag-border-radius]="
+          this.showFullMomentLabel ? '2rem' : '50%'
+        "
         [label]="getLabel(vibeData.moment)"
         (click)="toggleShowFullMomentLabel()"
       ></p-chip>
-      <div
-        class="overlap celebrate-container"
-      >
+      <div class="overlap celebrate-container">
         <p-chip class="celebrate-button" (click)="setLikedState()">
-          <i [class]="getLikeButtonLabel()"></i>
           @if (this.getNumberOfLikes() > 0) {
           <span class="celebrate-label">{{
             this.getNumberOfLikes().toString()
           }}</span>
           }
+          <i [class]="getLikeButtonLabel()"></i>
         </p-chip>
       </div>
       } @if (vibeData?._id) {

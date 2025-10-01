@@ -1,6 +1,6 @@
 @if (this.menuEntries && this.menuEntries.length > 0) {
 <div class="card flex justify-center">
-  <p-menu #menu [model]="menuEntries" [popup]="true" />
+  <p-menu #menu [model]="menuEntries" [popup]="true" appendTo="body"/>
   <p-button
     severity="secondary"
     (click)="menu.toggle($event)"
