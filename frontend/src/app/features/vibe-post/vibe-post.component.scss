@@ -89,9 +89,9 @@
     .vibe-content {
       margin: 0;
       padding: 0.5rem 1rem;
-      color: black;
+      color: var(--p-dialog);
       border-radius: 0 0 0.5rem 0.5rem;
-      background-color: var(--p-zinc-100);
+      background-color: var(--p-primary-700);
     }
   }
 
