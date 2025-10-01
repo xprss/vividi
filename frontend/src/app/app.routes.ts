@@ -81,4 +81,9 @@ export const routes: Routes = [
     redirectTo: '/home',
     pathMatch: 'full',
   },
+  {
+    path: 'wip',
+    component: WipComponent,
+    canActivate: [AuthGuard],
+  }
 ];

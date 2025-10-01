@@ -1,48 +1,5 @@
-<v2d-dialog></v2d-dialog>
-
-<div basePageBody class="wip-page">
-  <div class="logo">
-    <h1>ottonovemebre<span>.it</span></h1>
-    <span class="subtitle">Il vostro giorno, insieme a noi.</span>
+<v2d-base-page>
+  <div basePageBody>
+    <v2d-quiz-question></v2d-quiz-question>
   </div>
-  <video
-    class="wip-video"
-    id="wipVideo"
-    autoplay
-    loop
-    muted
-    playsinline
-    preload="auto"
-  >
-    <source src="assets/wip/wip.mp4" type="video/mp4" />
-  </video>
-  <span>Il matrimonio dell'anno è alle porte.</span>
-  <span>Tenetevi pronti, reggetevi forte.</span>
-  <span>Sarà una roba gattesca.</span>
-  <span>Felina.</span>
-  <span>Pazzesca.</span>
-</div>
-
-<div class="footer">
-  <p-button
-    label="Scopri di più"
-    [severity]="'primary'"
-    icon="pi pi-plus"
-    (onClick)="showMore()"
-    [fluid]="true"
-  ></p-button>
-  <p-button
-    label="Test heartbeat!"
-    [severity]="'primary'"
-    icon="pi pi-heart"
-    (onClick)="heartbeat()"
-    [fluid]="true"
-  ></p-button>
-  <p-button
-    label="Segui gli sviluppi"
-    [severity]="'secondary'"
-    icon="pi pi-github"
-    (onClick)="openGithub()"
-    [fluid]="true"
-  ></p-button>
-</div>
+</v2d-base-page>
