@@ -41,7 +41,7 @@ export class VibePostComponent implements OnInit {
   protected readonly environment = environment;
   protected isLiked = false;
   protected isLikedByCurrentUser: boolean = false;
-  private showFullMomentLabel: boolean = false;
+  protected showFullMomentLabel: boolean = false;
 
   constructor(
     protected readonly authService: AuthService,
