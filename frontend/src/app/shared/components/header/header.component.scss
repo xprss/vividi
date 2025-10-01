@@ -9,7 +9,7 @@
 }
 
 .header {
-  box-shadow: 0 1rem 20px rgba(0, 0, 0, 0.275);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
   .header-core {
     display: flex;
     flex-direction: row;
@@ -48,9 +48,9 @@
       }
     }
   }
-  width: 100%;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  background: rgba(0, 0, 0, 0.5);
+  width: 95%;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 1rem;
 }
