@@ -6,6 +6,7 @@
   [resizable]="false"
   [closable]="dialogService.isClosable"
   (visibleChange)="dialogService.isDialogOpen = $event"
+  [style]="{ maxWidth: '90%' }"
 >
   @if (dialogService.isLoading) {
   <div class="loading">
@@ -16,7 +17,7 @@
       [style]="{ width: '50px', height: '50px' }"
     ></p-progress-spinner>
   </div>
-  } @else { @if (dialogService.headBodyText) {  
+  } @else { @if (dialogService.headBodyText) {
   <div class="message">
     <h2 class="head-body-text fade-in">
       {{ dialogService.headBodyText }}

@@ -1,3 +1,9 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .navbar {
   z-index: 10001;
   .navbar-core {
@@ -5,11 +11,15 @@
     grid-template-columns: repeat(3, 1fr);
     place-items: center;
   }
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-  padding: 1rem 0;
-  background-color: var(--p-stone-950);
+  position: fixed;
+  bottom: 1rem;
+  width: 90%;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--p-primary-900) 70%, transparent);
+  padding: 1rem 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
 }
 
 .navbar-entry {
