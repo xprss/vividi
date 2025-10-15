@@ -48,7 +48,7 @@ export const routes: Routes = [
     canActivate: [NoAuthGuard],
   },
   {
-    path: 'login/:email/password/:password',
+    path: 'login/:email/:password',
     component: LoginComponent,
     canActivate: [NoAuthGuard],
   },
