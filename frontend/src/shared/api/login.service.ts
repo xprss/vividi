@@ -16,6 +16,8 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
+// @ts-ignore
+import { LoginControllerRetrieveUserRequest } from '../model/loginControllerRetrieveUserRequest';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -37,13 +39,17 @@ export class LoginService extends BaseService implements LoginServiceInterface {
     }
 
     /**
+     * @param loginControllerRetrieveUserRequest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public loginControllerRetrieveUser(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any>;
-    public loginControllerRetrieveUser(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
-    public loginControllerRetrieveUser(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<any>>;
-    public loginControllerRetrieveUser(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public loginControllerRetrieveUser(loginControllerRetrieveUserRequest: LoginControllerRetrieveUserRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any>;
+    public loginControllerRetrieveUser(loginControllerRetrieveUserRequest: LoginControllerRetrieveUserRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
+    public loginControllerRetrieveUser(loginControllerRetrieveUserRequest: LoginControllerRetrieveUserRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<any>>;
+    public loginControllerRetrieveUser(loginControllerRetrieveUserRequest: LoginControllerRetrieveUserRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (loginControllerRetrieveUserRequest === null || loginControllerRetrieveUserRequest === undefined) {
+            throw new Error('Required parameter loginControllerRetrieveUserRequest was null or undefined when calling loginControllerRetrieveUser.');
+        }
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -57,6 +63,15 @@ export class LoginService extends BaseService implements LoginServiceInterface {
 
         const localVarTransferCache: boolean = options?.transferCache ?? true;
 
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
 
         let responseType_: 'text' | 'json' | 'blob' = 'json';
         if (localVarHttpHeaderAcceptSelected) {
@@ -74,6 +89,7 @@ export class LoginService extends BaseService implements LoginServiceInterface {
         return this.httpClient.request<any>('post', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: loginControllerRetrieveUserRequest,
                 responseType: <any>responseType_,
                 ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,

@@ -5,7 +5,6 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
-  User,
   signOut,
   UserCredential,
   Auth,
@@ -14,7 +13,7 @@ import {
 import { LocalStorageEnum } from '../../lib/local-storage.enum';
 import { NavbarService } from './navbar.service';
 import { ServerService } from './server.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { DialogService } from './dialog.service';
 import { VividiUser } from '../../lib/vividi-user.interface';
 
@@ -56,6 +55,7 @@ export class AuthService {
             await signInWithEmailAndPassword(this.auth, email, password);
           this.currentUser = {
             ...userCredential.user,
+            id: data.id,
             firstName: data.firstName,
             lastName: data.lastName,
           };
@@ -111,6 +111,7 @@ export class AuthService {
             await createUserWithEmailAndPassword(this.auth, email, password);
           this.currentUser = {
             ...userCredential.user,
+            id: (await response.json()).id,
             firstName: firstName,
             lastName: lastName,
           };
@@ -142,6 +143,7 @@ export class AuthService {
     );
     this.currentUser = {
       ...userCredential.user,
+      id: userCredential.user.uid,
       firstName: userCredential.user.displayName!,
       lastName: '',
     };

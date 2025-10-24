@@ -1,7 +1,9 @@
 <div class="vibe">
   <div class="vibe-header">
     <div id="left">
-      <span id="vibe-user-icon">👰🏻‍♀️</span>
+      @if (this.badge) {
+        <span id="vibe-user-icon">{{ this.badgeEmojis[badge] }}</span>
+      }
       <span id="vibe-user-name">{{ vibeData?.userFullName }}</span>
     </div>
     @if (!this.isLoading) {

@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
 import { Moment } from 'libs/common/moment.enum';
 import { Like } from '../../../libs/common/like.dto';
+import { ObjectId } from 'mongoose';
 
 export class CreateVibeDto {
   @ApiProperty({
@@ -12,7 +13,7 @@ export class CreateVibeDto {
   })
   @IsNotEmpty({ message: 'The userId cannot be empty' })
   @IsString({ message: 'The userId must be a string' })
-  userId: string;
+  userId: ObjectId;
 
   @ApiProperty({
     example: 'Sibilla Sagristano',

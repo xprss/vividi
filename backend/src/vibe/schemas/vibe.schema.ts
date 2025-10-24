@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Moment } from 'libs/common/moment.enum';
 import { CreateVibeDto } from '../dto/create-vibe.dto';
 import { Like } from '../../../libs/common/like.dto';
+import { ObjectId } from 'mongoose';
 
 @Schema()
 export class Vibe {
@@ -16,8 +17,9 @@ export class Vibe {
 
   @Prop({
     required: true,
+    type: 'ObjectId',
   })
-  userId: string;
+  userId: ObjectId;
 
   @Prop({
     required: true,
