@@ -11,6 +11,7 @@ import { HttpHeaders }                                       from '@angular/comm
 
 import { Observable }                                        from 'rxjs';
 
+import { LoginControllerRetrieveUserRequest } from '../model/models';
 
 
 import { Configuration }                                     from '../configuration';
@@ -24,7 +25,8 @@ export interface LoginServiceInterface {
     /**
      * 
      * 
+     * @param loginControllerRetrieveUserRequest 
      */
-    loginControllerRetrieveUser(extraHttpRequestParams?: any): Observable<{}>;
+    loginControllerRetrieveUser(loginControllerRetrieveUserRequest: LoginControllerRetrieveUserRequest, extraHttpRequestParams?: any): Observable<{}>;
 
 }

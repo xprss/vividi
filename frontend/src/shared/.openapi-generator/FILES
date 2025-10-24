@@ -19,6 +19,7 @@ index.ts
 model/createUserDto.ts
 model/createVibeDto.ts
 model/likeVibeDto.ts
+model/loginControllerRetrieveUserRequest.ts
 model/models.ts
 model/newVibeResponseDto.ts
 model/updateUserDto.ts
