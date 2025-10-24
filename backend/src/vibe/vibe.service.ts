@@ -52,10 +52,21 @@ export class VibeService {
   }
 
   async findAll() {
-    const vibes: Vibe[] = await this.vibeModel
-      .find()
-      .lean()
-      .sort({ creationTimestamp: -1 });
+    const pipeline = [
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'userId',
+          foreignField: '_id',
+          as: 'user',
+        },
+      },
+      { $unwind: '$user' },
+      { $set: { badge: { $arrayElemAt: ['$user.roles', 0] } } },
+      { $unset: 'user' },
+      { $sort: { creationTimestamp: -1 as const } },
+    ];
+    const vibes: Vibe[] = await this.vibeModel.aggregate(pipeline);
     if (!vibes) {
       throw new HttpException('No vibes found', HttpStatus.NOT_FOUND);
     }
