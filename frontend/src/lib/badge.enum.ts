@@ -10,6 +10,7 @@ export enum Badge {
   QUIZ_THIRD_CLASSIFIED = 'QUIZ_THIRD_CLASSIFIED',
   QUIZ_LAST_CLASSIFIED = 'QUIZ_LAST_CLASSIFIED',
   CAT_FINDER = 'CAT_FINDER',
+  GUEST = 'GUEST',
 }
 
 export const BadgeLabels: Record<Badge, string> = {
@@ -24,6 +25,7 @@ export const BadgeLabels: Record<Badge, string> = {
   [Badge.QUIZ_THIRD_CLASSIFIED]: 'Terzo posto al quiz',
   [Badge.QUIZ_LAST_CLASSIFIED]: 'Ultimo posto al quiz',
   [Badge.CAT_FINDER]: 'Cacciatore di gatti',
+  [Badge.GUEST]: 'Ospite',
 };
 
 export const BadgeEmojis: Record<Badge, string> = {
@@ -38,4 +40,5 @@ export const BadgeEmojis: Record<Badge, string> = {
   [Badge.QUIZ_THIRD_CLASSIFIED]: '🥉',
   [Badge.QUIZ_LAST_CLASSIFIED]: '😵‍💫',
   [Badge.CAT_FINDER]: '🐈',
+  [Badge.GUEST]: '😄',
 };
