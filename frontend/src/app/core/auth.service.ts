@@ -55,6 +55,7 @@ export class AuthService {
             await signInWithEmailAndPassword(this.auth, email, password);
           this.currentUser = {
             ...userCredential.user,
+            id: data.id,
             firstName: data.firstName,
             lastName: data.lastName,
           };
@@ -110,6 +111,7 @@ export class AuthService {
             await createUserWithEmailAndPassword(this.auth, email, password);
           this.currentUser = {
             ...userCredential.user,
+            id: (await response.json()).id,
             firstName: firstName,
             lastName: lastName,
           };
@@ -141,6 +143,7 @@ export class AuthService {
     );
     this.currentUser = {
       ...userCredential.user,
+      id: userCredential.user.uid,
       firstName: userCredential.user.displayName!,
       lastName: '',
     };
