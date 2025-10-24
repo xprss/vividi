@@ -94,7 +94,7 @@ export class NewVibeFormComponent implements OnInit {
 
   public postVibe(): void {
     const body: any = {
-      userId: this.authService.getUser()?.uid,
+      userId: this.authService.getUser()?.id,
       userFullName: (
         this.authService.getUser()?.firstName +
         ' ' +
