@@ -14,7 +14,7 @@ import {
 import { LocalStorageEnum } from '../../lib/local-storage.enum';
 import { NavbarService } from './navbar.service';
 import { ServerService } from './server.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { DialogService } from './dialog.service';
 import { VividiUser } from '../../lib/vividi-user.interface';
 
