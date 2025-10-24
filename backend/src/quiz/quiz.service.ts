@@ -1,26 +1,40 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { Model, Types } from 'mongoose';
-import { Quiz } from './entities/quiz.entity';
+import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { UpsertQuizDto } from './dto/create-quiz.dto';
+import { randomUUID } from 'crypto';
+import { QuizSession } from './entities/quiz.session.entity';
+import { QuizSessionDto } from './dto/quiz-session.dto';
 
 @Injectable()
 export class QuizService {
   private readonly logger = new Logger(QuizService.name);
-  constructor(@InjectModel(Quiz.name) private quizModel: Model<Quiz>) {}
+  constructor(
+    @InjectModel(QuizSession.name) private quizSessionModel: Model<QuizSession>,
+  ) {}
 
-  async upsert(body: UpsertQuizDto) {
-    const userId = new Types.ObjectId(body.userId);
-    if (!userId) {
-      throw new Error('User ID is required');
+  async getQuizSession(userId: string): Promise<QuizSessionDto> {
+    const session = await this.quizSessionModel.findOne({ userId }).lean();
+    if (session) {
+      this.logger.log(`Resumed session for userId: ${userId}`);
+      const resumedSession: QuizSessionDto = new QuizSessionDto();
+      resumedSession.status = 'resumed';
+      resumedSession.sessionId = session.sessionId;
+      resumedSession.currentAnswers = session.currentAnswers;
+      return resumedSession;
     }
-    const quiz = await this.quizModel.findOne({ user_id: userId });
-    if (!quiz) {
-      // we must create a new quiz
-      const newQuiz = new this.quizModel({
-        user_id: userId,
-      });
-    }
-    this.logger.log(quiz); // Log the quiz object for debugging
+    this.logger.log(`Generating quiz session for userId: ${userId}`);
+
+    const nextQuizSession: QuizSessionDto = new QuizSessionDto();
+    nextQuizSession.status = 'new';
+    nextQuizSession.sessionId = randomUUID();
+    nextQuizSession.currentAnswers = [];
+
+    await this.quizSessionModel.insertOne({
+      userId,
+      sessionId: nextQuizSession.sessionId,
+      currentAnswers: nextQuizSession.currentAnswers,
+    });
+
+    return nextQuizSession;
   }
 }
