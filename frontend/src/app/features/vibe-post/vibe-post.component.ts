@@ -74,7 +74,7 @@ export class VibePostComponent implements OnInit {
         this.copyToClipboard();
       },
     });
-    if (this.vibeData?.userId === this.authService.getUser()?.uid) {
+    if (this.vibeData?.userId === this.authService.getUser()?.id) {
       this.menuEntries.push({
         icon: 'pi pi-trash',
         disabled: false,
@@ -86,7 +86,7 @@ export class VibePostComponent implements OnInit {
     }
 
     for (const like of this.vibeData?.likes || []) {
-      if (like.userId === this.authService.getUser()?.uid) {
+      if (like.userId === this.authService.getUser()?.id) {
         this.isLiked = like.isLiked;
         this.isLikedByCurrentUser = like.isLiked;
         break;
@@ -153,7 +153,7 @@ export class VibePostComponent implements OnInit {
     this.serverService
       .setLike(
         this.vibeData._id,
-        this.authService.getUser()?.uid || '',
+        this.authService.getUser()?.id || '',
         this.isLiked
       )
       .subscribe({
