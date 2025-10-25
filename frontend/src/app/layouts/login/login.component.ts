@@ -25,9 +25,17 @@ export class LoginComponent implements OnInit {
 
   public ngOnInit(): void {
     this.authService
-      .signInWithEmailAndPassword(this.email, this.password)
+      .signOut()
+      .then(() => {
+        this.authService
+          .signInWithEmailAndPassword(this.email, this.password)
+          .catch((error) => {
+            console.error('Login error:', error);
+            this.router.navigate(['/signin']);
+          });
+      })
       .catch((error) => {
-        console.error('Login error:', error);
+        console.error('Sign-out error:', error);
         this.router.navigate(['/signin']);
       });
   }
