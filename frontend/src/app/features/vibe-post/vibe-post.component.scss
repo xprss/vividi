@@ -26,8 +26,8 @@
       justify-content: left;
       #vibe-user-name {
         font-size: large;
-        font-weight: 700;
-        color: var(--p-amber-50);
+        font-weight: 400;
+        color: var(--p-pink-100);
       }
     }
   }
@@ -89,6 +89,7 @@
     .vibe-content {
       margin: 0;
       padding: 0.5rem 1rem;
+      font-size: small;
       color: var(--p-dialog);
       border-radius: 0 0 0.5rem 0.5rem;
       background-color: var(--p-primary-700);
@@ -98,7 +99,7 @@
   .vibe-footer {
     display: flex;
     justify-content: right;
-    font-size: smaller;
+    font-size: x-small;
     color: var(--p-zinc-100);
   }
 }
