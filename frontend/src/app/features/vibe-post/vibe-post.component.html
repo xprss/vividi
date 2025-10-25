@@ -38,6 +38,7 @@
       } @if (vibeData?._id) {
       <img
         (load)="this.onImageLoad()"
+        [style.display]="isLoading ? 'none' : 'flex'"
         [src]="`${this.environment.apiBaseUrl}/vibe/image/` + vibeData?._id"
         [alt]="vibeData?.fileId"
       />
