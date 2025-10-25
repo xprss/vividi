@@ -16,7 +16,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { NavbarService } from 'src/app/core/navbar.service';
 import { resolveMomentLabel } from 'src/lib/util';
 import { environment } from 'src/environments/environment';
-import { Badge, BadgeEmojis } from 'src/lib/badge.enum';
+import { Badge, BadgeEmojis, BadgeLabels } from 'src/lib/badge.enum';
 
 @Component({
   selector: 'v2d-vibe-post',
@@ -43,8 +43,9 @@ export class VibePostComponent implements OnInit {
   protected isLiked = false;
   protected isLikedByCurrentUser: boolean = false;
   protected showFullMomentLabel: boolean = false;
-  protected badge: Badge | undefined = undefined;
+  protected badge: Badge = Badge.GUEST;
   protected readonly badgeEmojis: Record<Badge, string> = BadgeEmojis;
+  protected readonly badgeLabels: Record<Badge, string> = BadgeLabels;
 
   constructor(
     protected readonly authService: AuthService,
@@ -180,5 +181,9 @@ export class VibePostComponent implements OnInit {
         ? -1
         : 0);
     return numberOfLikes;
+  }
+
+  public shallShowUserRole(): boolean {
+    return this.badge !== Badge.GUEST
   }
 }

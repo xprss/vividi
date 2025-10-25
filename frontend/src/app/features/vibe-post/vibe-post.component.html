@@ -2,9 +2,14 @@
   <div class="vibe-header">
     <div id="left">
       @if (this.badge) {
-        <span id="vibe-user-icon">{{ this.badgeEmojis[badge] }}</span>
+      <span id="vibe-user-icon">{{ this.badgeEmojis[badge] }}</span>
       }
-      <span id="vibe-user-name">{{ vibeData?.userFullName }}</span>
+      <div class="user-identification">
+        <span id="vibe-user-name">{{ vibeData?.userFullName }}</span>
+        @if (this.shallShowUserRole()) {
+          <span id="vibe-user-role">{{ this.badgeLabels[badge] }}</span>
+        }
+      </div>
     </div>
     @if (!this.isLoading) {
     <div id="right">

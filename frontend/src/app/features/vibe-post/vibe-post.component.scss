@@ -22,12 +22,18 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.6rem;
       justify-content: left;
+      margin-left: 0.5rem;
       #vibe-user-name {
-        font-size: large;
+        font-size: medium;
         font-weight: 400;
         color: var(--p-pink-100);
+      }
+      #vibe-user-role {
+        font-size: x-small;
+        font-weight: 300;
+        color: var(--p-gray-400);
       }
     }
   }
@@ -102,4 +108,10 @@
     font-size: x-small;
     color: var(--p-zinc-100);
   }
+}
+
+.user-identification {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
 }
