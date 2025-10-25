@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventsService {
-  public readonly refreshEsploraEvent: BehaviorSubject<void>;
+  public readonly refreshEsploraEvent: Subject<void>;
 
   constructor() {
-    this.refreshEsploraEvent = new BehaviorSubject<void>(undefined);
+    this.refreshEsploraEvent = new Subject<void>();
   }
 
   public refreshEsplora(): void {
