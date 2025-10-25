@@ -40,5 +40,5 @@ export const BadgeEmojis: Record<Badge, string> = {
   [Badge.QUIZ_THIRD_CLASSIFIED]: '🥉',
   [Badge.QUIZ_LAST_CLASSIFIED]: '😵‍💫',
   [Badge.CAT_FINDER]: '🐈',
-  [Badge.GUEST]: '😄',
+  [Badge.GUEST]: '🥳',
 };
