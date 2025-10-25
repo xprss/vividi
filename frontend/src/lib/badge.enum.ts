@@ -31,7 +31,7 @@ export const BadgeLabels: Record<Badge, string> = {
 export const BadgeEmojis: Record<Badge, string> = {
   [Badge.BRIDE]: '👰',
   [Badge.GROOM]: '🤵',
-  [Badge.BESTMAN]: '👔',
+  [Badge.BESTMAN]: '🤝',
   [Badge.BRIDESMAID]: '💐',
   [Badge.PARENT]: '🏠',
   [Badge.DEVELOPER]: '🧑‍💻',
