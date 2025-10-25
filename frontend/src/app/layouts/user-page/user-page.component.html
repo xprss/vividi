@@ -1,8 +1,17 @@
 <v2d-base-page>
   <div basePageBody>
     <v2d-page-title
+    [centered]="true"
       [title]="`👋 ${greeting}, ${authService.getUser()?.firstName!!}!`"
     ></v2d-page-title>
+    <hr class="separator" />
+    <span class="version-label">ottonovembre.it © {{ currentYear }}</span>
+    <hr class="separator transparent" />
+    <span class="version-label">Versione: {{ version }}</span>
+    <span class="version-label"
+    >ID utente: {{ this.authService.getUser()?.id }}</span
+    >
+    <hr class="separator transparent" />
     <v2d-ctas></v2d-ctas>
   </div>
 </v2d-base-page>

@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { CtasComponent } from '../../shared/components/ctas/ctas.component';
 import { CtasService } from '../../core/ctas.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'v2d-user-page',
@@ -15,6 +16,9 @@ import { CtasService } from '../../core/ctas.service';
 })
 export class UserPageComponent implements OnInit {
   protected greeting: 'Buon giorno' | 'Buon pomeriggio' | 'Buona sera';
+  protected version: string = environment.version;
+  protected readonly currentYear: number = new Date().getFullYear();
+  
   constructor(
     protected readonly authService: AuthService,
     protected readonly ctasService: CtasService
