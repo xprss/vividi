@@ -1,7 +1,7 @@
 <v2d-base-page>
   <div basePageBody>
     <v2d-page-title
-      [title]="'👋 Ciao, ' + authService.getUser()?.firstName!! + '!'"
+      [title]="`👋 ${greeting}, ${authService.getUser()?.firstName!!}!`"
     ></v2d-page-title>
     <v2d-ctas></v2d-ctas>
   </div>
