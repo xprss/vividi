@@ -1,14 +1,21 @@
 <v2d-base-page>
   <div basePageBody>
     <div class="vibe-post-container">
-      @for (vibeData of vibes; track vibeData) {
+      @for (vibeData of vibeManagementService.vibes; track vibeData) {
       <v2d-vibe-post id="vibeData._id" [vibeData]="vibeData"></v2d-vibe-post>
-      } @if (vibes.length === 0) {
-      <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      } @if (vibeManagementService.vibes.length === 0) {
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        "
+      >
         <h2>Nessuno ha ancora postato!</h2>
         <span>Contribuisci a questa fantastica raccolta di ricordi! 🥹</span>
       </div>
-      } @if (vibes.length > 4) {
+      } @if (vibeManagementService.vibes.length > 4) {
       <v2d-end-of-feed></v2d-end-of-feed>
       }
     </div>

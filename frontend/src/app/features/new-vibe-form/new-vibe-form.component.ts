@@ -18,6 +18,7 @@ import { CtasService } from '../../core/ctas.service';
 import { CtasComponent } from '../../shared/components/ctas/ctas.component';
 import Moment from 'src/lib/moment.enum';
 import { resolveMomentLabel } from 'src/lib/util';
+import { VibeManagementService } from 'src/app/core/vibe.service';
 
 @Component({
   selector: 'v2d-new-vibe-form',
@@ -49,7 +50,8 @@ export class NewVibeFormComponent implements OnInit {
     protected readonly authService: AuthService,
     protected readonly dialogService: DialogService,
     protected readonly navbarService: NavbarService,
-    protected readonly ctasService: CtasService
+    protected readonly ctasService: CtasService,
+    protected readonly vibeManagementService: VibeManagementService
   ) {}
 
   public ngOnInit(): void {
@@ -109,12 +111,6 @@ export class NewVibeFormComponent implements OnInit {
 
     this.serverService.postVibePicture(body).subscribe({
       next: (response) => {
-        console.log('Vibe created successfully:', response);
-        const vibeData = {
-          name: body.name,
-          description: body.description,
-          fileId: response,
-        };
         this.serverService.postVibeMetadata(body, response).subscribe({
           next: (response) => {
             this.description = '';
@@ -139,6 +135,7 @@ export class NewVibeFormComponent implements OnInit {
                   severity: 'primary',
                   action: () => {
                     this.dialogService.hideDialog();
+                    this.vibeManagementService.invalidateCache();
                     this.navbarService.navigateToHomePage();
                   },
                 },

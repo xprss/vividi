@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { FeaturesModule } from '../../features/features.module';
-import { ServerService } from '../../core/server.service';
 import { EventsService } from 'src/app/core/events.service';
 import { Subscription } from 'rxjs';
+import { VibeManagementService } from 'src/app/core/vibe.service';
 
 @Component({
   selector: 'v2d-home',
@@ -15,23 +15,19 @@ import { Subscription } from 'rxjs';
 export class HomeComponent implements OnInit, OnDestroy {
   private refreshEsploraEventSubscription: Subscription | undefined = undefined;
   constructor(
-    private readonly serverService: ServerService,
+    protected readonly vibeManagementService: VibeManagementService,
     private readonly eventsService: EventsService
   ) {}
 
-  protected vibes: any[] = [];
-
   public ngOnInit(): void {
-    this.refreshEsploraEventSubscription =
-      this.eventsService.refreshEsploraEvent.subscribe(() => {
-        this.fetchVibes();
-      });
-  }
+    // this serves vibes the very moment the component gets initialized
+    this.vibeManagementService.fetchVibes(false);
 
-  private fetchVibes(): void {
-    this.serverService.getAllVibes().subscribe((response) => {
-      this.vibes = response;
-    });
+    // this serves vibes on user-driven refresh
+    this.refreshEsploraEventSubscription =
+      this.eventsService.refreshEsploraEvent.pipe().subscribe(() => {
+        this.vibeManagementService.fetchVibes(true);
+      });
   }
 
   public ngOnDestroy(): void {
