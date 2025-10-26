@@ -13,13 +13,13 @@
   }
   position: fixed;
   bottom: 1rem;
-  width: 90%;
+  width: 80%;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   background: color-mix(in srgb, var(--p-primary-900) 70%, transparent);
-  padding: 1rem 1rem;
+  padding: 0.5rem 0.5rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 }
 
 .navbar-entry {
