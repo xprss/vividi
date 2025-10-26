@@ -6,9 +6,20 @@
       }
       <div class="user-identification">
         <span id="vibe-user-name">{{ vibeData?.userFullName }}</span>
-        @if (this.shallShowUserRole()) {
-          <span id="vibe-user-role">{{ this.badgeLabels[badge] }}</span>
-        }
+        <div class="vibe-user-secondary-info">
+          @if (!this.isLoading) {
+          <span class="vibe-user-role">
+            @if (this.shallShowUserRole()) {
+            {{ this.badgeLabels[badge] }}&nbsp;&middot; }
+            {{
+              vibeData?.creationTimestamp
+                | date : "dd MMMM yyyy - HH:mm" : undefined : "it-IT"
+            }}
+          </span>
+          } @else {
+          <p-skeleton width="30%" styleClass="mb-2" />
+          }
+        </div>
       </div>
     </div>
     @if (!this.isLoading) {
@@ -78,15 +89,4 @@
     </div>
     }
   </div>
-
-  <span class="vibe-footer">
-    @if (!this.isLoading) {
-    {{
-      vibeData?.creationTimestamp
-        | date : "dd MMMM yyyy - HH:mm" : undefined : "it-IT"
-    }}
-    } @else {
-    <p-skeleton width="30%" styleClass="mb-2" />
-    }
-  </span>
 </div>
