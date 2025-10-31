@@ -107,16 +107,6 @@ export class VibePostComponent implements OnInit {
     this.isLoading = false;
   };
 
-  public readonly toggleShowFullMomentLabel = () => {
-    if (this.showFullMomentLabel) {
-        return;
-    }
-    this.showFullMomentLabel = true;
-    setTimeout(() => {
-      this.showFullMomentLabel = false;
-    }, 3000);
-  };
-
   public delete() {
     this.dialogService.showLoadingDialog('Eliminazione in corso...');
     this.serverService.deleteVibe(this.vibeData._id).subscribe({
@@ -146,7 +136,7 @@ export class VibePostComponent implements OnInit {
   }
 
   public getLabel(momentLabel: string): string | undefined {
-    return resolveMomentLabel(momentLabel, this.showFullMomentLabel);
+    return resolveMomentLabel(momentLabel, 'emoji');
   }
 
   public setLikedState(): void {

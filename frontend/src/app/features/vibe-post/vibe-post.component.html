@@ -32,16 +32,7 @@
   </div>
   <div class="vibe-body">
     <div class="vibe-picture">
-      @if(!this.isLoading) {
-      <p-chip
-        class="overlap moment-chip"
-        [style.--moment-tag-border-radius]="
-          this.showFullMomentLabel ? '2rem' : '50%'
-        "
-        [label]="getLabel(vibeData.moment)"
-        (click)="toggleShowFullMomentLabel()"
-      ></p-chip>
-      } @if (vibeData?._id) {
+      @if (vibeData?._id) {
       <img
         (load)="this.onImageLoad()"
         [style.display]="isLoading ? 'none' : 'flex'"
@@ -56,14 +47,21 @@
         <p-chip class="celebrate-button" (click)="setLikedState()">
           <i [class]="`${getLikeButtonLabel()} celebrate-icon`"></i>
           @if (this.getNumberOfLikes() > 0) {
-            <span class="celebrate-label">{{
-              this.getNumberOfLikes().toString()
-            }}</span>
+          <span class="celebrate-label">{{
+            this.getNumberOfLikes().toString()
+          }}</span>
           }
         </p-chip>
+        <p-chip
+          class="moment-chip"
+          [style.--moment-tag-border-radius]="
+            this.showFullMomentLabel ? '2rem' : '50%'
+          "
+          [label]="getLabel(vibeData.moment)"
+        ></p-chip>
       </div>
       <div>
-        <span>
+        <span (click)="toggleDescriptionVisibility()">
           @if (this.isDescriptionFullyVisible ||
           this.vibeData.description.length < 150) {
           {{ this.vibeData.description }} } @else {
