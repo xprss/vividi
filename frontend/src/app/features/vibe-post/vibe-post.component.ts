@@ -17,6 +17,7 @@ import { NavbarService } from 'src/app/core/navbar.service';
 import { resolveMomentLabel } from 'src/lib/util';
 import { environment } from 'src/environments/environment';
 import { Badge, BadgeEmojis, BadgeLabels } from 'src/lib/badge.enum';
+import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'v2d-vibe-post',
@@ -46,6 +47,8 @@ export class VibePostComponent implements OnInit {
   protected badge: Badge = Badge.GUEST;
   protected readonly badgeEmojis: Record<Badge, string> = BadgeEmojis;
   protected readonly badgeLabels: Record<Badge, string> = BadgeLabels;
+  protected likeTapTimer: any | undefined;
+  protected likeTapCounter: number = 0;
 
   constructor(
     protected readonly authService: AuthService,
@@ -139,8 +142,46 @@ export class VibePostComponent implements OnInit {
     return resolveMomentLabel(momentLabel, 'emoji');
   }
 
+  public handleLikeClick(): void {
+    if (this.isLiked) {
+      return;
+    }
+    if (this.likeTapCounter === 0) {
+      this.likeTapCounter++;
+      this.likeTapTimer = setTimeout(() => {
+        this.likeTapCounter = 0;
+      }, 500);
+    } else {
+      this.setLikedState();
+      this.likeTapCounter = 0;
+    }
+  }
+
   public setLikedState(): void {
     this.isLiked = !this.isLiked;
+    if (this.isLiked) {
+      const confettiParams = {
+        spread: 100,
+        ticks: 170,
+        gravity: 1,
+        decay: 0.96,
+        startVelocity: 20,
+        particleCount: 150,
+        origin: { y: 0.5 },
+        colors: ['#181730', '#5cc9ca', '#eeeeee'],
+        disableForReducedMotion: true,
+        scalar: 4,
+        shapes: [
+          confetti.shapeFromText({ text: '❤️', scalar: 4 }),
+          confetti.shapeFromText({ text: '✨', scalar: 4 }),
+          confetti.shapeFromText({ text: '🕊️', scalar: 4 }),
+          confetti.shapeFromText({ text: '👰🏻‍♀️', scalar: 4 }),
+          confetti.shapeFromText({ text: '🤵‍♂️', scalar: 4 }),
+          confetti.shapeFromText({ text: '💍', scalar: 4 }),
+        ],
+      };
+      confetti(confettiParams);
+    }
     this.serverService
       .setLike(
         this.vibeData._id,
@@ -174,6 +215,6 @@ export class VibePostComponent implements OnInit {
   }
 
   public shallShowUserRole(): boolean {
-    return this.badge !== Badge.GUEST
+    return this.badge !== Badge.GUEST;
   }
 }

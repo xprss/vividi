@@ -31,7 +31,7 @@
     }
   </div>
   <div class="vibe-body">
-    <div class="vibe-picture">
+    <div class="vibe-picture" (click)="handleLikeClick()">
       @if (vibeData?._id) {
       <img
         (load)="this.onImageLoad()"
