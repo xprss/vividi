@@ -44,6 +44,8 @@ export class NewVibeFormComponent implements OnInit {
   protected selectedMoment: string = '';
   protected file: File | null = null;
   protected maxFileSize: number = environment.maxFileSize;
+  protected momentLabels = Moment.MomentLabels;
+  protected momentEmojis = Moment.MomentEmojis;
 
   constructor(
     private readonly serverService: ServerService,
@@ -57,16 +59,7 @@ export class NewVibeFormComponent implements OnInit {
   public ngOnInit(): void {
     this.ctasService.showCtas([
       {
-        label: 'Cancella tutto',
-        icon: 'pi pi-eraser',
-        severity: 'secondary',
-        disabled: false,
-        action: () => {
-          this.reset();
-        },
-      },
-      {
-        label: 'Condividi la tua Vibe!',
+        label: 'Condividi',
         icon: 'pi pi-upload',
         severity: 'primary',
         disabled: false,
@@ -184,12 +177,6 @@ export class NewVibeFormComponent implements OnInit {
     });
   }
 
-  protected reset() {
-    this.description = '';
-    this.selectedMoment = '';
-    this.file = null;
-  }
-
   protected onUpload($event: FileSelectEvent) {
     this.file = $event.files[0];
   }
@@ -220,7 +207,7 @@ export class NewVibeFormComponent implements OnInit {
 
   protected getMomentLabel(moment: Moment.Moment): string | undefined {
     console.log(moment);
-    
+
     return Moment.MomentLabels[moment];
   }
 }

@@ -1,6 +1,6 @@
 <p-fileupload
+class="fileupload-component"
   chooseLabel="Carica"
-  chooseIcon="pi pi-upload"
   cancelLabel="Annulla"
   showUploadButton="false"
   showCancelButton="false"
@@ -24,24 +24,34 @@
     [(ngModel)]="description"
     rows="5"
     cols="30"
-    style="resize: none"
-    class="h-full w-full"
+    style="resize: none; background-color: transparent"
+    class="h-full w-full vibe-caption"
   ></textarea>
-  <label for="on_label">Lascia un messaggio</label>
+  <label for="on_label">Scrivi un messaggio...</label>
 </p-floatlabel>
 
 <div class="category-wrapper">
-  <span>Categoria:</span>
+  <span class="form-field-label">Categoria</span>
   <div class="category-container">
     @for (moment of getMoments(); track moment) {
-      <p-chip
+      <div [class]="`moment-container ${selectedMoment === moment ? 'active-moment' : ''}`"
+      (click)="this.onMomentChange(moment)"
+      >
+        <span class="moment-emoji">
+          {{ momentEmojis[moment] }}
+        </span>
+        <span class="moment-label">
+          {{ momentLabels[moment] }}
+        </span>
+      </div>
+      <!-- <p-chip
       [label]="getLabel(moment)"
       [ngClass]="{
         'active-chip': selectedMoment === moment,
         'regular-chip': selectedMoment !== moment
       }"
       (click)="this.onMomentChange(moment)"
-    />
+    /> -->
     }
   </div>
 </div>

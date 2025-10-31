@@ -10,15 +10,15 @@
 .category-wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
-  span {
-    padding-left: 0.5rem;
-  }
+  width: 100%;
   .category-container {
     display: grid;
     grid-template-columns: repeat(2, 50%);
     flex-direction: column;
-    gap: 0.2rem;
+    width: 100%;
   }
 }
 
@@ -30,4 +30,44 @@
 
 .regular-chip {
   transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.form-field-label {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.moment-container {
+  display: flex;
+  border-style: solid;
+  border-width: 0.0625rem;
+  border-color: var(--p-zinc-600);
+  border-radius: 2rem;
+  padding: 1rem;
+  transition: background-color 0.6s ease;
+  margin: 0.2rem 0.2rem;
+  flex-direction: column;
+  justify-content: center;
+  border-style: dashed;
+  align-items: center;
+  .moment-emoji {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .moment-label {
+    font-size: 1rem;
+  }
+}
+
+.active-moment {
+  border-style: solid;
+  background-color: var(--p-primary-300);
+  color: var(--p-zinc-900);
+}
+
+.fileupload-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
