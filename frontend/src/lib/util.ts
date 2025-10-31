@@ -2,14 +2,19 @@ import Moment from './moment.enum';
 
 export const resolveMomentLabel = (
   momentLabel: string,
-  full: boolean = true
+  direction: 'label' | 'emoji' = 'label'
 ): string | undefined => {
-  if (full) {
+  if (direction === 'emoji') {
+    return (
+      Moment.MomentLabels[momentLabel as Moment.Moment] +
+      ' ' +
+      Moment.MomentEmojis[momentLabel as Moment.Moment]
+    ); 
+  } else {
     return (
       Moment.MomentEmojis[momentLabel as Moment.Moment] +
       ' ' +
       Moment.MomentLabels[momentLabel as Moment.Moment]
     );
   }
-  return Moment.MomentEmojis[momentLabel as Moment.Moment];
 };
