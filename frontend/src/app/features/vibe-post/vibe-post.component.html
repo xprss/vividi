@@ -41,16 +41,6 @@
         [label]="getLabel(vibeData.moment)"
         (click)="toggleShowFullMomentLabel()"
       ></p-chip>
-      <div class="overlap celebrate-container">
-        <p-chip class="celebrate-button" (click)="setLikedState()">
-          @if (this.getNumberOfLikes() > 0) {
-          <span class="celebrate-label">{{
-            this.getNumberOfLikes().toString()
-          }}</span>
-          }
-          <i [class]="getLikeButtonLabel()"></i>
-        </p-chip>
-      </div>
       } @if (vibeData?._id) {
       <img
         (load)="this.onImageLoad()"
@@ -62,18 +52,29 @@
     </div>
     @if (!this.isLoading) {
     <div class="vibe-content">
-      <span>
-        @if (this.isDescriptionFullyVisible || this.vibeData.description.length
-        < 150) {
-        {{ this.vibeData.description }} } @else {
-        {{ this.vibeData.description.slice(0, 150) + "..." }} }
-      </span>
-
-      @if (this.vibeData?.description.length > 150) {
-      <v2d-visibility-trigger
-        [onClick]="this.toggleDescriptionVisibility"
-      ></v2d-visibility-trigger>
-      }
+      <div class="ctas-container">
+        <p-chip class="celebrate-button" (click)="setLikedState()">
+          <i [class]="`${getLikeButtonLabel()} celebrate-icon`"></i>
+          @if (this.getNumberOfLikes() > 0) {
+            <span class="celebrate-label">{{
+              this.getNumberOfLikes().toString()
+            }}</span>
+          }
+        </p-chip>
+      </div>
+      <div>
+        <span>
+          @if (this.isDescriptionFullyVisible ||
+          this.vibeData.description.length < 150) {
+          {{ this.vibeData.description }} } @else {
+          {{ this.vibeData.description.slice(0, 150) + "..." }} }
+        </span>
+        @if (this.vibeData?.description.length > 150) {
+        <v2d-visibility-trigger
+          [onClick]="this.toggleDescriptionVisibility"
+        ></v2d-visibility-trigger>
+        }
+      </div>
     </div>
     } @else {
     <div style="display: flex; flex-direction: column; gap: 0.5rem">

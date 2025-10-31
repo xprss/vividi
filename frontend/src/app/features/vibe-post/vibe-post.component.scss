@@ -49,7 +49,7 @@
       img {
         width: 100%;
         height: 100%;
-        border-radius: 0.5rem 0.5rem 0 0;
+        border-radius: 1rem;
         overflow: hidden;
       }
       .overlap {
@@ -82,25 +82,20 @@
         right: 0.3rem;
         transition: width 0.3s ease-in-out;
       }
-
-      .celebrate-button {
-        background-color: color-mix(in srgb, var(--p-primary-700) 25%, transparent);
-        min-width: 3rem;
-        height: 3rem;
-        border-radius: 2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
     }
   
     .vibe-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      align-items: start;
+      gap: 0.5rem;
       margin: 0;
       padding: 0.5rem 1rem;
       font-size: small;
       color: var(--p-dialog);
       border-radius: 0 0 0.5rem 0.5rem;
-      background-color: var(--p-primary-900);
+      // background-color: var(--p-primary-900);
     }
   }
 
@@ -123,4 +118,28 @@
   flex-direction: row;
   gap: 0.3rem;
   justify-content: flex-start;
+}
+
+.ctas-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 3rem;
+  gap: 1rem;
+  justify-content: right;
+  align-items: center;
+  padding-right: 0.5rem;
+  .celebrate-button {
+    background-color: transparent;
+    min-width: 2rem;
+    max-width: 2rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0;
+    justify-content: right;
+    align-items: center;
+  }
+}
+
+.celebrate-icon {
+  font-size: large;
 }
