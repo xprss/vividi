@@ -20,7 +20,6 @@ export class VibeManagementService extends BaseApiService {
     }
 
     if (this.vibes.length === 0) {
-      console.log('Fetching vibes from server...');
       this.serverService.getAllVibes().subscribe((response) => {
         this.vibes = response;
       });
