@@ -15,7 +15,7 @@ import { LoginModule } from './login/login.module';
     ),
     HeartbeatModule,
     ConfigModule.forRoot({
-      envFilePath: 'backend/.env',
+      envFilePath: '.env',
       isGlobal: true,
     }),
     LoginModule,
