@@ -167,7 +167,7 @@ export class VibePostComponent implements OnInit {
         decay: 0.96,
         startVelocity: 20,
         particleCount: 150,
-        origin: { y: 0.5 },
+        origin: { y: 1 },
         colors: ['#181730', '#5cc9ca', '#eeeeee'],
         disableForReducedMotion: true,
         scalar: 4,
