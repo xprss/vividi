@@ -2,6 +2,7 @@
 export const environment = {
   production: true,
   apiBaseUrl: '/api',
+  baseUrl: 'ottonovembre.it',
   apiKey: 'AIzaSyCk8Epfaw0qVXg9EuW-mmLE6ZY_ZdZQ1R0',
   authDomain: 'vividivibes.firebaseapp.com',
   projectId: 'vividivibes',

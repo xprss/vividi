@@ -2,6 +2,7 @@
 export const environment = {
   production: false,
   apiBaseUrl: 'http://localhost:8000',
+  baseUrl: 'http://localhost:4200',
   apiKey: 'AIzaSyCk8Epfaw0qVXg9EuW-mmLE6ZY_ZdZQ1R0',
   authDomain: 'vividivibes.firebaseapp.com',
   projectId: 'vividivibes',
