@@ -44,4 +44,16 @@ export class UserPageComponent implements OnInit {
       },
     ]);
   }
+
+  public onNavigateToGitHub(): void {
+    window.open('https://www.github.com/xprss', '_blank');
+  }
+
+  public onNavigateToInstagramBride(): void {
+    window.open('https://www.instagram.com/sibilla.sagristano', '_blank');
+  }
+
+  public onNavigateToInstagramGroom(): void {
+    window.open('https://www.instagram.com/lorenzosarasino', '_blank');
+  }
 }

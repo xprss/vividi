@@ -1,16 +1,21 @@
 <v2d-base-page>
   <div basePageBody>
     <v2d-page-title
-    [centered]="true"
+      [centered]="true"
       [title]="`👋 ${greeting}, ${authService.getUser()?.firstName!!}!`"
     ></v2d-page-title>
-    <hr class="separator" />
-    <span class="version-label">ottonovembre.it © {{ currentYear }}</span>
+    <hr class="separator transparent" />
+    <div class="footer-buttons-external-links">
+      <p-button label="@sibilla.sagristano" iconPos="top" severity="secondary" variant="text" icon="pi pi-instagram" (click)="onNavigateToInstagramBride()" />
+      <p-button label="@lorenzosarasino" iconPos="top" severity="secondary" variant="text" icon="pi pi-instagram" (click)="onNavigateToInstagramGroom()" />
+    </div>
     <hr class="separator transparent" />
     <span class="version-label">Versione: {{ version }}</span>
     <span class="version-label"
-    >ID utente: {{ this.authService.getUser()?.id }}</span
+    >ID: {{ this.authService.getUser()?.id }}</span
     >
+    <span class="version-label">Sviluppato con&nbsp;&nbsp;<i class="pi pi-heart-fill"></i>&nbsp;&nbsp;da <p-button label="xprss" severity="secondary" variant="text" icon="pi pi-github" (click)="onNavigateToGitHub()" /></span>
+    <span class="version-label">ottonovembre.it © {{ currentYear }}</span>
     <hr class="separator transparent" />
     <v2d-ctas></v2d-ctas>
   </div>
