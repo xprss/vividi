@@ -8,8 +8,8 @@ import { AuthPageComponent } from './layouts/auth-page/auth-page.component';
 import { NoAuthGuard } from './guards/no-auth.guard';
 import { ForgotPasswordComponent } from './layouts/forgot-password/forgot-password.component';
 import { SingleVibePageComponent } from './layouts/single-vibe-page/single-vibe-page.component';
-import { WipComponent } from './layouts/wip/wip.component';
 import { LoginComponent } from './layouts/login/login.component';
+import { UnavailableComponent } from './layouts/unavailable/unavailable.component';
 
 export const routes: Routes = [
   {
@@ -55,5 +55,9 @@ export const routes: Routes = [
     path: '', 
     redirectTo: '/home', 
     pathMatch: 'full' 
+  },
+  { 
+    path: '**',
+    component: UnavailableComponent,
   }
 ];

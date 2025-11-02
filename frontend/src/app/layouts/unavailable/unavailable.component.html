@@ -1,7 +1,25 @@
 <v2d-base-page>
-    <div basePageBody class="unavailable">
-        <h1>😣</h1>
-        <span>Capperini, questa pagina non è disponibile.</span>
-        <p-button (onClick)="navigateToHomePage()" icon="pi pi-home" severity="primary"></p-button>
+  <div basePageBody>
+    <div class="unavailable">
+      <video
+        class="wip-video"
+        id="wipVideo"
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="auto"
+      >
+        <source src="assets/wip/wip.mp4" type="video/mp4" />
+      </video>
+      <h1 class="not-found">404</h1>
+      <span>Capperini, questa pagina non è disponibile.</span>
+      <p-button
+        (onClick)="navigateToHomePage()"
+        label="Torna alla home"
+        icon="pi pi-home"
+        severity="primary"
+      ></p-button>
     </div>
+  </div>
 </v2d-base-page>
