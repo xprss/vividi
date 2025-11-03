@@ -4,7 +4,7 @@ import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { CreateVibeDto } from './dto/create-vibe.dto';
 import { UpdateVibeDto } from './dto/update-vibe.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Vibe } from './schemas/vibe.schema';
 import { Readable } from 'stream';
 import { GoogleAPIService } from 'src/google/google-api.service';
@@ -78,15 +78,40 @@ export class VibeService {
     });
   }
 
-  async findOne(id: string) {
-    const vibe: Vibe | null = await this.vibeModel.findById(id).lean();
+  async findOne(id: string): Promise<any> {
+    const pipeline = [
+      {
+        $match: { _id: new Types.ObjectId(id) },
+      },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'userId',
+          foreignField: '_id',
+          as: 'user',
+        },
+      },
+      { $unwind: '$user' },
+      { $set: { badge: { $arrayElemAt: ['$user.roles', 0] } } },
+      { $unset: 'user' },
+      {
+        $limit: 1,
+      },
+    ];
+
+    const results = await this.vibeModel.aggregate(pipeline);
+    const vibe = results[0];
+
     if (!vibe) {
-      return null;
+      throw new HttpException('Vibe not found', HttpStatus.NOT_FOUND);
     }
-    return {
-      imageUrl: `https://drive.google.com/uc?id=${vibe.fileId}`,
+
+    const returnValue = {
       ...vibe,
+      imageUrl: `https://drive.google.com/uc?id=${vibe.fileId}`,
     };
+
+    return returnValue;
   }
 
   async update(id: string, updateVibeDto: UpdateVibeDto) {
@@ -117,7 +142,9 @@ export class VibeService {
       { responseType: 'stream' },
     );
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     res.setHeader('Content-Type', driveResponse.headers['content-type']);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     res.setHeader('Content-Length', driveResponse.headers['content-length']);
     driveResponse.data.pipe(res);
     return;

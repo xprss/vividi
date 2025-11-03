@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { ChipModule } from 'primeng/chip';
@@ -35,7 +35,7 @@ import confetti from 'canvas-confetti';
   templateUrl: './vibe-post.component.html',
   styleUrl: './vibe-post.component.scss',
 })
-export class VibePostComponent implements OnInit {
+export class VibePostComponent implements OnInit, OnChanges {
   @Input() public vibeData: any = {};
   public menuEntries: MenuItem[] | undefined;
   public isDescriptionFullyVisible: boolean = false;
@@ -60,7 +60,7 @@ export class VibePostComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.badge = this.vibeData.badge;
+    this.updateBadge();
     this.menuEntries = [];
     this.menuEntries.push({
       icon: 'pi pi-eye',
@@ -96,6 +96,16 @@ export class VibePostComponent implements OnInit {
         break;
       }
     }
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes['vibeData'] && this.vibeData) {
+      this.updateBadge();
+    }
+  }
+
+  private updateBadge(): void {
+    this.badge = this.vibeData?.badge ?? Badge.GUEST;
   }
 
   public copyToClipboard() {
