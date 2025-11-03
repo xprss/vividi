@@ -58,7 +58,7 @@ export class AuthService {
             id: data.id,
             firstName: data.firstName,
             lastName: data.lastName,
-            badges: data.roles
+            badges: data.roles,
           };
           localStorage.setItem(
             LocalStorageEnum.USER_CREDENTIAL,
@@ -115,7 +115,7 @@ export class AuthService {
             id: (await response.json()).id,
             firstName: firstName,
             lastName: lastName,
-            badges: []
+            badges: [],
           };
           localStorage.setItem(
             LocalStorageEnum.USER_CREDENTIAL,
@@ -148,7 +148,7 @@ export class AuthService {
       id: userCredential.user.uid,
       firstName: userCredential.user.displayName!,
       lastName: '',
-      badges: []
+      badges: [],
     };
     localStorage.setItem(
       LocalStorageEnum.USER_CREDENTIAL,
@@ -217,5 +217,42 @@ export class AuthService {
       }
     }
     return !!this.currentUser;
+  }
+
+  public async updateCurrentUser(): Promise<void> {
+    this.serverService
+      .getAccount(this.currentUser!.email!)
+      .then(async (response: Response) => {
+        if (response.ok) {
+          const data = await response.json();
+          this.currentUser!.badges = data.roles;
+          localStorage.setItem(
+            LocalStorageEnum.USER_CREDENTIAL,
+            JSON.stringify(this.currentUser)
+          );
+          this.navbarService.navigateToHomePage();
+
+          this.loggedIn = true;
+          this.$loggedIn.next(this.loggedIn);
+        }
+      })
+      .catch((error: string) => {
+        this.dialogService.showDialog(
+          '🫣 Utente non trovato',
+          'Controlla di aver inserito correttamente email e password.',
+          [
+            {
+              label: 'Chiudi',
+              severity: 'primary',
+              action: () => {
+                this.dialogService.hideDialog();
+              },
+            },
+          ]
+        );
+        this.loggedIn = false;
+        this.$loggedIn.next(this.loggedIn);
+        throw error;
+      });
   }
 }
