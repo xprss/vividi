@@ -206,8 +206,6 @@ export class NewVibeFormComponent implements OnInit {
   }
 
   protected getMomentLabel(moment: Moment.Moment): string | undefined {
-    console.log(moment);
-
     return Moment.MomentLabels[moment];
   }
 }
