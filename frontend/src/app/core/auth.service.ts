@@ -58,6 +58,7 @@ export class AuthService {
             id: data.id,
             firstName: data.firstName,
             lastName: data.lastName,
+            badges: data.roles
           };
           localStorage.setItem(
             LocalStorageEnum.USER_CREDENTIAL,
@@ -114,6 +115,7 @@ export class AuthService {
             id: (await response.json()).id,
             firstName: firstName,
             lastName: lastName,
+            badges: []
           };
           localStorage.setItem(
             LocalStorageEnum.USER_CREDENTIAL,
@@ -146,6 +148,7 @@ export class AuthService {
       id: userCredential.user.uid,
       firstName: userCredential.user.displayName!,
       lastName: '',
+      badges: []
     };
     localStorage.setItem(
       LocalStorageEnum.USER_CREDENTIAL,
