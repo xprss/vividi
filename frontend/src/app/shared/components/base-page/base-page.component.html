@@ -8,9 +8,13 @@
 
 <p-drawer baseZIndex="10001" [(visible)]="drawerService.isVisibile" header="Centro di supporto">
   <h3>
-    Qui troverai aiuto in caso di difficoltà durante l'utilizzo di Vividi.
+    {{supportService.getSupportData().head}}
   </h3>
-  <p>Almeno non vi perdete per strada! 😄</p>
+  @for(paragraph of supportService.getSupportData().body; track $index) {
+    <p>
+      {{paragraph}}
+    </p>
+  }
 </p-drawer>
 
 <v2d-dialog></v2d-dialog>

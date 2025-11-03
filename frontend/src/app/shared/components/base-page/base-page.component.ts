@@ -9,6 +9,7 @@ import { DrawerModule } from 'primeng/drawer';
 import { DrawerService } from '../../../core/drawer.service';
 import { AuthService } from '../../../core/auth.service';
 import { DialogComponent } from '../dialog/dialog.component';
+import { SupportService } from 'src/app/core/support.service';
 
 @Component({
   selector: 'v2d-base-page',
@@ -29,6 +30,7 @@ export class BasePageComponent {
     protected readonly headerService: HeaderService,
     protected readonly navbarService: NavbarService,
     protected readonly drawerService: DrawerService,
+    protected readonly supportService: SupportService,
     protected readonly authService: AuthService
   ) {}
 }

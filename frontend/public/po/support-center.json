@@ -1,0 +1,35 @@
+{
+  "support-center-explore": {
+    "head": "Esplora",
+    "body": [
+      "Ognuno dei post presenti in questa pagina è chiamato Vibe: la nostra piccola capsula di felicità che racchiude momenti speciali, ricordi e messaggi condivisi dai nostri amici e familiari in occasione del matrimonio dell'anno! 🎉",
+      "Gli invitati possono interagire con i post celebrando insieme con un doppio tocco sull'immagine o cliccando sul cuore sottostante ❤️",
+      "È possibile, cliccando sul pulsante coi tre puntini verticali in alto a destra, copiare nella propria clipboard il link diretto al post per condividerlo facilmente con chiunque! 🔗",
+      "Infine, se si desidera eliminare un proprio post, il menu sopracitato offre la possibilità di farlo in modo semplice e veloce 🗑️",
+      "Al termine della festa, tutte le foto condivise restaranno parte di questo album digitale, permettendo a tutti di rivivere i momenti più belli ogni volta che lo desiderano e di lasciare ai nostri sposi un ricordo indelebile creato direttamente da voi! 📸"
+    ]
+  },
+  "support-center-create": {
+    "head": "Crea",
+    "body": [
+      "Questa è la pagina dedicata alla creazione delle vostre Vibes! ✨",
+      "Prima di tutto, carica una foto cliccando sul pulsante ➕ Carica.",
+      "Lascia quindi una dedica nel box di testo sottostante per condividere i tuoi auguri e pensieri con i nostri sposi! 📝",
+      "Infine, seleziona una delle quattro categorie per classificare la tua fotografia: Giorni Precedenti, Cerimonia, Ricevimento e Giorni Successivi. Questo aiuterà a organizzare le Vibes in modo tematico! 📂",
+      "Una volta completati questi tre brevi passaggi, clicca su Condividi e la tua Vibe sarà pubblicata per essere ammirata da tutti gli invitati! 🎊"
+    ]
+  },
+  "support-center-user": {
+    "head": "Utente",
+    "body": [
+      "Questa pagina è principalmente dedicata ad ospitare i riferimenti social dei nostri sposi, nonché a fornire la possibilità di scollegare il proprio account da ottonovembre.it 👋",
+      "Non consigliamo di scollegare l'account a meno che non si abbia una ragione specifica per farlo, poiché per rieffettuare l'accesso sarà necessario riutilizzare il QR Code fornito - che noia! 🥱"
+    ]
+  },
+  "support-center-vibe": {
+    "head": "Vibe",
+    "body": [
+      "Questa pagina ospita semplicemente la singola Vibe selezionata per la visualizzazione dettagliata 📷"
+    ]
+  }
+}
