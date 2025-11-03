@@ -1,6 +1,7 @@
 <v2d-base-page>
   <div basePageBody>
     <v2d-page-title
+      (click)="handleHeaderClick()"
       [centered]="true"
       [title]="`👋 ${greeting}, ${authService.getUser()?.firstName!!}!`"
     ></v2d-page-title>

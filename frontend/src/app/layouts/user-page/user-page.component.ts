@@ -6,6 +6,9 @@ import { CommonModule } from '@angular/common';
 import { CtasComponent } from '../../shared/components/ctas/ctas.component';
 import { CtasService } from '../../core/ctas.service';
 import { environment } from 'src/environments/environment';
+import { UserControllerCatFoundRequest, UserService } from '@shared';
+import { DialogService } from 'src/app/core/dialog.service';
+import { Badge } from 'src/lib/badge.enum';
 
 @Component({
   selector: 'v2d-user-page',
@@ -18,10 +21,12 @@ export class UserPageComponent implements OnInit {
   protected greeting: 'Buon giorno' | 'Buon pomeriggio' | 'Buona sera';
   protected version: string = environment.version;
   protected readonly currentYear: number = new Date().getFullYear();
-  
+
   constructor(
     protected readonly authService: AuthService,
-    protected readonly ctasService: CtasService
+    protected readonly ctasService: CtasService,
+    protected readonly userService: UserService,
+    protected readonly dialogService: DialogService
   ) {
     const currentHour = new Date().getHours();
     if (currentHour < 12) {
@@ -43,6 +48,65 @@ export class UserPageComponent implements OnInit {
         action: () => this.authService.signOut(),
       },
     ]);
+  }
+
+  private headTapCounter: number = 0;
+  private headTapTimer: any = null;
+
+  public handleHeaderClick(): void {
+    if (this.authService.getUser()?.badges.includes(Badge.CAT_FINDER)) {
+      return;
+    }
+    if (this.headTapCounter < 5) {
+      this.headTapCounter++;
+      if (this.headTapTimer) {
+        clearTimeout(this.headTapTimer);
+      }
+      this.headTapTimer = setTimeout(() => {
+        this.headTapCounter = 0;
+      }, 500);
+    } else {
+      this.handleEasterEggResolution();
+      this.headTapCounter = 0;
+    }
+  }
+
+  private handleEasterEggResolution(): void {
+    const params: UserControllerCatFoundRequest = {
+      id: this.authService.getUser()?.id!,
+    };
+    this.userService.userControllerCatFound(params).subscribe({
+      next: () => {
+        this.dialogService.showDialog(
+          'Complimenti!',
+          'Hai trovato il gatto nascosto! Ti è stato assegnato il badge "Cercatore di Gattini" 🐈',
+          [
+            {
+              label: 'Che bello!',
+              icon: 'pi pi-check',
+              severity: 'success',
+              action: () => {
+                this.authService.updateCurrentUser().then(() => {
+                  this.dialogService.hideDialog();
+                });
+              },
+            },
+          ]
+        );
+      },
+      error: () => {
+        this.dialogService.showDialog('Errore', "C'è stato un errore.", [
+          {
+            label: 'Chiudi',
+            icon: 'pi pi-check',
+            severity: 'secondary',
+            action: () => {
+              this.dialogService.hideDialog();
+            },
+          },
+        ]);
+      },
+    });
   }
 
   public onNavigateToGitHub(): void {
