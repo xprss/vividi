@@ -18,7 +18,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'newVibe',
+    path: 'new-vibe',
     component: NewVibeComponent,
     canActivate: [AuthGuard],
   },

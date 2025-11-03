@@ -38,7 +38,7 @@ export class NavbarService {
   }
 
   public navigateToNewVibePage(): void {
-    this.router.navigate(['/newVibe']);
+    this.router.navigate(['/new-vibe']);
   }
 
   public navigateToMyPersonalPage(): void {
