@@ -24,7 +24,7 @@ export const BadgeLabels: Record<Badge, string> = {
   [Badge.QUIZ_SECOND_CLASSIFIED]: 'Secondo posto al quiz',
   [Badge.QUIZ_THIRD_CLASSIFIED]: 'Terzo posto al quiz',
   [Badge.QUIZ_LAST_CLASSIFIED]: 'Ultimo posto al quiz',
-  [Badge.CAT_FINDER]: 'Cacciatore di gatti',
+  [Badge.CAT_FINDER]: 'Cercatore di gattini',
   [Badge.GUEST]: 'Ospite',
 };
 
