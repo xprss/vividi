@@ -12,7 +12,7 @@ export class LoginService {
     const users = (await this.userModel.find()).filter((user) => {
       return user.email === email;
     });
-    this.logger.log(`Found ${users.length} users with email ${email}`);
+    this.logger.log(`Found ${users.length} users with email ${email}`, users);
     if (users.length > 0) {
       return users[0];
     }

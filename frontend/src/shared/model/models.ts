@@ -5,4 +5,5 @@ export * from './loginControllerRetrieveUserRequest';
 export * from './newVibeResponseDto';
 export * from './updateUserDto';
 export * from './updateVibeDto';
+export * from './userControllerCatFoundRequest';
 export * from './vibeControllerCreatePictureRequest';

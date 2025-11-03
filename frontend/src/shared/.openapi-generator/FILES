@@ -24,6 +24,7 @@ model/models.ts
 model/newVibeResponseDto.ts
 model/updateUserDto.ts
 model/updateVibeDto.ts
+model/userControllerCatFoundRequest.ts
 model/vibeControllerCreatePictureRequest.ts
 param.ts
 variables.ts

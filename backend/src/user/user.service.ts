@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './schemas/user.schema';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { Badge } from 'libs/common/badge.enum';
 
 @Injectable()
 export class UserService {
@@ -33,5 +34,11 @@ export class UserService {
 
   async remove(id: string) {
     return await this.userModel.findByIdAndDelete(id);
+  }
+
+  async catFound(id: Types.ObjectId): Promise<void> {
+    await this.userModel
+      .updateOne({ _id: id }, { $addToSet: { roles: Badge.CAT_FINDER } })
+      .exec();
   }
 }

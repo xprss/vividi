@@ -6,10 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Types } from 'mongoose';
+import { ApiBody } from '@nestjs/swagger';
 
 @Controller('user')
 export class UserController {
@@ -43,5 +46,13 @@ export class UserController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.remove(id);
+  }
+
+  @Put('cat')
+  @ApiBody({
+    schema: { type: 'object', properties: { id: { type: 'string' } } },
+  })
+  catFound(@Body() body: { id: Types.ObjectId }) {
+    return this.userService.catFound(body.id);
   }
 }

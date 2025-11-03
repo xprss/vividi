@@ -13,6 +13,7 @@ import { Observable }                                        from 'rxjs';
 
 import { CreateUserDto } from '../model/models';
 import { UpdateUserDto } from '../model/models';
+import { UserControllerCatFoundRequest } from '../model/models';
 
 
 import { Configuration }                                     from '../configuration';
@@ -22,6 +23,13 @@ import { Configuration }                                     from '../configurat
 export interface UserServiceInterface {
     defaultHeaders: HttpHeaders;
     configuration: Configuration;
+
+    /**
+     * 
+     * 
+     * @param userControllerCatFoundRequest 
+     */
+    userControllerCatFound(userControllerCatFoundRequest: UserControllerCatFoundRequest, extraHttpRequestParams?: any): Observable<{}>;
 
     /**
      * 
