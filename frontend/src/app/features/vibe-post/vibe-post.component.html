@@ -1,16 +1,18 @@
 <div class="vibe">
   <div class="vibe-header">
     <div id="left">
-      @if (this.badge) {
+      @if (this.badges && this.badges.length > 0) { @for (badge of this.badges;
+      track $index) {
       <span id="vibe-user-icon">{{ this.badgeEmojis[badge] }}</span>
-      }
+      } }
       <div class="user-identification">
         <span id="vibe-user-name">{{ vibeData?.userFullName }}</span>
         <div class="vibe-user-secondary-info">
           @if (!this.isLoading) {
           <span class="vibe-user-role">
-            @if (this.shallShowUserRole()) {
-            {{ this.badgeLabels[badge] }}&nbsp;&middot; }
+            @if (this.shallShowUserRole()) { @for(badge of this.badges; track
+            $index) {
+            {{ this.badgeLabels[badge] }}&nbsp;&middot; } }
             {{
               vibeData?.creationTimestamp
                 | date : "dd MMMM yyyy - HH:mm" : undefined : "it-IT"

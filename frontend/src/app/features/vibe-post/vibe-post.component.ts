@@ -1,5 +1,11 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { ChipModule } from 'primeng/chip';
@@ -44,7 +50,7 @@ export class VibePostComponent implements OnInit, OnChanges {
   protected isLiked = false;
   protected isLikedByCurrentUser: boolean = false;
   protected showFullMomentLabel: boolean = false;
-  protected badge: Badge = Badge.GUEST;
+  protected badges: Badge[] = [Badge.GUEST];
   protected readonly badgeEmojis: Record<Badge, string> = BadgeEmojis;
   protected readonly badgeLabels: Record<Badge, string> = BadgeLabels;
   protected likeTapTimer: any | undefined;
@@ -105,7 +111,7 @@ export class VibePostComponent implements OnInit, OnChanges {
   }
 
   private updateBadge(): void {
-    this.badge = this.vibeData?.badge ?? Badge.GUEST;
+    this.badges = this.vibeData?.badges ?? [Badge.GUEST];
   }
 
   public copyToClipboard() {
@@ -124,7 +130,6 @@ export class VibePostComponent implements OnInit, OnChanges {
     this.dialogService.showLoadingDialog('Eliminazione in corso...');
     this.serverService.deleteVibe(this.vibeData._id).subscribe({
       next: (response) => {
-        console.log('Vibe deleted successfully:', response);
         this.dialogService.showDialog(
           'Eliminazione avvenuta con successo',
           'La tua Vibe è stata eliminata con successo',
@@ -225,6 +230,6 @@ export class VibePostComponent implements OnInit, OnChanges {
   }
 
   public shallShowUserRole(): boolean {
-    return this.badge !== Badge.GUEST;
+    return this.badges.length > 0;
   }
 }
