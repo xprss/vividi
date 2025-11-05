@@ -84,7 +84,7 @@ export class VibePostComponent implements OnInit, OnChanges {
         this.copyToClipboard();
       },
     });
-    if (this.vibeData?.userId === this.authService.getUser()?.id) {
+    if (this.vibeData?.userId === this.authService.getUser()?.id || this.authService.isUserAdmin()) {
       this.menuEntries.push({
         icon: 'pi pi-trash',
         disabled: false,

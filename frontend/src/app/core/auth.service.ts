@@ -16,6 +16,7 @@ import { ServerService } from './server.service';
 import { BehaviorSubject } from 'rxjs';
 import { DialogService } from './dialog.service';
 import { VividiUser } from '../../lib/vividi-user.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -254,5 +255,9 @@ export class AuthService {
         this.$loggedIn.next(this.loggedIn);
         throw error;
       });
+  }
+
+  public isUserAdmin(): boolean {
+    return this.currentUser?.id === environment.adminUserId;
   }
 }
