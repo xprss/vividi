@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { UserControllerCatFoundRequest, UserService } from '@shared';
 import { DialogService } from 'src/app/core/dialog.service';
 import { Badge } from 'src/lib/badge.enum';
+import { VibeManagementService } from 'src/app/core/vibe.service';
 
 @Component({
   selector: 'v2d-user-page',
@@ -27,7 +28,8 @@ export class UserPageComponent implements OnInit {
     protected readonly authService: AuthService,
     protected readonly ctasService: CtasService,
     protected readonly userService: UserService,
-    protected readonly dialogService: DialogService
+    protected readonly dialogService: DialogService,
+    private readonly vibeManagemnetService: VibeManagementService
   ) {
     const currentHour = new Date().getHours();
     if (currentHour < 12) {
@@ -91,6 +93,7 @@ export class UserPageComponent implements OnInit {
               severity: 'success',
               action: () => {
                 this.authService.updateCurrentUser().then(() => {
+                  this.vibeManagemnetService.fetchVibes(true);
                   this.dialogService.hideDialog();
                 });
               },
