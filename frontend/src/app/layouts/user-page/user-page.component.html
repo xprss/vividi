@@ -2,6 +2,7 @@
   <div basePageBody>
     <v2d-page-title
       (click)="handleHeaderClick()"
+      (touchend)="handleHeaderClick()"
       [centered]="true"
       [title]="`👋 ${greeting}, ${authService.getUser()?.firstName!!}!`"
     ></v2d-page-title>
