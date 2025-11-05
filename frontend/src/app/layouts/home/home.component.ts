@@ -4,11 +4,12 @@ import { FeaturesModule } from '../../features/features.module';
 import { EventsService } from 'src/app/core/events.service';
 import { Subscription } from 'rxjs';
 import { VibeManagementService } from 'src/app/core/vibe.service';
+import { ProgressSpinner } from "primeng/progressspinner";
 
 @Component({
   selector: 'v2d-home',
   standalone: true,
-  imports: [SharedModule, FeaturesModule],
+  imports: [SharedModule, FeaturesModule, ProgressSpinner],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

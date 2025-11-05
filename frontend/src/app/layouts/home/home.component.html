@@ -1,22 +1,32 @@
 <v2d-base-page>
   <div basePageBody>
     <div class="vibe-post-container">
-      @for (vibeData of vibeManagementService.vibes; track vibeData) {
-      <v2d-vibe-post id="vibeData._id" [vibeData]="vibeData"></v2d-vibe-post>
-      } @if (vibeManagementService.vibes.length === 0) {
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        "
-      >
-        <h2>Nessuno ha ancora postato!</h2>
-        <span>Contribuisci a questa fantastica raccolta di ricordi! 🥹</span>
-      </div>
-      } @if (vibeManagementService.vibes.length > 4) {
-      <v2d-end-of-feed></v2d-end-of-feed>
+      @if (vibeManagementService.isLoadingVibes) {
+        <div class="vibe-post-container-loading">
+          <div id="head">
+            <h1>👰🏻‍♀️💍🤵🏻‍♂️</h1>
+            <h3>Caricamento in corsooooooo!</h3>
+          </div>
+          <p-progressSpinner id="spinner"></p-progressSpinner>
+        </div>
+      } @else {
+        @for (vibeData of vibeManagementService.vibes; track vibeData) {
+          <v2d-vibe-post id="vibeData._id" [vibeData]="vibeData"></v2d-vibe-post>
+          } @if (vibeManagementService.vibes.length === 0) {
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <h2>Nessuno ha ancora postato!</h2>
+            <span>Contribuisci a questa fantastica raccolta di ricordi! 🥹</span>
+          </div>
+          } @if (vibeManagementService.vibes.length > 4) {
+          <v2d-end-of-feed></v2d-end-of-feed>
+          }
       }
     </div>
   </div>

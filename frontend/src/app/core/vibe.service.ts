@@ -9,6 +9,7 @@ import { ServerService } from './server.service';
 })
 export class VibeManagementService extends BaseApiService {
   public vibes: any[] = [];
+  public isLoadingVibes: boolean = false;
 
   constructor(http: HttpClient, private readonly serverService: ServerService) {
     super(http, environment.apiBaseUrl);
@@ -20,9 +21,16 @@ export class VibeManagementService extends BaseApiService {
     }
 
     if (this.vibes.length === 0) {
-      this.serverService.getAllVibes().subscribe((response) => {
-        this.vibes = response;
-      });
+      this.isLoadingVibes = true;
+      try {
+        this.serverService.getAllVibes().subscribe((response) => {
+          this.vibes = response;
+          this.isLoadingVibes = false;
+        });
+      } catch (error) {
+        console.error('Error fetching vibes:', error);
+        this.isLoadingVibes = false;
+      }
     }
   }
 

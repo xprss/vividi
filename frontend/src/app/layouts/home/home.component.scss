@@ -5,3 +5,21 @@
     color: var(--p-amber-50);
     width: 100%;
 }
+
+.vibe-post-container-loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    #head {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    height: 50vh;
+    * {
+        margin: 0;
+    }
+}
