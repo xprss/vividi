@@ -19,6 +19,7 @@ import { Badge } from 'src/lib/badge.enum';
 })
 export class UserPageComponent implements OnInit {
   protected greeting: 'Buon giorno' | 'Buon pomeriggio' | 'Buona sera';
+  protected greetingEmoji: '👋' | '☀️' | '🌙';
   protected version: string = environment.version;
   protected readonly currentYear: number = new Date().getFullYear();
 
@@ -31,10 +32,13 @@ export class UserPageComponent implements OnInit {
     const currentHour = new Date().getHours();
     if (currentHour < 12) {
       this.greeting = 'Buon giorno';
+      this.greetingEmoji = '👋';
     } else if (currentHour < 18) {
       this.greeting = 'Buon pomeriggio';
+      this.greetingEmoji = '☀️';
     } else {
       this.greeting = 'Buona sera';
+      this.greetingEmoji = '🌙';
     }
   }
 

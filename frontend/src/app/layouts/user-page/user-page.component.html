@@ -4,7 +4,7 @@
       (click)="handleHeaderClick()"
       (touchend)="handleHeaderClick()"
       [centered]="true"
-      [title]="`👋 ${greeting}, ${authService.getUser()?.firstName!!}!`"
+      [title]="`${greetingEmoji} &nbsp; ${greeting}, ${authService.getUser()?.firstName!!}!`"
     ></v2d-page-title>
     <hr class="separator transparent" />
     <div class="footer-buttons-external-links">
