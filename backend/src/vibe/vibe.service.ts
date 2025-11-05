@@ -92,7 +92,7 @@ export class VibeService {
         },
       },
       { $unwind: '$user' },
-      { $set: { badge: { $arrayElemAt: ['$user.roles', 0] } } },
+      { $set: { badges: '$user.roles' } },
       { $unset: 'user' },
       {
         $limit: 1,
