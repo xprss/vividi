@@ -191,7 +191,7 @@ export class VibePostComponent implements OnInit, OnChanges {
           confetti.shapeFromText({ text: '✨', scalar: 4 }),
           confetti.shapeFromText({ text: '🕊️', scalar: 4 }),
           confetti.shapeFromText({ text: '👰🏻‍♀️', scalar: 4 }),
-          confetti.shapeFromText({ text: '🤵‍♂️', scalar: 4 }),
+          confetti.shapeFromText({ text: '🤵🏻‍♂️', scalar: 4 }),
           confetti.shapeFromText({ text: '💍', scalar: 4 }),
         ],
       };
