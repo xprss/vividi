@@ -24,6 +24,7 @@ import { resolveMomentLabel } from 'src/lib/util';
 import { environment } from 'src/environments/environment';
 import { Badge, BadgeEmojis, BadgeLabels } from 'src/lib/badge.enum';
 import confetti from 'canvas-confetti';
+import { ProgressSpinner } from 'primeng/progressspinner';
 
 @Component({
   selector: 'v2d-vibe-post',
@@ -37,6 +38,7 @@ import confetti from 'canvas-confetti';
     VisibilityTriggerComponent,
     Skeleton,
     ClipboardModule,
+    ProgressSpinner
   ],
   templateUrl: './vibe-post.component.html',
   styleUrl: './vibe-post.component.scss',

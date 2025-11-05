@@ -1,10 +1,15 @@
 <div class="vibe">
   <div class="vibe-header">
     <div id="left">
-      @if (this.badges && this.badges.length > 0) { @for (badge of this.badges;
-      track $index) {
-      <span id="vibe-user-icon">{{ this.badgeEmojis[badge] }}</span>
-      } }
+      @if (!this.isLoading) {
+        @if (this.badges && this.badges.length > 0) { @for (badge of this.badges;
+          track $index) {
+          <span id="vibe-user-icon">{{ this.badgeEmojis[badge] }}</span>
+          } }
+      } @else {
+        <p-progressspinner [style]="{ width: '1.25rem', height: '1.25rem' }" />
+      }
+      
       <div class="user-identification">
         <span id="vibe-user-name">{{ vibeData?.userFullName }}</span>
         <div class="vibe-user-secondary-info">
