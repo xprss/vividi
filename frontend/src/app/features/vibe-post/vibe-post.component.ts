@@ -177,11 +177,11 @@ export class VibePostComponent implements OnInit, OnChanges {
     if (this.isLiked) {
       const confettiParams = {
         spread: 50,
-        ticks: 170,
+        ticks: 200,
         gravity: 1.5,
         decay: 0.96,
-        startVelocity: 30,
-        particleCount: 150,
+        startVelocity: 25,
+        particleCount: 200,
         origin: { y: 1 },
         colors: ['#181730', '#5cc9ca', '#eeeeee'],
         disableForReducedMotion: true,
