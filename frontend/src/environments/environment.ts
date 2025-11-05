@@ -10,6 +10,6 @@ export const environment = {
   messagingSenderId: '569465452672',
   appId: '1:569465452672:web:a9d48095e5122f6537ce65',
   maxFileSize: 7 * 1024 * 1024, // 7 MB,
-  version: '1.1.1',
+  version: '1.1.2',
   adminUserId: '68fcbf65a0d89f6cab15754e',
 };
