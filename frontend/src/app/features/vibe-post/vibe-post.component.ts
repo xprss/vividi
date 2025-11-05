@@ -230,6 +230,6 @@ export class VibePostComponent implements OnInit, OnChanges {
   }
 
   public shallShowUserRole(): boolean {
-    return this.badges.length > 0;
+    return this.badges.length > 0 && !(this.badges.length === 1 && this.badges[0] === Badge.GUEST);
   }
 }
