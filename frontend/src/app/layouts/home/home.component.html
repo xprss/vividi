@@ -10,7 +10,7 @@
           <p-progressSpinner id="spinner"></p-progressSpinner>
         </div>
       } @else {
-        @for (vibeData of vibeManagementService.vibes; track vibeData) {
+        @for (vibeData of vibeManagementService.vibes; track $index) {
           <v2d-vibe-post id="vibeData._id" [vibeData]="vibeData"></v2d-vibe-post>
           } @if (vibeManagementService.vibes.length === 0) {
           <div
