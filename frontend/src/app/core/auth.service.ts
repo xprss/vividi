@@ -221,6 +221,9 @@ export class AuthService {
   }
 
   public async updateCurrentUser(): Promise<void> {
+    if (!this.currentUser) {
+      return;
+    }
     this.serverService
       .getAccount(this.currentUser!.email!)
       .then(async (response: Response) => {
