@@ -41,6 +41,7 @@
     <div class="vibe-picture" (click)="handleLikeClick()">
       @if (vibeData?._id) {
       <img
+	loading="lazy"
         (load)="this.onImageLoad()"
         [style.display]="isLoading ? 'none' : 'flex'"
         [src]="`${this.environment.apiBaseUrl}/vibe/image/` + vibeData?._id"
