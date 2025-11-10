@@ -43,8 +43,8 @@
       <img
 	loading="lazy"
         (load)="this.onImageLoad()"
-        [style.display]="isLoading ? 'none' : 'flex'"
-        [src]="`${this.environment.apiBaseUrl}/vibe/image/` + vibeData?._id"
+        [style.opacity]="isLoading ? 0 : 1"
+	[src]="`${this.environment.apiBaseUrl}/vibe/image/` + vibeData?._id"
         [alt]="vibeData?.fileId"
       />
       }
