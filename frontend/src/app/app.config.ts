@@ -5,12 +5,12 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 
 import { providePrimeNG } from 'primeng/config';
-import { WeddingPreset } from './themes/Wedding';
 import { provideHttpClient } from '@angular/common/http';
 import { Configuration } from '@shared';
 import { apiConfigurationFactory } from 'src/lib/apiConfigurationFactory';
 import { APP_INITIALIZER } from '@angular/core';
 import { AuthService } from './core/auth.service';
+import { Honey } from './themes/Honey';
 
 export function initApp(authService: AuthService) {
   return () => authService.updateCurrentUser();
@@ -34,7 +34,7 @@ export const appConfig: ApplicationConfig = {
     },
     providePrimeNG({
       theme: {
-        preset: WeddingPreset,
+        preset: Honey,
         options: {
           darkModeSelector: '.my-app-dark',
         },
