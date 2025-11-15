@@ -6,4 +6,5 @@ export interface VividiUser extends User {
     firstName: string;
     lastName: string;
     badges: Badge[];
+    isEnabled: boolean;
 }
