@@ -32,6 +32,12 @@ export class User {
     required: false,
   })
   roles: Badge[];
+
+  @Prop({
+    name: 'is_enabled',
+    required: false,
+  })
+  isEnabled: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
@@ -52,6 +58,10 @@ UserSchema.set('toJSON', {
     if (ret.google_registered_at !== undefined) {
       ret.googleRegisteredAt = ret.google_registered_at;
       delete ret.google_registered_at;
+    }
+    if (ret.is_enabled !== undefined) {
+      ret.isEnabled = ret.is_enabled;
+      delete ret.is_enabled;
     }
     return ret;
   },
