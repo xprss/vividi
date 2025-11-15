@@ -11,3 +11,4 @@ backend/.env
 jobs/guests.csv
 jobs/vividivibes-credentials.json
 jobs/admin-credentials.json
+jobs/new-guests.csv
