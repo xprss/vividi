@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { NavbarService } from '../../../core/navbar.service';
 import { EventsService } from '../../../core/events.service';
 import { DialogService } from 'src/app/core/dialog.service';
+import { AuthService } from 'src/app/core/auth.service';
 
 @Component({
   selector: 'v2d-navbar',
@@ -18,7 +19,8 @@ export class NavbarComponent {
     private readonly router: Router,
     protected readonly navbarService: NavbarService,
     protected readonly eventsService: EventsService,
-    protected readonly dialogService: DialogService
+    protected readonly dialogService: DialogService,
+    protected readonly authService: AuthService
   ) {}
 
   public get currentRoute(): string {

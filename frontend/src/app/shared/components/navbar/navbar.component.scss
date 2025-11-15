@@ -6,7 +6,17 @@
 
 .navbar {
   z-index: 10001;
-  .navbar-core {
+  .navbar-core-1 {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    place-items: center;
+  }
+  .navbar-core-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+  }
+  .navbar-core-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     place-items: center;

@@ -1,5 +1,5 @@
 <div class="navbar">
-  <div class="navbar-core">
+  <div [class]="`navbar-core-${authService.getUser()?.isEnabled ? '3' : '2'}`">
     <p-button
       class="navbar-entry"
       label="Esplora"
@@ -11,7 +11,8 @@
         ['/home', '/'].includes(navbarService.currentRoute) ? undefined : 'text'
       "
     ></p-button>
-    <p-button
+    @if (authService.getUser()?.isEnabled) {
+      <p-button
       class="navbar-entry"
       label="Crea"
       [disabled]="this.dialogService.isDialogOpen"
@@ -19,7 +20,8 @@
       (onClick)="navigateToNewVibePage()"
       icon="pi pi-sparkles"
       [variant]="navbarService.currentRoute === '/new-vibe' ? undefined : 'text'"
-    ></p-button>
+      ></p-button>
+    }
     <p-button
       class="navbar-entry"
       label="Utente"
