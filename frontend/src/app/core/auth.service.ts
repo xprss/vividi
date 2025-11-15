@@ -60,6 +60,7 @@ export class AuthService {
             firstName: data.firstName,
             lastName: data.lastName,
             badges: data.roles,
+            isEnabled: data.isEnabled,
           };
           localStorage.setItem(
             LocalStorageEnum.USER_CREDENTIAL,
@@ -117,6 +118,7 @@ export class AuthService {
             firstName: firstName,
             lastName: lastName,
             badges: [],
+            isEnabled: false,
           };
           localStorage.setItem(
             LocalStorageEnum.USER_CREDENTIAL,
@@ -150,6 +152,7 @@ export class AuthService {
       firstName: userCredential.user.displayName!,
       lastName: '',
       badges: [],
+      isEnabled: false,
     };
     localStorage.setItem(
       LocalStorageEnum.USER_CREDENTIAL,
