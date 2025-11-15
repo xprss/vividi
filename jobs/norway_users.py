@@ -19,6 +19,7 @@ db = client['vividi']
 users_col = db['users']
 
 enabled_emails = [
+    "vsa@ottonovembre.it",
     "lorenzo.sarasino@ottonovembre.it",
     "sibilla.sagristano@ottonovembre.it"
 ]
