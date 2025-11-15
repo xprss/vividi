@@ -10,21 +10,21 @@
 
 @keyframes shadowPulse {
   0% {
-    box-shadow: 0 0 0.5rem 0.02rem var(--p-primary-500);
+    box-shadow: 0 -4rem 3rem 2rem var(--p-primary-500);
   }
   33% {
-    box-shadow: 0 0 0.5rem 0.2rem var(--p-zinc-400);
+    box-shadow: 0 -4rem 3rem 2em var(--p-zinc-400);
   }
   66% {
-    box-shadow: 0 0 0.5rem 0.2rem var(--p-blue-500);
+    box-shadow: 0 -4rem 3rem 2em var(--p-blue-500);
   }
   100% {
-    box-shadow: 0 0 0.5rem 0.02rem var(--p-primary-500);
+    box-shadow: 0 -4rem 3rem 2rem var(--p-primary-500);
   }
 }
 
 .header {
-  box-shadow: 0 0 0.5rem 0.02rem var(--p-primary-500);
+  box-shadow: 0 -4rem 3rem 2rem var(--p-primary-500);
   animation: shadowPulse 10s ease-in-out infinite;
 
   .header-core {
