@@ -1,33 +1,65 @@
 <v2d-base-page>
   <div basePageBody>
-    <div class="vibe-post-container">
-      @if (vibeManagementService.isLoadingVibes) {
-        <div class="vibe-post-container-loading">
-          <div id="head">
-            <h1>👰🏻‍♀️💍🤵🏻‍♂️</h1>
-            <h3>Caricamento in corsooooooo!</h3>
+    <p-tabs value="0" [lazy]="true">
+      <p-tablist>
+        <p-tab value="0">🌙&nbsp;🍯&nbsp;Viaggio di nozze</p-tab>
+        <p-tab value="1">👰🏻‍♀️&nbsp;🤵🏻‍♂️&nbsp;Matrimonio</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <div class="vibe-post-container">
+            <div class="video-container">
+              <h2>🍯 In arrivo...</h2>
+              <video
+                class="video-entity"
+                id="wipVideo"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="auto"
+              >
+                <source src="assets/wip/wip.mp4" type="video/mp4" />
+              </video>
+            </div>
           </div>
-          <p-progressSpinner id="spinner"></p-progressSpinner>
-        </div>
-      } @else {
-        @for (vibeData of vibeManagementService.vibes; track $index) {
-          <v2d-vibe-post id="vibeData._id" [vibeData]="vibeData"></v2d-vibe-post>
-          } @if (vibeManagementService.vibes.length === 0) {
-          <div
-            style="
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-            "
-          >
-            <h2>Nessuno ha ancora postato!</h2>
-            <span>Contribuisci a questa fantastica raccolta di ricordi! 🥹</span>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <div class="vibe-post-container">
+            @if (vibeManagementService.isLoadingVibes) {
+            <div class="vibe-post-container-loading">
+              <div id="head">
+                <h1>👰🏻‍♀️💍🤵🏻‍♂️</h1>
+                <h3>Caricamento in corsooooooo!</h3>
+              </div>
+              <p-progressSpinner id="spinner"></p-progressSpinner>
+            </div>
+            } @else { @for (vibeData of vibeManagementService.vibes; track
+            $index) {
+            <v2d-vibe-post
+              id="vibeData._id"
+              [vibeData]="vibeData"
+            ></v2d-vibe-post>
+            } @if (vibeManagementService.vibes.length === 0) {
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <h2>Nessuno ha ancora postato!</h2>
+              <span
+                >Contribuisci a questa fantastica raccolta di ricordi! 🥹</span
+              >
+            </div>
+            } @if (vibeManagementService.vibes.length > 4) {
+            <v2d-end-of-feed></v2d-end-of-feed>
+            } }
           </div>
-          } @if (vibeManagementService.vibes.length > 4) {
-          <v2d-end-of-feed></v2d-end-of-feed>
-          }
-      }
-    </div>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
   </div>
 </v2d-base-page>

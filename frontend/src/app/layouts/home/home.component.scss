@@ -1,25 +1,53 @@
 .homepage-title {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    color: var(--p-amber-50);
-    width: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  color: var(--p-amber-50);
+  width: 100%;
 }
 
 .vibe-post-container-loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  #head {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
-    #head {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    height: 50vh;
-    * {
-        margin: 0;
-    }
+  }
+  height: 50vh;
+  * {
+    margin: 0;
+  }
+}
+
+p-tabpanels {
+  background: none !important;
+  background-color: none !important;
+}
+
+::ng-deep .p-tablist-tab-list {
+  background: none !important;
+  background-color: none !important;
+  justify-content: center;
+}
+
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-entity {
+  padding: 1rem;
+  width: 100%;
+  max-width: 25rem;
+  height: auto;
+  border-radius: 8rem 8rem;
+  border-style: solid;
+  border-color: bisque;
 }
